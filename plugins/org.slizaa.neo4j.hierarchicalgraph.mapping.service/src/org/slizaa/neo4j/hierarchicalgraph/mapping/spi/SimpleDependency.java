@@ -1,6 +1,6 @@
 package org.slizaa.neo4j.hierarchicalgraph.mapping.spi;
 
-public class SimpleDependency extends AbstractDependency {
+public final class SimpleDependency implements IDependency {
 
   /** - */
   public long   _idStart;

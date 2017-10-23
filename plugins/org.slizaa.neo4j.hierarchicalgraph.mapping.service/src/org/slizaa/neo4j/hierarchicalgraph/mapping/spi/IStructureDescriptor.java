@@ -32,5 +32,5 @@ public interface IStructureDescriptor {
    *
    * @return
    */
-  List<AbstractDependency> getDependencies();
+  List<IDependency> getDependencies();
 }
