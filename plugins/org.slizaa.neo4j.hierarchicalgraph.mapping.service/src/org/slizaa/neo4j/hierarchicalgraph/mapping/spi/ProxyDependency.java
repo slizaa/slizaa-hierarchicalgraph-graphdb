@@ -22,6 +22,16 @@ public final class ProxyDependency implements IDependency {
     _aggregatedDependency = aggregatedDependency;
     _resolveFunction = resolveFunction;
   }
+  
+  @Override
+  public boolean isProxyDependency() {
+    return true;
+  }
+
+  @Override
+  public boolean isSimpleDependency() {
+    return false;
+  }
 
   /**
    * <p>

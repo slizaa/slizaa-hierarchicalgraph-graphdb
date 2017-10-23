@@ -16,7 +16,7 @@ public interface IStructureDescriptor {
    *
    * @return
    */
-  List<Long> getToplevelNodeNodeIds();
+  List<Long> getToplevelNodeIds();
 
   /**
    * <p>

@@ -31,6 +31,16 @@ public final class SimpleDependency implements IDependency {
     _type = type;
   }
 
+  @Override
+  public boolean isProxyDependency() {
+    return false;
+  }
+
+  @Override
+  public boolean isSimpleDependency() {
+    return true;
+  }
+
   public long getIdStart() {
     return _idStart;
   }
