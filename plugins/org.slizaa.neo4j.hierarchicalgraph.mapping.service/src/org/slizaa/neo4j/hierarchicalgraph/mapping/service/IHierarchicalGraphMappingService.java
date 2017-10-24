@@ -3,8 +3,9 @@ package org.slizaa.neo4j.hierarchicalgraph.mapping.service;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.HierarchicalgraphMappingServiceImpl;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultMappingProvider;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 
 /**
  * <p>
@@ -24,8 +25,8 @@ public interface IHierarchicalGraphMappingService {
    * @return
    * @throws HierarchicalGraphMappingException
    */
-  HGRootNode convert(MappingDescriptor mappingDescriptor, Neo4jClient repository,
-      IProgressMonitor progressMonitor) throws HierarchicalGraphMappingException;
+  HGRootNode convert(IMappingProvider mappingProvider, Neo4jClient repository, IProgressMonitor progressMonitor)
+      throws HierarchicalGraphMappingException;
 
   /**
    * <p>

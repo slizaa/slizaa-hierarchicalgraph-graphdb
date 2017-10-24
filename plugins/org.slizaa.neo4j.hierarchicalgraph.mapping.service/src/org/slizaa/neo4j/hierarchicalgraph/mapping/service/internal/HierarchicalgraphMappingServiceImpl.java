@@ -30,12 +30,10 @@ import org.slizaa.hierarchicalgraph.spi.IProxyDependencyResolver;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.AggregatedDependencyQuery;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDescriptor;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.StructureDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.HierarchicalGraphMappingException;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.GraphFactoryFunctions.Neo4jRelationship;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 
 /**
  * <p>
@@ -61,14 +59,11 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
    * {@inheritDoc}
    */
   @Override
-  public HGRootNode convert(MappingDescriptor mappingDescriptor, final Neo4jClient remoteRepository,
+  public HGRootNode convert(IMappingProvider mappingDescriptor, final Neo4jClient remoteRepository,
       IProgressMonitor progressMonitor) throws HierarchicalGraphMappingException {
 
     checkNotNull(mappingDescriptor);
     checkNotNull(remoteRepository);
-
-    // copy descriptor to prevent modifications after this method has finished
-    mappingDescriptor = EcoreUtil.copy(mappingDescriptor);
 
     // create the sub monitor
     SubMonitor subMonitor = progressMonitor != null ? SubMonitor.convert(progressMonitor, 100) : null;

@@ -3,13 +3,13 @@ package org.slizaa.neo4j.hierarchicalgraph.mapping.spi;
 import java.util.List;
 import java.util.function.Function;
 
-public final class ProxyDependency implements IDependency {
+public final class ProxyDependency extends AbstractDependency {
 
   /** - */
   private SimpleDependency                              _aggregatedDependency;
 
   /** - */
-  private Function<List<IDependency>, SimpleDependency> _resolveFunction;
+  private Function<List<AbstractDependency>, SimpleDependency> _resolveFunction;
 
   /**
    * <p>
@@ -17,7 +17,7 @@ public final class ProxyDependency implements IDependency {
    * </p>
    */
   public ProxyDependency(SimpleDependency aggregatedDependency,
-      Function<List<IDependency>, SimpleDependency> resolveFunction) {
+      Function<List<AbstractDependency>, SimpleDependency> resolveFunction) {
     // TODO
     _aggregatedDependency = aggregatedDependency;
     _resolveFunction = resolveFunction;
@@ -45,7 +45,7 @@ public final class ProxyDependency implements IDependency {
    * <p>
    * </p>
    */
-  public Function<List<IDependency>, SimpleDependency> getResolveFunction() {
+  public Function<List<AbstractDependency>, SimpleDependency> getResolveFunction() {
     return _resolveFunction;
   }
 }
