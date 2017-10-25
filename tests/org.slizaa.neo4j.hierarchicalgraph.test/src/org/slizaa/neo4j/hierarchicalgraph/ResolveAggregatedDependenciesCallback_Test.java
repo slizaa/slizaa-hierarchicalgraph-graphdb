@@ -1,10 +1,12 @@
 package org.slizaa.neo4j.hierarchicalgraph;
 
+import static org.slizaa.neo4j.hierarchicalgraph.fwk.TestModelFactory.createGraphFromDefaultMapping;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import org.junit.Before;
+import org.junit.ClassRule;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
@@ -12,7 +14,9 @@ import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGProxyDependency;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.spi.IProxyDependencyResolver;
-import org.slizaa.neo4j.testfwk.AbstractRemoteRepositoryTest;
+import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
+import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
+import org.slizaa.neo4j.graphdb.testfwk.TestDB;
 
 /**
  * <p>
@@ -20,8 +24,15 @@ import org.slizaa.neo4j.testfwk.AbstractRemoteRepositoryTest;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class ResolveAggregatedDependenciesCallback_Test extends AbstractRemoteRepositoryTest {
+public class ResolveAggregatedDependenciesCallback_Test {
 
+  @ClassRule
+  public static PredefinedGraphDatabaseRule _predefinedGraphDatabase = new PredefinedGraphDatabaseRule(
+      TestDB.MAPSTRUCT);
+
+  @ClassRule
+  public static BoltClientConnectionRule    _boltClientConnection    = new BoltClientConnectionRule("localhost", 5001);
+  
   /** - */
   private HGRootNode               _rootNode;
 
@@ -33,10 +44,9 @@ public class ResolveAggregatedDependenciesCallback_Test extends AbstractRemoteRe
    */
   @Before
   public void init() throws Exception {
-    super.init();
 
     //
-    _rootNode = createGraphFromDefaultMapping(getNeo4JRemoteRepository());
+    _rootNode = createGraphFromDefaultMapping(_boltClientConnection.getBoltClient());
 
     //
     _aggregatedDependencyResolver = mock(IProxyDependencyResolver.class);
@@ -53,8 +63,8 @@ public class ResolveAggregatedDependenciesCallback_Test extends AbstractRemoteRe
   public void testResolveProxyDependencies() {
 
     //
-    HGNode pkg_omaiconversion = _rootNode.lookupNode(new Long(611));
-    HGNode pkg_omaimodelcommon = _rootNode.lookupNode(new Long(1634));
+    HGNode pkg_omaiconversion = _rootNode.lookupNode(new Long(6295));
+    HGNode pkg_omaimodelcommon = _rootNode.lookupNode(new Long(2397));
 
     //
     HGAggregatedDependency aggregatedDependency = pkg_omaiconversion.getOutgoingDependenciesTo(pkg_omaimodelcommon);
