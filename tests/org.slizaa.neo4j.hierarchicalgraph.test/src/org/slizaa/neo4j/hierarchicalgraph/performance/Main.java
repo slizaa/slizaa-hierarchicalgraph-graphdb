@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
-import org.slizaa.neo4j.testfwk.TestModelFactory;
+import org.slizaa.neo4j.hierarchicalgraph.fwk.TestModelFactory;
 
 import com.google.common.base.Stopwatch;
 

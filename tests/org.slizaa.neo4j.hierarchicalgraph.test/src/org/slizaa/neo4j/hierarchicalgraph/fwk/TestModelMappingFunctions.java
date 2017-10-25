@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.testfwk.internal;
+package org.slizaa.neo4j.hierarchicalgraph.fwk;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions.createNewCoreDependency;

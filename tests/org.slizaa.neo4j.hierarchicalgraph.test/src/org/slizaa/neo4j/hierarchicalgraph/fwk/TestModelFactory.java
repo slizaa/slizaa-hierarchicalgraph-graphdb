@@ -1,9 +1,9 @@
-package org.slizaa.neo4j.testfwk;
+package org.slizaa.neo4j.hierarchicalgraph.fwk;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions.createNewRootNode;
-import static org.slizaa.neo4j.testfwk.internal.TestModelMappingFunctions.mapFirstLevelElements;
-import static org.slizaa.neo4j.testfwk.internal.TestModelMappingFunctions.mapHierarchy;
+import static org.slizaa.neo4j.hierarchicalgraph.fwk.TestModelMappingFunctions.mapFirstLevelElements;
+import static org.slizaa.neo4j.hierarchicalgraph.fwk.TestModelMappingFunctions.mapHierarchy;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -17,16 +17,16 @@ import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
+import org.slizaa.neo4j.graphdb.testfwk.StatementResultUtil;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
-import org.slizaa.neo4j.testfwk.internal.Neo4jResultJsonConverter;
 
 public class TestModelFactory {
 
   /** - */
-  private static final String ROOT_MODULES     = "MATCH (module:MODULE) RETURN id(module)";
+  private static final String ROOT_MODULES     = "MATCH (module:MODULE) RETURN id(module) as id";
 
   /** - */
   private static String       FLAT_DIRECTORIES = "MATCH (module:MODULE)-[:CONTAINS]->(d:DIRECTORY) WHERE d.isEmpty=false RETURN DISTINCT id(module), id(d)";
@@ -112,14 +112,18 @@ public class TestModelFactory {
     Future<StatementResult> resultFiles = remoteRepository.executeCypherQuery(FILES);
     Future<StatementResult> resultTypes = remoteRepository.executeCypherQuery(TYPES);
 
-    // Future<StatementResult> dependencies = remoteRepository.executeCypherQuery(DEPENDENCIES);
+    //Future<StatementResult> dependencies = remoteRepository.executeCypherQuery(DEPENDENCIES);
 
-    mapFirstLevelElements(Neo4jResultJsonConverter.extractRootNodes(resultRoot.get()), rootElement,
+    // map first level elements
+    mapFirstLevelElements(resultRoot.get().list(r -> r.get(0).asLong()), rootElement, createNodeSourceFunction);
+
+    // map hierarchy
+    mapHierarchy(resultDirectories.get().list(r -> new Long[] { r.get(0).asLong(), r.get(1).asLong() }), rootElement,
         createNodeSourceFunction);
-    mapHierarchy(Neo4jResultJsonConverter.extractHierarchy(resultDirectories.get()), rootElement,
+    mapHierarchy(resultFiles.get().list(r -> new Long[] { r.get(0).asLong(), r.get(1).asLong() }), rootElement,
         createNodeSourceFunction);
-    mapHierarchy(Neo4jResultJsonConverter.extractHierarchy(resultFiles.get()), rootElement, createNodeSourceFunction);
-    mapHierarchy(Neo4jResultJsonConverter.extractHierarchy(resultTypes.get()), rootElement, createNodeSourceFunction);
+    mapHierarchy(resultTypes.get().list(r -> new Long[] { r.get(0).asLong(), r.get(1).asLong() }), rootElement,
+        createNodeSourceFunction);
 
     // //
     // mapDependencies(Neo4jResultJsonConverter.extractDependencyDefinition(dependencies.get()), rootElement, true,

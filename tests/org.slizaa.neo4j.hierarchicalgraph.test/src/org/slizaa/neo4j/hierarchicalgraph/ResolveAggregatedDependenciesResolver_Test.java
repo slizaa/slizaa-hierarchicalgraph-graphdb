@@ -1,14 +1,21 @@
 package org.slizaa.neo4j.hierarchicalgraph;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.slizaa.neo4j.hierarchicalgraph.fwk.TestModelFactory.createGraphFromDefaultMapping;
+
+import java.util.concurrent.ExecutionException;
 
 import org.junit.Before;
+import org.junit.ClassRule;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGAggregatedDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.spi.IProxyDependencyResolver;
-import org.slizaa.neo4j.testfwk.AbstractRemoteRepositoryTest;
+import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
+import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
+import org.slizaa.neo4j.graphdb.testfwk.StatementResultUtil;
+import org.slizaa.neo4j.graphdb.testfwk.TestDB;
 
 /**
  * <p>
@@ -16,23 +23,29 @@ import org.slizaa.neo4j.testfwk.AbstractRemoteRepositoryTest;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class ResolveAggregatedDependenciesResolver_Test extends AbstractRemoteRepositoryTest {
+public class ResolveAggregatedDependenciesResolver_Test {
+
+  @ClassRule
+  public static PredefinedGraphDatabaseRule _predefinedGraphDatabase = new PredefinedGraphDatabaseRule(
+      TestDB.MAPSTRUCT);
+
+  @ClassRule
+  public static BoltClientConnectionRule    _boltClientConnection    = new BoltClientConnectionRule("localhost", 5001);
 
   /** - */
-  private HGRootNode               _rootNode;
+  private HGRootNode                        _rootNode;
 
   /** - */
-  private IProxyDependencyResolver _aggregatedDependencyResolver;
+  private IProxyDependencyResolver          _aggregatedDependencyResolver;
 
   /**
    * {@inheritDoc}
    */
   @Before
   public void init() throws Exception {
-    super.init();
 
     //
-    _rootNode = createGraphFromDefaultMapping(getNeo4JRemoteRepository());
+    _rootNode = createGraphFromDefaultMapping(_boltClientConnection.getBoltClient());
 
     //
     _aggregatedDependencyResolver = null;
@@ -44,13 +57,22 @@ public class ResolveAggregatedDependenciesResolver_Test extends AbstractRemoteRe
   /**
    * <p>
    * </p>
+   * 
+   * @throws ExecutionException
+   * @throws InterruptedException
    */
   @Test
-  public void testResolveProxyDependencies() {
+  public void testResolveProxyDependencies() throws InterruptedException, ExecutionException {
+
+    _boltClientConnection.getBoltClient().executeCypherQuery("MATCH (d:DIRECTORY) RETURN d",
+        statementResult -> StatementResultUtil.dumpStatement(statementResult)).get();
 
     //
-    HGNode pkg_omaiconversion = _rootNode.lookupNode(new Long(611));
-    HGNode pkg_omaimodelcommon = _rootNode.lookupNode(new Long(1634));
+    HGNode pkg_omaiconversion = _rootNode.lookupNode(new Long(6295));
+    HGNode pkg_omaimodelcommon = _rootNode.lookupNode(new Long(2397));
+
+    assertThat(pkg_omaiconversion).isNotNull();
+    assertThat(pkg_omaimodelcommon).isNotNull();
 
     //
     HGAggregatedDependency hgDependency = pkg_omaiconversion.getOutgoingDependenciesTo(pkg_omaimodelcommon);

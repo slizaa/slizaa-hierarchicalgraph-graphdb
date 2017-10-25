@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Generated from Eclipse Platform" sequenceNumber="7">
+<?pde version="3.8"?><target name="Generated from Eclipse Platform" sequenceNumber="13">
 <locations>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="de.cau.cs.kieler.klighd.draw2d.feature.feature.group" version="0.0.0"/>
+<unit id="de.cau.cs.kieler.klighd.freehep.feature.feature.group" version="0.0.0"/>
+<unit id="de.cau.cs.kieler.klighd.sdk.feature.feature.group" version="0.0.0"/>
+<unit id="de.cau.cs.kieler.klighd.view.feature.feature.group" version="0.0.0"/>
+<repository location="http://rtsys.informatik.uni-kiel.de/~kieler/updatesite/release_pragmatics_2017-02-04/"/>
+</location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.draw2d.sdk.feature.group" version="3.10.100.201606061308"/>
 <unit id="org.eclipse.emf.sdk.feature.group" version="2.13.0.v20170609-0928"/>
@@ -14,34 +21,31 @@
 <repository location="http://download.eclipse.org/releases/oxygen"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="de.cau.cs.kieler.klighd.draw2d.feature.feature.group" version="0.0.0"/>
-<unit id="de.cau.cs.kieler.klighd.freehep.feature.feature.group" version="0.0.0"/>
-<unit id="de.cau.cs.kieler.klighd.sdk.feature.feature.group" version="0.0.0"/>
-<unit id="de.cau.cs.kieler.klighd.view.feature.feature.group" version="0.0.0"/>
-<repository location="http://rtsys.informatik.uni-kiel.de/~kieler/updatesite/release_pragmatics_2017-02-04/"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.elk.graphiti.feature.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.elk.sdk.feature.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.elk.ui.feature.feature.group" version="0.0.0"/>
 <repository location="http://download.eclipse.org/elk/updates/releases/0.2.2/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.slizaa.thirdparty.feature.feature.group" version="0.0.0"/>
-<unit id="org.slizaa.thirdparty.test.feature.feature.group" version="0.0.0"/>
-<repository location="http://www.slizaa.org/p2/org.slizaa.thirdparty/"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.slizaa.core.feature.feature.group" version="0.0.0"/>
+<unit id="org.slizaa.hierarchicalgraph.core.feature.feature.group" version="0.0.0"/>
+<unit id="org.slizaa.hierarchicalgraph.core.feature.source.feature.group" version="0.0.0"/>
 <repository location="http://www.slizaa.org/p2/slizaa-hierarchicalgraph-core"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.slizaa.opencypher.ide.feature.feature.group" version="0.0.0"/>
-<repository location="http://www.slizaa.org/p2/slizaa-opencypher-ide"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.slizaa.neo4j.opencypher.feature.feature.group" version="0.0.0"/>
 <repository location="http://www.slizaa.org/p2/slizaa-opencypher-xtext"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.slizaa.opencypher.workbench.feature.feature.group" version="0.0.0"/>
+<unit id="org.slizaa.opencypher.workbench.feature.source.feature.group" version="0.0.0"/>
+<unit id="org.slizaa.opencypher.workbench.testfwk.feature.feature.group" version="0.0.0"/>
+<unit id="org.slizaa.opencypher.workbench.testfwk.feature.source.feature.group" version="0.0.0"/>
+<repository location="http://www.slizaa.org/p2/slizaa-opencypher-workbench"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.slizaa.thirdparty.feature.feature.group" version="0.0.0"/>
+<unit id="org.slizaa.thirdparty.test.feature.feature.group" version="0.0.0"/>
+<repository location="http://www.slizaa.org/p2/slizaa-thirdparty-dependencies"/>
 </location>
 </locations>
 </target>

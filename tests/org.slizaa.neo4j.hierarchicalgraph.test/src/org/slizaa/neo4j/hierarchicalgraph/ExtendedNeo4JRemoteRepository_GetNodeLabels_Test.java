@@ -1,16 +1,16 @@
 package org.slizaa.neo4j.hierarchicalgraph;
 
-import static net.javacrumbs.jsonunit.core.Option.IGNORING_ARRAY_ORDER;
-import static net.javacrumbs.jsonunit.fluent.JsonFluentAssert.assertThatJson;
-
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
-import org.slizaa.neo4j.testfwk.AbstractRemoteRepositoryTest;
+import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
+import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
+import org.slizaa.neo4j.graphdb.testfwk.TestDB;
 
 import com.google.gson.JsonArray;
 
@@ -22,13 +22,20 @@ import com.google.gson.JsonArray;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 @RunWith(value = Parameterized.class)
-public class ExtendedNeo4JRemoteRepository_GetNodeLabels_Test extends AbstractRemoteRepositoryTest {
+public class ExtendedNeo4JRemoteRepository_GetNodeLabels_Test {
+
+  @ClassRule
+  public static PredefinedGraphDatabaseRule _predefinedGraphDatabase = new PredefinedGraphDatabaseRule(
+      TestDB.MAPSTRUCT);
+
+  @ClassRule
+  public static BoltClientConnectionRule    _boltClientConnection    = new BoltClientConnectionRule("localhost", 5001);
 
   /** - */
-  private long   _nodeId;
+  private long                              _nodeId;
 
   /** - */
-  private String _expectedJsonString;
+  private String                            _expectedJsonString;
 
   /**
    * <p>

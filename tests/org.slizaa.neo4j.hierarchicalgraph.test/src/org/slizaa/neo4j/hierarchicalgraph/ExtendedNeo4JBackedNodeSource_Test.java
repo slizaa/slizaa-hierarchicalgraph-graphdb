@@ -9,10 +9,13 @@ import java.util.concurrent.ExecutionException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.junit.Before;
+import org.junit.ClassRule;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.neo4j.testfwk.AbstractRemoteRepositoryTest;
+import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
+import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
+import org.slizaa.neo4j.graphdb.testfwk.TestDB;
 
 /**
  * <p>
@@ -20,17 +23,23 @@ import org.slizaa.neo4j.testfwk.AbstractRemoteRepositoryTest;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class ExtendedNeo4JBackedNodeSource_Test extends AbstractRemoteRepositoryTest {
+public class ExtendedNeo4JBackedNodeSource_Test {
+
+  @ClassRule
+  public static PredefinedGraphDatabaseRule _predefinedGraphDatabase = new PredefinedGraphDatabaseRule(
+      TestDB.MAPSTRUCT);
+
+  @ClassRule
+  public static BoltClientConnectionRule    _boltClientConnection    = new BoltClientConnectionRule("localhost", 5001);
 
   /** - */
-  private HGRootNode _rootNode;
+  private HGRootNode                        _rootNode;
 
   /** - */
-  private HGNode     _node;
+  private HGNode                            _node;
 
   @Before
   public void init() throws Exception {
-    super.init();
 
     //
     _rootNode = createNewRootNode(() -> {
@@ -39,7 +48,7 @@ public class ExtendedNeo4JBackedNodeSource_Test extends AbstractRemoteRepository
       Neo4JBackedRootNodeSource result = Neo4jHierarchicalgraphFactory.eINSTANCE.createNeo4JBackedRootNodeSource();
 
       // set the repository
-      result.setRepository(getNeo4JRemoteRepository());
+      result.setRepository(_boltClientConnection.getBoltClient());
 
       // return the result
       return result;
