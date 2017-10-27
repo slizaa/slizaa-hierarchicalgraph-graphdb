@@ -1,5 +1,7 @@
 package org.slizaa.neo4j.hierarchicalgraph;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -12,9 +14,8 @@ import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
 import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
 import org.slizaa.neo4j.graphdb.testfwk.TestDB;
 
+import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
-
-/**
  * <p>
  * https://github.com/lukas-krecan/JsonUnit
  * </p>
@@ -35,7 +36,7 @@ public class ExtendedNeo4JRemoteRepository_GetNodeLabels_Test {
   private long                              _nodeId;
 
   /** - */
-  private String                            _expectedJsonString;
+  private String[]                            _expected;
 
   /**
    * <p>
@@ -45,9 +46,9 @@ public class ExtendedNeo4JRemoteRepository_GetNodeLabels_Test {
    * @param nodeId
    * @param expectedJsonString
    */
-  public ExtendedNeo4JRemoteRepository_GetNodeLabels_Test(long nodeId, String expectedJsonString) {
+  public ExtendedNeo4JRemoteRepository_GetNodeLabels_Test(long nodeId, String[] expected) {
     this._nodeId = nodeId;
-    this._expectedJsonString = expectedJsonString;
+    this._expected = expected;
   }
 
   /**
@@ -56,8 +57,9 @@ public class ExtendedNeo4JRemoteRepository_GetNodeLabels_Test {
    */
   @Test
   public void getNodeProperties() {
-    JsonArray jsonObject = getNeo4JRemoteRepository().getNode(_nodeId).labels();
-    assertThatJson(jsonObject).when(IGNORING_ARRAY_ORDER).isEqualTo(_expectedJsonString);
+
+    assertThat(Lists.newArrayList(_boltClientConnection.getBoltClient().getNode(_nodeId).labels()))
+        .containsExactly(_expected);
   }
 
   /**
@@ -68,9 +70,13 @@ public class ExtendedNeo4JRemoteRepository_GetNodeLabels_Test {
    */
   @Parameters(name = "{index}: getNodeLabels({0}) = {1}")
   public static Collection<Object[]> data() {
-    return Arrays
-        .asList(new Object[][] { { 4532, "['Java', 'Member', 'Method']" }, { 5146, "['Java', 'Member', 'Method']" },
-            { 7282, "['Java', 'Member', 'Method']" }, { 6438, "['Java', 'Member', 'Field']" },
-            { 1, "['File', 'Artifact', 'Container', 'Archive', 'Zip', 'Java', 'Jar']" } });
+
+    return Arrays.asList(new Object[][] { { 4532, new String[] { "Java", "Member", "Method" } } });
+    
+    // return Arrays
+    // .asList(new Object[][] { { 4532, new String["Java", "Member", "Method"]" }, { 5146, "['Java', 'Member',
+    // 'Method']" },
+    // { 7282, "['Java', 'Member', 'Method']" }, { 6438, "['Java', 'Member', 'Field']" },
+    // { 1, "['File', 'Artifact', 'Container', 'Archive', 'Zip', 'Java', 'Jar']" } });
   }
 }
