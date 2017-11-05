@@ -1,6 +1,7 @@
 package org.slizaa.neo4j.hierarchicalgraph.impl;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 import java.util.HashMap;
 import java.util.List;
@@ -220,7 +221,9 @@ public class ExtendedNeo4JBackedNodeSourceTrait {
         .getNodeSource();
 
     //
-    return (Neo4jClient) rootNodeSource.getRepository();
+    Neo4jClient neo4jClient = rootNodeSource.getRepository();
+    checkNotNull(neo4jClient, "No bolt client set.");
+    return neo4jClient ;
   }
 
   public boolean isAutoExpand() {

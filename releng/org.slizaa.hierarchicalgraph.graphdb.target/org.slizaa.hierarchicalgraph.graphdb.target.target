@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Generated from Eclipse Platform" sequenceNumber="13">
+<?pde version="3.8"?><target name="Generated from Eclipse Platform" sequenceNumber="28">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="de.cau.cs.kieler.klighd.draw2d.feature.feature.group" version="0.0.0"/>
@@ -46,6 +46,14 @@
 <unit id="org.slizaa.thirdparty.feature.feature.group" version="0.0.0"/>
 <unit id="org.slizaa.thirdparty.test.feature.feature.group" version="0.0.0"/>
 <repository location="http://www.slizaa.org/p2/slizaa-thirdparty-dependencies"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.slizaa.scanner.services.eclipse.feature.feature.group" version="0.0.0"/>
+<repository location="http://www.slizaa.org/p2/slizaa-scanner-services"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.slizaa.scanner.core.eclipse.feature.feature.group" version="0.0.0"/>
+<repository location="http://www.slizaa.org/p2/slizaa-scanner-core"/>
 </location>
 </locations>
 </target>

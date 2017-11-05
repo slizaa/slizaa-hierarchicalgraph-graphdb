@@ -11,6 +11,7 @@ Require-Bundle: org.eclipse.core.runtime,
  com.google.guava;bundle-version="15.0.0",
  org.assertj.core;bundle-version="3.3.0",
  org.slizaa.neo4j.testfwk.dbserver,
- org.mockito.mockito-all;bundle-version="1.10.19"
+ org.mockito.mockito-all;bundle-version="1.10.19",
+ org.eclipse.core.resources;bundle-version="3.12.0"
 Import-Package: org.osgi.service.component.annotations;version="1.2.0"
  

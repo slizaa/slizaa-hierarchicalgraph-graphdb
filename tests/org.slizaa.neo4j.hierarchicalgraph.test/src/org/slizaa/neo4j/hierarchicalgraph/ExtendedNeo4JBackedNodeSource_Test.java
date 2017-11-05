@@ -8,6 +8,7 @@ import java.util.concurrent.ExecutionException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -16,6 +17,7 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
 import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
 import org.slizaa.neo4j.graphdb.testfwk.TestDB;
+import org.slizaa.neo4j.hierarchicalgraph.fwk.NodeIdFinder;
 
 /**
  * <p>
@@ -26,8 +28,8 @@ import org.slizaa.neo4j.graphdb.testfwk.TestDB;
 public class ExtendedNeo4JBackedNodeSource_Test {
 
   @ClassRule
-  public static PredefinedGraphDatabaseRule _predefinedGraphDatabase = new PredefinedGraphDatabaseRule(
-      TestDB.MAPSTRUCT);
+  public static PredefinedGraphDatabaseRule _predefinedGraphDatabase = new PredefinedGraphDatabaseRule(TestDB.MAPSTRUCT,
+      5001);
 
   @ClassRule
   public static BoltClientConnectionRule    _boltClientConnection    = new BoltClientConnectionRule("localhost", 5001);
@@ -60,8 +62,15 @@ public class ExtendedNeo4JBackedNodeSource_Test {
       // create the
       Neo4JBackedNodeSource nodeSource = Neo4jHierarchicalgraphFactory.eINSTANCE.createNeo4JBackedNodeSource();
 
-      // set the repository
-      nodeSource.setIdentifier(7722l);
+      try {
+
+        // set the repository
+        nodeSource.setIdentifier(NodeIdFinder.getDoGetMapperMethod(_boltClientConnection.getBoltClient()));
+
+      } catch (Exception e) {
+        e.printStackTrace();
+        Assert.fail();
+      }
 
       // return the result
       return nodeSource;
@@ -82,13 +91,14 @@ public class ExtendedNeo4JBackedNodeSource_Test {
     EMap<String, String> properties = ((Neo4JBackedNodeSource) _node.getNodeSource()).getProperties();
 
     assertThat(properties).isNotNull();
-    assertThat(properties).hasSize(9);
-    assertThat(properties.get("synthetic")).isEqualTo("false");
-    assertThat(properties.get("fqn")).isEqualTo("void closeTemplateSource(java.lang.Object)");
-    assertThat(properties.get("accessLevel")).isEqualTo("PUBLIC");
-    assertThat(properties.get("name")).isEqualTo("closeTemplateSource");
-    // assertThat(properties.get("cyclomaticComplexity")).isEqualTo("1");
-    // TODO
+    assertThat(properties).hasSize(5);
+    assertThat(properties.get("fqn"))
+        .isEqualTo("java.lang.Object org.mapstruct.factory.Mappers.doGetMapper(java.lang.Class,java.lang.ClassLoader)");
+    assertThat(properties.get("visibility")).isEqualTo("private");
+    assertThat(properties.get("name")).isEqualTo("doGetMapper");
+    assertThat(properties.get("static")).isEqualTo("true");
+    assertThat(properties.get("signature"))
+        .isEqualTo("<T:Ljava/lang/Object;>(Ljava/lang/Class<TT;>;Ljava/lang/ClassLoader;)TT;");
   }
 
   /**
@@ -103,6 +113,6 @@ public class ExtendedNeo4JBackedNodeSource_Test {
 
     assertThat(labels).isNotNull();
     assertThat(labels).hasSize(1);
-    assertThat(labels).contains("METHOD");
+    assertThat(labels).contains("Method");
   }
 }

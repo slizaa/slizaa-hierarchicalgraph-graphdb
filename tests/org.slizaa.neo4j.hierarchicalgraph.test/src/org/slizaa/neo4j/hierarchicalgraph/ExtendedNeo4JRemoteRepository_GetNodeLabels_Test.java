@@ -1,7 +1,10 @@
 package org.slizaa.neo4j.hierarchicalgraph;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -12,7 +15,7 @@ import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
 import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
 import org.slizaa.neo4j.graphdb.testfwk.TestDB;
 
-import com.google.gson.JsonArray;
+import com.google.common.collect.Lists;
 
 /**
  * <p>
@@ -25,8 +28,8 @@ import com.google.gson.JsonArray;
 public class ExtendedNeo4JRemoteRepository_GetNodeLabels_Test {
 
   @ClassRule
-  public static PredefinedGraphDatabaseRule _predefinedGraphDatabase = new PredefinedGraphDatabaseRule(
-      TestDB.MAPSTRUCT);
+  public static PredefinedGraphDatabaseRule _predefinedGraphDatabase = new PredefinedGraphDatabaseRule(TestDB.MAPSTRUCT,
+      5001);
 
   @ClassRule
   public static BoltClientConnectionRule    _boltClientConnection    = new BoltClientConnectionRule("localhost", 5001);
@@ -35,7 +38,7 @@ public class ExtendedNeo4JRemoteRepository_GetNodeLabels_Test {
   private long                              _nodeId;
 
   /** - */
-  private String                            _expectedJsonString;
+  private List<String>                      _expectedLabels;
 
   /**
    * <p>
@@ -43,11 +46,11 @@ public class ExtendedNeo4JRemoteRepository_GetNodeLabels_Test {
    * </p>
    *
    * @param nodeId
-   * @param expectedJsonString
+   * @param expectedLabels
    */
-  public ExtendedNeo4JRemoteRepository_GetNodeLabels_Test(long nodeId, String expectedJsonString) {
+  public ExtendedNeo4JRemoteRepository_GetNodeLabels_Test(long nodeId, List<String> expectedLabels) {
     this._nodeId = nodeId;
-    this._expectedJsonString = expectedJsonString;
+    this._expectedLabels = expectedLabels;
   }
 
   /**
@@ -56,8 +59,8 @@ public class ExtendedNeo4JRemoteRepository_GetNodeLabels_Test {
    */
   @Test
   public void getNodeProperties() {
-    JsonArray jsonObject = getNeo4JRemoteRepository().getNode(_nodeId).labels();
-    assertThatJson(jsonObject).when(IGNORING_ARRAY_ORDER).isEqualTo(_expectedJsonString);
+    List<String> labels = Lists.newArrayList(_boltClientConnection.getBoltClient().getNode(_nodeId).labels());
+    assertThat(labels).containsExactlyElementsOf(_expectedLabels);
   }
 
   /**
@@ -68,9 +71,9 @@ public class ExtendedNeo4JRemoteRepository_GetNodeLabels_Test {
    */
   @Parameters(name = "{index}: getNodeLabels({0}) = {1}")
   public static Collection<Object[]> data() {
-    return Arrays
-        .asList(new Object[][] { { 4532, "['Java', 'Member', 'Method']" }, { 5146, "['Java', 'Member', 'Method']" },
-            { 7282, "['Java', 'Member', 'Method']" }, { 6438, "['Java', 'Member', 'Field']" },
-            { 1, "['File', 'Artifact', 'Container', 'Archive', 'Zip', 'Java', 'Jar']" } });
+    return Arrays.asList(new Object[][] { { 4532, Arrays.asList("Java", "Member", "Method") },
+        { 5146, Arrays.asList("Java", "Member", "Method") }, { 7282, Arrays.asList("Java", "Member", "Method") },
+        { 6438, Arrays.asList("Java", "Member", "Field") },
+        { 1, Arrays.asList("PRIMITIVE_DATA_TYPE") } });
   }
 }

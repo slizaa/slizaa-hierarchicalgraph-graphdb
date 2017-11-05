@@ -17,7 +17,6 @@ import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
-import org.slizaa.neo4j.graphdb.testfwk.StatementResultUtil;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
@@ -26,16 +25,16 @@ import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
 public class TestModelFactory {
 
   /** - */
-  private static final String ROOT_MODULES     = "MATCH (module:MODULE) RETURN id(module) as id";
+  private static final String ROOT_MODULES     = "Match (module:Module) Return id(module) as id";
 
   /** - */
-  private static String       FLAT_DIRECTORIES = "MATCH (module:MODULE)-[:CONTAINS]->(d:DIRECTORY) WHERE d.isEmpty=false RETURN DISTINCT id(module), id(d)";
+  private static String       FLAT_DIRECTORIES = "Match (module:Module)-[:CONTAINS]->(d:Directory) WHERE d.isEmpty=false Return DISTINCT id(module), id(d)";
 
   /** - */
-  private static final String FILES            = "MATCH (d:DIRECTORY)-[:CONTAINS]->(r:RESOURCE) RETURN id(d), id(r)";
+  private static final String FILES            = "Match (d:Directory)-[:CONTAINS]->(r:Resource) Return id(d), id(r)";
 
   /** - */
-  private static final String TYPES            = "MATCH (r:RESOURCE)-[:CONTAINS]->(t:TYPE) RETURN id(r), id(t)";
+  private static final String TYPES            = "Match (r:Resource)-[:CONTAINS]->(t:Type) Return id(r), id(t)";
 
   // /** - */
   // private static final String DEPENDENCIES = "MATCH (t1:File:Type:Java)-[r:DEPENDS_ON]->(t2:File:Type:Java) RETURN
@@ -75,6 +74,7 @@ public class TestModelFactory {
       Neo4JBackedRootNodeSource rootNodeSource = Neo4jHierarchicalgraphFactory.eINSTANCE
           .createNeo4JBackedRootNodeSource();
       rootNodeSource.setIdentifier(-1l);
+      rootNodeSource.setRepository(remoteRepository);
       return rootNodeSource;
     });
 
@@ -112,7 +112,7 @@ public class TestModelFactory {
     Future<StatementResult> resultFiles = remoteRepository.executeCypherQuery(FILES);
     Future<StatementResult> resultTypes = remoteRepository.executeCypherQuery(TYPES);
 
-    //Future<StatementResult> dependencies = remoteRepository.executeCypherQuery(DEPENDENCIES);
+    // Future<StatementResult> dependencies = remoteRepository.executeCypherQuery(DEPENDENCIES);
 
     // map first level elements
     mapFirstLevelElements(resultRoot.get().list(r -> r.get(0).asLong()), rootElement, createNodeSourceFunction);

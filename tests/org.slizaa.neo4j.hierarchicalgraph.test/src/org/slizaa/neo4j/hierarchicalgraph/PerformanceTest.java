@@ -1,19 +1,28 @@
-package org.slizaa.neo4j.hierarchicalgraph.performance;
+package org.slizaa.neo4j.hierarchicalgraph;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.ClassRule;
+import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.neo4j.dbadapter.Neo4jClient;
+import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
+import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
+import org.slizaa.neo4j.graphdb.testfwk.TestDB;
 import org.slizaa.neo4j.hierarchicalgraph.fwk.TestModelFactory;
 
 import com.google.common.base.Stopwatch;
 
-public class Main {
+public class PerformanceTest {
 
-  public static void main(String[] args) throws Exception {
+  @ClassRule
+  public static PredefinedGraphDatabaseRule _predefinedGraphDatabase = new PredefinedGraphDatabaseRule(TestDB.MAPSTRUCT,
+      5001);
 
-    //
-    Neo4jClient restClient = TestModelFactory.createNeo4JRemoteRepository("http://bolt:5001");
+  @ClassRule
+  public static BoltClientConnectionRule    _boltClientConnection    = new BoltClientConnectionRule("localhost", 5001);
+
+  @Test
+  public void testMapping() throws Exception {
 
     //
     System.out.println("Start");
@@ -22,7 +31,7 @@ public class Main {
     Stopwatch stopwatch = Stopwatch.createStarted();
 
     //
-    HGRootNode rootNode = TestModelFactory.createGraphFromDefaultMapping(restClient);
+    HGRootNode rootNode = TestModelFactory.createGraphFromDefaultMapping(_boltClientConnection.getBoltClient());
 
     //
     System.out.println("Create graph from default mapping: " + stopwatch.elapsed(TimeUnit.MILLISECONDS));

@@ -1,24 +1,36 @@
 package org.slizaa.neo4j.hierarchicalgraph;
 
+import org.eclipse.emf.common.util.EMap;
 import org.junit.Before;
+import org.junit.ClassRule;
 import org.junit.Test;
+import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.neo4j.testfwk.AbstractRemoteRepositoryTest;
+import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
+import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
+import org.slizaa.neo4j.graphdb.testfwk.TestDB;
+import org.slizaa.neo4j.hierarchicalgraph.fwk.TestModelFactory;
 
-public class MappingTest extends AbstractRemoteRepositoryTest {
+public class MappingTest {
+
+  @ClassRule
+  public static PredefinedGraphDatabaseRule _predefinedGraphDatabase = new PredefinedGraphDatabaseRule(TestDB.MAPSTRUCT,
+      5001);
+
+  @ClassRule
+  public static BoltClientConnectionRule    _boltClientConnection    = new BoltClientConnectionRule("localhost", 5001);
 
   /** - */
-  private HGRootNode _rootNode;
+  private HGRootNode                        _rootNode;
 
   /**
    * {@inheritDoc}
    */
   @Before
   public void init() throws Exception {
-    super.init();
 
     //
-    _rootNode = createGraphFromDefaultMapping(getNeo4JRemoteRepository());
+    _rootNode = TestModelFactory.createGraphFromDefaultMapping(_boltClientConnection.getBoltClient());
   }
 
   @Test
@@ -26,42 +38,24 @@ public class MappingTest extends AbstractRemoteRepositoryTest {
 
     System.out.println(_rootNode);
     _rootNode.getChildren().forEach(c1 -> {
-      System.out.println(" - " + c1);
+      System.out.println(" - " + fqn(c1));
       c1.getChildren().forEach(c2 -> {
-        System.out.println("   -- " + c2);
+        System.out.println("   -- " + fqn(c2));
         c2.getChildren().forEach(c3 -> {
-          System.out.println("     --- " + c3);
+          System.out.println("     --- " + fqn(c3));
           c3.getChildren().forEach(c4 -> {
-            System.out.println("         ~ " + c4);
-            
+            System.out.println(" -" + fqn(c4));
+            // c4.getChildren().forEach(c5 -> {
+            // System.out.println(" -" + fqn(c5));
+            // });
           });
         });
       });
     });
+  }
 
-    // //
-    // HGNode pkg_omaiconversion = _rootNode.lookupNode(new Long(611));
-    // HGNode pkg_omaimodelcommon = _rootNode.lookupNode(new Long(1634));
-    //
-    // //
-    // HGAggregatedDependency aggregatedDependency = pkg_omaiconversion.getOutgoingDependenciesTo(pkg_omaimodelcommon);
-    // assertThat(aggregatedDependency).isNotNull();
-    // assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(59);
-    // assertThat(aggregatedDependency.getCoreDependencies().size()).isEqualTo(59);
-    //
-    // // resolve the dependency
-    // aggregatedDependency.resolveProxyDependencies();
-    // assertThat(aggregatedDependency.getCoreDependencies().size()).isEqualTo(59);
-    //
-    // //
-    // for (HGCoreDependency dependency : aggregatedDependency.getCoreDependencies()) {
-    // if (dependency instanceof HGProxyDependency) {
-    // verify(_aggregatedDependencyResolver).resolveProxyDependency((HGProxyDependency) dependency);
-    // }
-    // }
-    //
-    // //
-    // assertThat(aggregatedDependency.getAggregatedWeight()).isEqualTo(59);
-    // assertThat(aggregatedDependency.getCoreDependencies().size()).isEqualTo(59);
+  private static String fqn(HGNode hgNode) {
+    EMap<String, String> properties = ((Neo4JBackedNodeSource) hgNode.getNodeSource()).getProperties();
+    return properties.get("fqn");
   }
 }
