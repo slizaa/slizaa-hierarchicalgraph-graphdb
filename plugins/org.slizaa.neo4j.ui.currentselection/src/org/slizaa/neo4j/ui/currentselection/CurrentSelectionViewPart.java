@@ -23,7 +23,6 @@ import org.slizaa.hierarchicalgraph.selection.NodeSelection;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 import org.slizaa.ui.shared.AbstractSlizaaWorkbenchModelComponent;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
