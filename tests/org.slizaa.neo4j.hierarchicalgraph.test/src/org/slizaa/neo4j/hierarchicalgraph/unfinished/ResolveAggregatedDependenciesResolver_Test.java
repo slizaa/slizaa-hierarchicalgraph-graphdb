@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.hierarchicalgraph;
+package org.slizaa.neo4j.hierarchicalgraph.unfinished;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slizaa.neo4j.hierarchicalgraph.fwk.TestModelFactory.createGraphFromDefaultMapping;

@@ -82,7 +82,8 @@ public class GraphFactoryFunctions {
 
     // create sub monitor
     final SubMonitor subMonitor = progressMonitor != null
-        ? SubMonitor.convert(progressMonitor, firstLevelNodeIds.length) : null;
+        ? SubMonitor.convert(progressMonitor, firstLevelNodeIds.length)
+        : null;
 
     for (int i = 0; i < firstLevelNodeIds.length; i++) {
 
@@ -102,26 +103,26 @@ public class GraphFactoryFunctions {
    * @param hierachyResult
    * @param creator
    */
-  public static void createHierarchy(Long[][] hierarchyNodeIds, HGRootNode rootElement,
+  public static void createHierarchy(List<Long[]> hierarchyNodeIds, HGRootNode rootElement,
       final Function<Long, INodeSource> nodeSourceCreator, IProgressMonitor progressMonitor) {
 
     checkNotNull(hierarchyNodeIds);
 
     // create sub monitor
-    final SubMonitor subMonitor = progressMonitor != null ? SubMonitor.convert(progressMonitor, hierarchyNodeIds.length)
+    final SubMonitor subMonitor = progressMonitor != null ? SubMonitor.convert(progressMonitor, hierarchyNodeIds.size())
         : null;
 
     //
-    for (int i = 0; i < hierarchyNodeIds.length; i++) {
+    for (Long[] ids : hierarchyNodeIds) {
 
       // increase sub monitor
       if (subMonitor != null) {
         subMonitor.split(1);
       }
 
-      // JsonArray row = hierachyResult.get(i).getAsJsonArray();
-      HGNode moduleNode = createNodeIfAbsent(hierarchyNodeIds[i][0], rootElement, null, nodeSourceCreator);
-      createNodeIfAbsent(hierarchyNodeIds[i][1], rootElement, moduleNode, nodeSourceCreator);
+      //
+      HGNode parentNode = createNodeIfAbsent(ids[0], rootElement, null, nodeSourceCreator);
+      createNodeIfAbsent(ids[1], rootElement, parentNode, nodeSourceCreator);
     }
   }
 
@@ -139,7 +140,8 @@ public class GraphFactoryFunctions {
 
     // create sub monitor
     final SubMonitor subMonitor = progressMonitor != null
-        ? SubMonitor.convert(progressMonitor, neo4jRelationships.size()) : null;
+        ? SubMonitor.convert(progressMonitor, neo4jRelationships.size())
+        : null;
 
     //
     List<HGCoreDependency> result = new LinkedList<HGCoreDependency>();

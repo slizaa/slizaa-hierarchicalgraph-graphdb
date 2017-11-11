@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.hierarchicalgraph;
+package org.slizaa.neo4j.hierarchicalgraph.unfinished;
 
 import static org.slizaa.neo4j.hierarchicalgraph.fwk.TestModelFactory.createGraphFromDefaultMapping;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,17 +27,17 @@ import org.slizaa.neo4j.graphdb.testfwk.TestDB;
 public class ResolveAggregatedDependenciesCallback_Test {
 
   @ClassRule
-  public static PredefinedGraphDatabaseRule _predefinedGraphDatabase = new PredefinedGraphDatabaseRule(
-      TestDB.MAPSTRUCT);
+  public static PredefinedGraphDatabaseRule _predefinedGraphDatabase = new PredefinedGraphDatabaseRule(TestDB.MAPSTRUCT,
+      5001);
 
   @ClassRule
   public static BoltClientConnectionRule    _boltClientConnection    = new BoltClientConnectionRule("localhost", 5001);
-  
-  /** - */
-  private HGRootNode               _rootNode;
 
   /** - */
-  private IProxyDependencyResolver _aggregatedDependencyResolver;
+  private HGRootNode                        _rootNode;
+
+  /** - */
+  private IProxyDependencyResolver          _aggregatedDependencyResolver;
 
   /**
    * {@inheritDoc}

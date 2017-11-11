@@ -12,8 +12,6 @@ import org.slizaa.neo4j.dbadapter.Neo4jClient;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
 
-import com.google.gson.JsonObject;
-
 /**
  * <p>
  * </p>

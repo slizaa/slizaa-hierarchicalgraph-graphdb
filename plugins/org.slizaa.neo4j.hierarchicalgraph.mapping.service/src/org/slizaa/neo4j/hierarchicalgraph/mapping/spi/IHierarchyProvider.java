@@ -19,7 +19,7 @@ public interface IHierarchyProvider {
    *
    * @return
    */
-  List<Long> getToplevelNodeIds(Neo4jClient neo4jClient, IProgressMonitor progressMonitor);
+  List<Long> getToplevelNodeIds(Neo4jClient neo4jClient, IProgressMonitor progressMonitor) throws Exception;
 
   /**
    * <p>
@@ -27,5 +27,5 @@ public interface IHierarchyProvider {
    *
    * @return
    */
-  List<Long[]> getParentChildNodeIds(Neo4jClient neo4jClient, IProgressMonitor progressMonitor);
+  List<Long[]> getParentChildNodeIds(Neo4jClient neo4jClient, IProgressMonitor progressMonitor) throws Exception;
 }

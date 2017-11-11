@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.hierarchicalgraph;
+package org.slizaa.neo4j.hierarchicalgraph.unfinished;
 
 import static net.javacrumbs.jsonunit.fluent.JsonFluentAssert.assertThatJson;
 

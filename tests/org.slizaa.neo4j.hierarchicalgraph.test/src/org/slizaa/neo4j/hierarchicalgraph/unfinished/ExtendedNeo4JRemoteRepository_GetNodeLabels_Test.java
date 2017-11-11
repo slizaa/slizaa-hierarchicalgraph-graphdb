@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.hierarchicalgraph;
+package org.slizaa.neo4j.hierarchicalgraph.unfinished;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -74,6 +74,6 @@ public class ExtendedNeo4JRemoteRepository_GetNodeLabels_Test {
     return Arrays.asList(new Object[][] { { 4532, Arrays.asList("Java", "Member", "Method") },
         { 5146, Arrays.asList("Java", "Member", "Method") }, { 7282, Arrays.asList("Java", "Member", "Method") },
         { 6438, Arrays.asList("Java", "Member", "Field") },
-        { 1, Arrays.asList("PRIMITIVE_DATA_TYPE") } });
+        { 1, Arrays.asList("File", "Artifact", "Container", "Archive", "Zip", "Java", "Jar") } });
   }
 }
