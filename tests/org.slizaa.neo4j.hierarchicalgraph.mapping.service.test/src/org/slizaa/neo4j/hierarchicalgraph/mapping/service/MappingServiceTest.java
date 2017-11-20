@@ -5,10 +5,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.hierarchicalgraph.algorithms.AdjacencyMatrix;
 import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
 import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
 import org.slizaa.neo4j.graphdb.testfwk.TestDB;
-import org.slizaa.neo4j.hierarchicalgraph.GraphUtil;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.HierarchicalgraphMappingServiceImpl;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultMappingProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider;
@@ -37,11 +37,13 @@ public class MappingServiceTest {
     HGRootNode rootNode = mappingService.convert(createMappingProvider(), _boltClientConnection.getBoltClient(), null);
 
     assertThat(rootNode.getChildren()).hasSize(2);
-    
+
     assertThat(rootNode.getChildren().get(0).getChildren()).hasSize(5);
-    assertThat(rootNode.getChildren().get(1).getChildren()).hasSize(36);    
-    
-    GraphUtil.dump(rootNode);
+    assertThat(rootNode.getChildren().get(1).getChildren()).hasSize(36);
+
+    int[][] matrix = AdjacencyMatrix.computeAdjacencyMatrix(rootNode.getChildren().get(1).getChildren());
+
+    AdjacencyMatrix.printMatrix(matrix);
   }
 
   /**
@@ -53,7 +55,7 @@ public class MappingServiceTest {
   private IMappingProvider createMappingProvider() {
 
     IHierarchyProvider hierarchyProvider = new SimpleJTypeHierarchyProvider(_boltClientConnection.getBoltClient());
-    IDependencyProvider dependencyProvider = new DummyDependencyProvider();
+    IDependencyProvider dependencyProvider = new SimpleJTypeDependencyProvider(_boltClientConnection.getBoltClient());
     ILabelProvider labelProvider = new DummyLabelProvider();
 
     return new DefaultMappingProvider(hierarchyProvider, dependencyProvider, labelProvider);

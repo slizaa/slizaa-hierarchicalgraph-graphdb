@@ -13,5 +13,5 @@ public interface IDependencyProvider {
    *
    * @return
    */
-  List<AbstractDependency> getDependencies(Neo4jClient neo4jClient, IProgressMonitor progressMonitor);
+  List<AbstractDependency> getDependencies(Neo4jClient neo4jClient, IProgressMonitor progressMonitor) throws Exception;
 }

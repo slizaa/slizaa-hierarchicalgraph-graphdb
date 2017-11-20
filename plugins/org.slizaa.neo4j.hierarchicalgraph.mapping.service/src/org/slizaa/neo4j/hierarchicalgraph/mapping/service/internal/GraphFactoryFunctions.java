@@ -19,6 +19,8 @@ import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.AbstractDependency;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.SimpleDependency;
 
 /**
  * <p>
@@ -134,28 +136,38 @@ public class GraphFactoryFunctions {
    * @param rootElement
    * @param dependencySourceCreator
    */
-  public static List<HGCoreDependency> createDependencies(List<Neo4jRelationship> neo4jRelationships,
-      HGRootNode rootElement, BiFunction<Long, String, IDependencySource> dependencySourceCreator,
-      boolean proxyDependency, boolean reinitializeCaches, IProgressMonitor progressMonitor) {
+  public static List<HGCoreDependency> createDependencies(List<AbstractDependency> dependencies, HGRootNode rootElement,
+      BiFunction<Long, String, IDependencySource> dependencySourceCreator, boolean reinitializeCaches,
+      IProgressMonitor progressMonitor) {
 
     // create sub monitor
-    final SubMonitor subMonitor = progressMonitor != null
-        ? SubMonitor.convert(progressMonitor, neo4jRelationships.size())
+    final SubMonitor subMonitor = progressMonitor != null ? SubMonitor.convert(progressMonitor, dependencies.size())
         : null;
 
     //
     List<HGCoreDependency> result = new LinkedList<HGCoreDependency>();
 
     //
-    neo4jRelationships.forEach((element) -> {
+    dependencies.forEach((element) -> {
 
       // increase sub monitor
       if (subMonitor != null) {
         subMonitor.split(1);
       }
 
-      result.add(createDependency(element.getIdStart(), element.getIdTarget(), element.getIdTarget(), element.getType(),
-          rootElement, dependencySourceCreator, proxyDependency, reinitializeCaches));
+      if (element.isSimpleDependency()) {
+
+        //
+        SimpleDependency simpleDependency = (SimpleDependency) element;
+
+        //
+        result.add(createDependency(simpleDependency.getIdStart(), simpleDependency.getIdTarget(),
+            simpleDependency.getIdTarget(), simpleDependency.getType(), rootElement, dependencySourceCreator, false,
+            reinitializeCaches));
+
+      }
+
+      // TODO: ProxyDependency
     });
 
     //
