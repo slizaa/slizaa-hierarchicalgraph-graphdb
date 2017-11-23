@@ -1,16 +1,20 @@
 package org.slizaa.neo4j.hierarchicalgraph.mapping.spi;
 
+import java.net.URL;
+
 public interface ILabelDefinition {
 
-  String getBaseImage();
+  boolean hasBaseImage();
 
-  String getOverlayTopRight();
+  URL getBaseImage();
 
-  String getOverlayBottomRight();
+  URL getOverlayTopRight();
 
-  String getOverlayTopLeft();
+  URL getOverlayBottomRight();
 
-  String getOverlayBottomLeft();
+  URL getOverlayTopLeft();
+
+  URL getOverlayBottomLeft();
 
   String getText();
 }

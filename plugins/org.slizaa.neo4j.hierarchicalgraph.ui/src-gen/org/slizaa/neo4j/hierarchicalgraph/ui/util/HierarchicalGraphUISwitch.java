@@ -66,23 +66,23 @@ public class HierarchicalGraphUISwitch<T> extends Switch<T> {
   @Override
   protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
-      case HierarchicalGraphUIPackage.ISLIZAA_MAPPING_DESCRIPTOR: {
-        ISlizaaMappingDescriptor iSlizaaMappingDescriptor = (ISlizaaMappingDescriptor)theEObject;
-        T result = caseISlizaaMappingDescriptor(iSlizaaMappingDescriptor);
+      case HierarchicalGraphUIPackage.ISLIZAA_MAPPING_PROVIDER: {
+        ISlizaaMappingProvider iSlizaaMappingProvider = (ISlizaaMappingProvider)theEObject;
+        T result = caseISlizaaMappingProvider(iSlizaaMappingProvider);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR: {
         BundleBasedMappingDescriptor bundleBasedMappingDescriptor = (BundleBasedMappingDescriptor)theEObject;
         T result = caseBundleBasedMappingDescriptor(bundleBasedMappingDescriptor);
-        if (result == null) result = caseISlizaaMappingDescriptor(bundleBasedMappingDescriptor);
+        if (result == null) result = caseISlizaaMappingProvider(bundleBasedMappingDescriptor);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
       case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR: {
         WorkspaceBasedMappingDescriptor workspaceBasedMappingDescriptor = (WorkspaceBasedMappingDescriptor)theEObject;
         T result = caseWorkspaceBasedMappingDescriptor(workspaceBasedMappingDescriptor);
-        if (result == null) result = caseISlizaaMappingDescriptor(workspaceBasedMappingDescriptor);
+        if (result == null) result = caseISlizaaMappingProvider(workspaceBasedMappingDescriptor);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -103,17 +103,17 @@ public class HierarchicalGraphUISwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>ISlizaa Mapping Descriptor</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>ISlizaa Mapping Provider</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>ISlizaa Mapping Descriptor</em>'.
+   * @return the result of interpreting the object as an instance of '<em>ISlizaa Mapping Provider</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseISlizaaMappingDescriptor(ISlizaaMappingDescriptor object) {
+  public T caseISlizaaMappingProvider(ISlizaaMappingProvider object) {
     return null;
   }
 

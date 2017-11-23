@@ -2,7 +2,6 @@ package org.slizaa.neo4j.hierarchicalgraph.ui.internal;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -50,41 +49,38 @@ public class OverlayImageRegistry {
    * @param quadrant
    * @return
    */
-  public Image getOverlayImage(String basePath, String[] overlayPaths) {
+  public Image getOverlayImage(URL baseImageUrl, URL[] overlayImageUrls) {
 
     //
-    if (basePath == null) {
+    if (baseImageUrl == null) {
       return null;
     }
 
     //
-    if (overlayPaths == null) {
-      return _imageRegistry.get(basePath);
-    }
-
-    StringBuilder key = new StringBuilder(basePath);
-    for (String overlayPath : overlayPaths) {
-      key.append(overlayPath != null ? overlayPath : "<null>");
-      key.append("|");
+    if (overlayImageUrls == null) {
+      return getImage(baseImageUrl);
     }
 
     //
-    ImageDescriptor imageDescriptor = _imageRegistry.getDescriptor(key.toString());
+    String combinedKey = key(baseImageUrl, overlayImageUrls);
+
+    //
+    ImageDescriptor imageDescriptor = _imageRegistry.getDescriptor(combinedKey);
     if (imageDescriptor == null) {
 
-      ImageDescriptor[] descriptors = new ImageDescriptor[overlayPaths.length];
-      for (int i = 0; i < overlayPaths.length; i++) {
-        descriptors[i] = overlayPaths[i] != null ? getImageDescriptor(overlayPaths[i]) : null;
+      ImageDescriptor[] descriptors = new ImageDescriptor[overlayImageUrls.length];
+      for (int i = 0; i < overlayImageUrls.length; i++) {
+        descriptors[i] = overlayImageUrls[i] != null ? getImageDescriptor(overlayImageUrls[i]) : null;
       }
 
-      Image baseImage = getImage(basePath);
-      checkNotNull(baseImage, basePath);
+      Image baseImage = getImage(baseImageUrl);
+      checkNotNull(baseImage, String.format("Image with url %s does not exist.", baseImageUrl.toExternalForm()));
       imageDescriptor = new DecorationOverlayIcon(baseImage, descriptors);
-      _imageRegistry.put(key.toString(), imageDescriptor);
+      _imageRegistry.put(combinedKey, imageDescriptor);
     }
 
     //
-    return _imageRegistry.get(key.toString());
+    return _imageRegistry.get(combinedKey);
   }
 
   /**
@@ -92,11 +88,11 @@ public class OverlayImageRegistry {
    * 
    * @return an {@link Image}
    */
-  public Image getImage(String path) {
-    Image image = _imageRegistry.get(path);
+  public Image getImage(URL imageUrl) {
+    Image image = _imageRegistry.get(key(imageUrl));
     if (image == null) {
-      addImageDescriptor(path);
-      image = _imageRegistry.get(path);
+      addImageDescriptor(imageUrl);
+      image = _imageRegistry.get(key(imageUrl));
     }
 
     return image;
@@ -107,46 +103,51 @@ public class OverlayImageRegistry {
    * 
    * @return an {@link ImageDescriptor}
    */
-  public ImageDescriptor getImageDescriptor(String path) {
-    ImageDescriptor imageDescriptor = _imageRegistry.getDescriptor(path);
+  public ImageDescriptor getImageDescriptor(URL imageUrl) {
+    ImageDescriptor imageDescriptor = _imageRegistry.getDescriptor(key(imageUrl));
     if (imageDescriptor == null) {
-      addImageDescriptor(path);
-      imageDescriptor = _imageRegistry.getDescriptor(path);
+      addImageDescriptor(imageUrl);
+      imageDescriptor = _imageRegistry.getDescriptor(key(imageUrl));
     }
 
     return imageDescriptor;
   }
+
   /**
    * <p>
    * </p>
    */
-  private void addImageDescriptor(String path) {
-    final ImageDescriptor id = ImageDescriptor.createFromURL(imageUrl(path));
-    _imageRegistry.put(path, id);
+  private void addImageDescriptor(URL imageUrl) {
+    final ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(imageUrl);
+    _imageRegistry.put(key(imageUrl), imageDescriptor);
   }
 
-  private URL imageUrl(String path) {
-    
-    try {
-      return new URL(path);
-    } catch (MalformedURLException e) {
-      e.printStackTrace();
-      throw new RuntimeException(e);
+  /**
+   * <p>
+   * </p>
+   *
+   * @param imageUrl
+   * @return
+   */
+  private String key(URL imageUrl) {
+    return checkNotNull(imageUrl).toExternalForm();
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param baseImageUrl
+   * @param overlayImageUrls
+   * @return
+   */
+  private String key(URL baseImageUrl, URL[] overlayImageUrls) {
+    StringBuilder combinedKeyBuilder = new StringBuilder(key(baseImageUrl));
+    for (URL overlayImageUrl : overlayImageUrls) {
+      combinedKeyBuilder.append(overlayImageUrl != null ? overlayImageUrl.toExternalForm() : "<null>");
+      combinedKeyBuilder.append("|");
     }
-//
-//    if (Activator.getDefault() != null) {
-//      final Activator plugin = Activator.getDefault();
-//
-//      URL entry = plugin.getBundle().getEntry(path);
-//      if (entry != null) {
-//        return entry;
-//      }
-//    }
-//
-//    try {
-//      return new File(path).toURL();
-//    } catch (MalformedURLException e) {
-//      throw new RuntimeException(e);
-//    }
+    String combinedKey = combinedKeyBuilder.toString();
+    return combinedKey;
   }
 }

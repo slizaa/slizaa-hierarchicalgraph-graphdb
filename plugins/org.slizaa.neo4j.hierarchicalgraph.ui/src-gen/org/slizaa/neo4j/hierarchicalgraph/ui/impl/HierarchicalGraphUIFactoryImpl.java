@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.osgi.framework.Bundle;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 import org.slizaa.neo4j.hierarchicalgraph.ui.*;
 
 /**
@@ -77,6 +78,8 @@ public class HierarchicalGraphUIFactoryImpl extends EFactoryImpl implements Hier
     switch (eDataType.getClassifierID()) {
       case HierarchicalGraphUIPackage.BUNDLE:
         return createBundleFromString(eDataType, initialValue);
+      case HierarchicalGraphUIPackage.IMAPPING_PROVIDER:
+        return createIMappingProviderFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -92,6 +95,8 @@ public class HierarchicalGraphUIFactoryImpl extends EFactoryImpl implements Hier
     switch (eDataType.getClassifierID()) {
       case HierarchicalGraphUIPackage.BUNDLE:
         return convertBundleToString(eDataType, instanceValue);
+      case HierarchicalGraphUIPackage.IMAPPING_PROVIDER:
+        return convertIMappingProviderToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -152,6 +157,24 @@ public class HierarchicalGraphUIFactoryImpl extends EFactoryImpl implements Hier
    * @generated
    */
   public String convertBundleToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(eDataType, instanceValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IMappingProvider createIMappingProviderFromString(EDataType eDataType, String initialValue) {
+    return (IMappingProvider)super.createFromString(eDataType, initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertIMappingProviderToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
   }
 

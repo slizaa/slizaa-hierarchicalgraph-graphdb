@@ -17,7 +17,6 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
-import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -39,16 +38,13 @@ import org.slizaa.workbench.model.SlizaaWorkbenchModel;
 public class HierarchicalGraphViewPart extends AbstractSlizaaWorkbenchModelComponent {
 
   /** - */
-  public static final String   PART_ID = HierarchicalGraphViewPart.class.getName();
+  public static final String PART_ID = HierarchicalGraphViewPart.class.getName();
 
   @Inject
-  private ESelectionService    _selectionService;
-
-  @Inject
-  private SlizaaWorkbenchModel _workbenchModel;
+  private ESelectionService  _selectionService;
 
   /** - */
-  private TreeViewer           _treeViewer;
+  private TreeViewer         _treeViewer;
 
   /**
    * <p>
@@ -64,13 +60,11 @@ public class HierarchicalGraphViewPart extends AbstractSlizaaWorkbenchModelCompo
 
     //
     createTreeViewer(parent);
-    if (_workbenchModel.getRootNode() != null) {
-      setRootNodeInViewer(_workbenchModel.getRootNode());
+    if (getWorkbenchModel().getRootNode() != null) {
+      setRootNodeInViewer(getWorkbenchModel().getRootNode());
     }
   }
 
-  
-  
   @Override
   protected void handleRootNodeChanged(HGRootNode oldValue, HGRootNode newValue) {
 
@@ -90,8 +84,8 @@ public class HierarchicalGraphViewPart extends AbstractSlizaaWorkbenchModelCompo
       } else {
         _treeViewer.setInput(new RootObject(newValue));
         if (newValue.hasExtension(INodeComparator.class)) {
-          _treeViewer.setComparator(
-              new NodeComparator2ViewerComparatorAdapter(newValue.getExtension(INodeComparator.class)));
+          _treeViewer
+              .setComparator(new NodeComparator2ViewerComparatorAdapter(newValue.getExtension(INodeComparator.class)));
         }
       }
     }
@@ -117,7 +111,10 @@ public class HierarchicalGraphViewPart extends AbstractSlizaaWorkbenchModelCompo
 
         //
         IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-        _selectionService.setSelection(selection.size() == 1 ? selection.getFirstElement() : selection.toArray());
+
+        if (_selectionService != null) {
+          _selectionService.setSelection(selection.size() == 1 ? selection.getFirstElement() : selection.toArray());
+        }
 
         //
         List<HGNode> rep = new ArrayList<>();
@@ -133,7 +130,7 @@ public class HierarchicalGraphViewPart extends AbstractSlizaaWorkbenchModelCompo
         //
         NodeSelection nodeSelection = SelectionFactory.eINSTANCE.createNodeSelection();
         nodeSelection.getNodes().addAll(rep);
-        _workbenchModel.setNodeSelection(nodeSelection);
+        getWorkbenchModel().setNodeSelection(nodeSelection);
       }
     });
 
@@ -144,7 +141,10 @@ public class HierarchicalGraphViewPart extends AbstractSlizaaWorkbenchModelCompo
 
         //
         IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-        _selectionService.setPostSelection(selection.size() == 1 ? selection.getFirstElement() : selection.toArray());
+
+        if (_selectionService != null) {
+          _selectionService.setPostSelection(selection.size() == 1 ? selection.getFirstElement() : selection.toArray());
+        }
       }
     });
 

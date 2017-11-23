@@ -18,5 +18,5 @@ public interface IMappingProvider {
    * <p>
    * </p>
    */
-  ILabelProvider getLabelProvider();
+  ILabelDefinitionProvider getLabelProvider();
 }

@@ -1,41 +1,112 @@
 package org.slizaa.neo4j.hierarchicalgraph.mapping.spi;
 
+import java.net.URL;
+
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
 public class DefaultLabelDefinition implements ILabelDefinition {
 
-  private String _baseImage          = null;
+  /** - */
+  private URL    _baseImage          = null;
 
-  private String _overlayTopRight    = null;
+  /** - */
+  private URL    _overlayTopRight    = null;
 
-  private String _overlayBottomRight = null;
+  /** - */
+  private URL    _overlayBottomRight = null;
 
-  private String _overlayTopLeft     = null;
+  /** - */
+  private URL    _overlayTopLeft     = null;
 
-  private String _overlayBottomLeft  = null;
+  /** - */
+  private URL    _overlayBottomLeft  = null;
 
+  /** - */
   private String _text;
 
-  public String getBaseImage() {
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean hasBaseImage() {
+    return _baseImage != null;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public URL getBaseImage() {
     return _baseImage;
   }
 
-  public String getOverlayTopRight() {
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public URL getOverlayTopRight() {
     return _overlayTopRight;
   }
 
-  public String getOverlayBottomRight() {
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public URL getOverlayBottomRight() {
     return _overlayBottomRight;
   }
 
-  public String getOverlayTopLeft() {
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public URL getOverlayTopLeft() {
     return _overlayTopLeft;
   }
 
-  public String getOverlayBottomLeft() {
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public URL getOverlayBottomLeft() {
     return _overlayBottomLeft;
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public String getText() {
     return _text;
   }
 
+  public void setBaseImage(URL baseImage) {
+    _baseImage = baseImage;
+  }
+
+  public void setOverlayTopRight(URL overlayTopRight) {
+    _overlayTopRight = overlayTopRight;
+  }
+
+  public void setOverlayBottomRight(URL overlayBottomRight) {
+    _overlayBottomRight = overlayBottomRight;
+  }
+
+  public void setOverlayTopLeft(URL overlayTopLeft) {
+    _overlayTopLeft = overlayTopLeft;
+  }
+
+  public void setOverlayBottomLeft(URL overlayBottomLeft) {
+    _overlayBottomLeft = overlayBottomLeft;
+  }
+
+  public void setText(String text) {
+    _text = text;
+  }
+  
+  
 }

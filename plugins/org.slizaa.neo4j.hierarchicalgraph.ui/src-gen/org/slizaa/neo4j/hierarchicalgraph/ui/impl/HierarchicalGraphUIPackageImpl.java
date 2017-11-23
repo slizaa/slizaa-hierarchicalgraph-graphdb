@@ -12,12 +12,11 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.osgi.framework.Bundle;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDslPackage;
-
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 import org.slizaa.neo4j.hierarchicalgraph.ui.BundleBasedMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphUIFactory;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphUIPackage;
-import org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor;
+import org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider;
 import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorContainer;
 import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorList;
 import org.slizaa.neo4j.hierarchicalgraph.ui.WorkspaceBasedMappingDescriptor;
@@ -34,7 +33,7 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass iSlizaaMappingDescriptorEClass = null;
+  private EClass iSlizaaMappingProviderEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -69,6 +68,13 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
    * @generated
    */
   private EDataType bundleEDataType = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType iMappingProviderEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -116,9 +122,6 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
 
     isInited = true;
 
-    // Initialize simple dependencies
-    MappingDslPackage.eINSTANCE.eClass();
-
     // Create package meta-data objects
     theHierarchicalGraphUIPackage.createPackageContents();
 
@@ -139,8 +142,8 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getISlizaaMappingDescriptor() {
-    return iSlizaaMappingDescriptorEClass;
+  public EClass getISlizaaMappingProvider() {
+    return iSlizaaMappingProviderEClass;
   }
 
   /**
@@ -148,8 +151,8 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getISlizaaMappingDescriptor_MappingDescriptor() {
-    return (EReference)iSlizaaMappingDescriptorEClass.getEStructuralFeatures().get(0);
+  public EAttribute getISlizaaMappingProvider_MappingProvider() {
+    return (EAttribute)iSlizaaMappingProviderEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -157,8 +160,8 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getISlizaaMappingDescriptor_QualifiedName() {
-    return (EAttribute)iSlizaaMappingDescriptorEClass.getEStructuralFeatures().get(1);
+  public EAttribute getISlizaaMappingProvider_QualifiedName() {
+    return (EAttribute)iSlizaaMappingProviderEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -166,8 +169,8 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getISlizaaMappingDescriptor_Name() {
-    return (EAttribute)iSlizaaMappingDescriptorEClass.getEStructuralFeatures().get(2);
+  public EAttribute getISlizaaMappingProvider_Name() {
+    return (EAttribute)iSlizaaMappingProviderEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -175,8 +178,8 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getISlizaaMappingDescriptor_Description() {
-    return (EAttribute)iSlizaaMappingDescriptorEClass.getEStructuralFeatures().get(3);
+  public EAttribute getISlizaaMappingProvider_Description() {
+    return (EAttribute)iSlizaaMappingProviderEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -184,8 +187,8 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
    * <!-- end-user-doc -->
    * @generated
    */
-  public EOperation getISlizaaMappingDescriptor__ResolveImage__String() {
-    return iSlizaaMappingDescriptorEClass.getEOperations().get(0);
+  public EOperation getISlizaaMappingProvider__ResolveImage__String() {
+    return iSlizaaMappingProviderEClass.getEOperations().get(0);
   }
 
   /**
@@ -301,6 +304,15 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
    * <!-- end-user-doc -->
    * @generated
    */
+  public EDataType getIMappingProvider() {
+    return iMappingProviderEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public HierarchicalGraphUIFactory getHierarchicalGraphUIFactory() {
     return (HierarchicalGraphUIFactory)getEFactoryInstance();
   }
@@ -324,12 +336,12 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
     isCreated = true;
 
     // Create classes and their features
-    iSlizaaMappingDescriptorEClass = createEClass(ISLIZAA_MAPPING_DESCRIPTOR);
-    createEReference(iSlizaaMappingDescriptorEClass, ISLIZAA_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR);
-    createEAttribute(iSlizaaMappingDescriptorEClass, ISLIZAA_MAPPING_DESCRIPTOR__QUALIFIED_NAME);
-    createEAttribute(iSlizaaMappingDescriptorEClass, ISLIZAA_MAPPING_DESCRIPTOR__NAME);
-    createEAttribute(iSlizaaMappingDescriptorEClass, ISLIZAA_MAPPING_DESCRIPTOR__DESCRIPTION);
-    createEOperation(iSlizaaMappingDescriptorEClass, ISLIZAA_MAPPING_DESCRIPTOR___RESOLVE_IMAGE__STRING);
+    iSlizaaMappingProviderEClass = createEClass(ISLIZAA_MAPPING_PROVIDER);
+    createEAttribute(iSlizaaMappingProviderEClass, ISLIZAA_MAPPING_PROVIDER__MAPPING_PROVIDER);
+    createEAttribute(iSlizaaMappingProviderEClass, ISLIZAA_MAPPING_PROVIDER__QUALIFIED_NAME);
+    createEAttribute(iSlizaaMappingProviderEClass, ISLIZAA_MAPPING_PROVIDER__NAME);
+    createEAttribute(iSlizaaMappingProviderEClass, ISLIZAA_MAPPING_PROVIDER__DESCRIPTION);
+    createEOperation(iSlizaaMappingProviderEClass, ISLIZAA_MAPPING_PROVIDER___RESOLVE_IMAGE__STRING);
 
     bundleBasedMappingDescriptorEClass = createEClass(BUNDLE_BASED_MAPPING_DESCRIPTOR);
     createEAttribute(bundleBasedMappingDescriptorEClass, BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE);
@@ -348,6 +360,7 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
 
     // Create data types
     bundleEDataType = createEDataType(BUNDLE);
+    iMappingProviderEDataType = createEDataType(IMAPPING_PROVIDER);
   }
 
   /**
@@ -373,25 +386,22 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
     setNsPrefix(eNS_PREFIX);
     setNsURI(eNS_URI);
 
-    // Obtain other dependent packages
-    MappingDslPackage theMappingDslPackage = (MappingDslPackage)EPackage.Registry.INSTANCE.getEPackage(MappingDslPackage.eNS_URI);
-
     // Create type parameters
 
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    bundleBasedMappingDescriptorEClass.getESuperTypes().add(this.getISlizaaMappingDescriptor());
-    workspaceBasedMappingDescriptorEClass.getESuperTypes().add(this.getISlizaaMappingDescriptor());
+    bundleBasedMappingDescriptorEClass.getESuperTypes().add(this.getISlizaaMappingProvider());
+    workspaceBasedMappingDescriptorEClass.getESuperTypes().add(this.getISlizaaMappingProvider());
 
     // Initialize classes, features, and operations; add parameters
-    initEClass(iSlizaaMappingDescriptorEClass, ISlizaaMappingDescriptor.class, "ISlizaaMappingDescriptor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getISlizaaMappingDescriptor_MappingDescriptor(), theMappingDslPackage.getMappingDescriptor(), null, "mappingDescriptor", null, 0, 1, ISlizaaMappingDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getISlizaaMappingDescriptor_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 0, 1, ISlizaaMappingDescriptor.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-    initEAttribute(getISlizaaMappingDescriptor_Name(), ecorePackage.getEString(), "name", null, 0, 1, ISlizaaMappingDescriptor.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-    initEAttribute(getISlizaaMappingDescriptor_Description(), ecorePackage.getEString(), "description", null, 0, 1, ISlizaaMappingDescriptor.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEClass(iSlizaaMappingProviderEClass, ISlizaaMappingProvider.class, "ISlizaaMappingProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getISlizaaMappingProvider_MappingProvider(), this.getIMappingProvider(), "mappingProvider", null, 0, 1, ISlizaaMappingProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getISlizaaMappingProvider_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 0, 1, ISlizaaMappingProvider.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEAttribute(getISlizaaMappingProvider_Name(), ecorePackage.getEString(), "name", null, 0, 1, ISlizaaMappingProvider.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEAttribute(getISlizaaMappingProvider_Description(), ecorePackage.getEString(), "description", null, 0, 1, ISlizaaMappingProvider.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-    EOperation op = initEOperation(getISlizaaMappingDescriptor__ResolveImage__String(), ecorePackage.getEString(), "resolveImage", 0, 1, IS_UNIQUE, IS_ORDERED);
+    EOperation op = initEOperation(getISlizaaMappingProvider__ResolveImage__String(), ecorePackage.getEString(), "resolveImage", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, ecorePackage.getEString(), "relativeImagePath", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(bundleBasedMappingDescriptorEClass, BundleBasedMappingDescriptor.class, "BundleBasedMappingDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -407,10 +417,11 @@ public class HierarchicalGraphUIPackageImpl extends EPackageImpl implements Hier
 
     initEClass(mappingDescriptorListEClass, MappingDescriptorList.class, "MappingDescriptorList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMappingDescriptorList_Name(), ecorePackage.getEString(), "name", null, 0, 1, MappingDescriptorList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMappingDescriptorList_MappingDescriptors(), this.getISlizaaMappingDescriptor(), null, "mappingDescriptors", null, 0, -1, MappingDescriptorList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMappingDescriptorList_MappingDescriptors(), this.getISlizaaMappingProvider(), null, "mappingDescriptors", null, 0, -1, MappingDescriptorList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize data types
     initEDataType(bundleEDataType, Bundle.class, "Bundle", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(iMappingProviderEDataType, IMappingProvider.class, "IMappingProvider", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);

@@ -59,23 +59,23 @@ public interface HierarchicalGraphUIPackage extends EPackage {
   HierarchicalGraphUIPackage eINSTANCE = org.slizaa.neo4j.hierarchicalgraph.ui.impl.HierarchicalGraphUIPackageImpl.init();
 
   /**
-   * The meta object id for the '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor <em>ISlizaa Mapping Descriptor</em>}' class.
+   * The meta object id for the '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider <em>ISlizaa Mapping Provider</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor
-   * @see org.slizaa.neo4j.hierarchicalgraph.ui.impl.HierarchicalGraphUIPackageImpl#getISlizaaMappingDescriptor()
+   * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider
+   * @see org.slizaa.neo4j.hierarchicalgraph.ui.impl.HierarchicalGraphUIPackageImpl#getISlizaaMappingProvider()
    * @generated
    */
-  int ISLIZAA_MAPPING_DESCRIPTOR = 0;
+  int ISLIZAA_MAPPING_PROVIDER = 0;
 
   /**
-   * The feature id for the '<em><b>Mapping Descriptor</b></em>' reference.
+   * The feature id for the '<em><b>Mapping Provider</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ISLIZAA_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR = 0;
+  int ISLIZAA_MAPPING_PROVIDER__MAPPING_PROVIDER = 0;
 
   /**
    * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -84,7 +84,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ISLIZAA_MAPPING_DESCRIPTOR__QUALIFIED_NAME = 1;
+  int ISLIZAA_MAPPING_PROVIDER__QUALIFIED_NAME = 1;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -93,7 +93,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ISLIZAA_MAPPING_DESCRIPTOR__NAME = 2;
+  int ISLIZAA_MAPPING_PROVIDER__NAME = 2;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -102,16 +102,16 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ISLIZAA_MAPPING_DESCRIPTOR__DESCRIPTION = 3;
+  int ISLIZAA_MAPPING_PROVIDER__DESCRIPTION = 3;
 
   /**
-   * The number of structural features of the '<em>ISlizaa Mapping Descriptor</em>' class.
+   * The number of structural features of the '<em>ISlizaa Mapping Provider</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ISLIZAA_MAPPING_DESCRIPTOR_FEATURE_COUNT = 4;
+  int ISLIZAA_MAPPING_PROVIDER_FEATURE_COUNT = 4;
 
   /**
    * The operation id for the '<em>Resolve Image</em>' operation.
@@ -120,16 +120,16 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ISLIZAA_MAPPING_DESCRIPTOR___RESOLVE_IMAGE__STRING = 0;
+  int ISLIZAA_MAPPING_PROVIDER___RESOLVE_IMAGE__STRING = 0;
 
   /**
-   * The number of operations of the '<em>ISlizaa Mapping Descriptor</em>' class.
+   * The number of operations of the '<em>ISlizaa Mapping Provider</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ISLIZAA_MAPPING_DESCRIPTOR_OPERATION_COUNT = 1;
+  int ISLIZAA_MAPPING_PROVIDER_OPERATION_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.BundleBasedMappingDescriptorImpl <em>Bundle Based Mapping Descriptor</em>}' class.
@@ -142,13 +142,13 @@ public interface HierarchicalGraphUIPackage extends EPackage {
   int BUNDLE_BASED_MAPPING_DESCRIPTOR = 1;
 
   /**
-   * The feature id for the '<em><b>Mapping Descriptor</b></em>' reference.
+   * The feature id for the '<em><b>Mapping Provider</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR = ISLIZAA_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR;
+  int BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_PROVIDER = ISLIZAA_MAPPING_PROVIDER__MAPPING_PROVIDER;
 
   /**
    * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -157,7 +157,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BUNDLE_BASED_MAPPING_DESCRIPTOR__QUALIFIED_NAME = ISLIZAA_MAPPING_DESCRIPTOR__QUALIFIED_NAME;
+  int BUNDLE_BASED_MAPPING_DESCRIPTOR__QUALIFIED_NAME = ISLIZAA_MAPPING_PROVIDER__QUALIFIED_NAME;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -166,7 +166,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BUNDLE_BASED_MAPPING_DESCRIPTOR__NAME = ISLIZAA_MAPPING_DESCRIPTOR__NAME;
+  int BUNDLE_BASED_MAPPING_DESCRIPTOR__NAME = ISLIZAA_MAPPING_PROVIDER__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -175,7 +175,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BUNDLE_BASED_MAPPING_DESCRIPTOR__DESCRIPTION = ISLIZAA_MAPPING_DESCRIPTOR__DESCRIPTION;
+  int BUNDLE_BASED_MAPPING_DESCRIPTOR__DESCRIPTION = ISLIZAA_MAPPING_PROVIDER__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Bundle</b></em>' attribute.
@@ -184,7 +184,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE = ISLIZAA_MAPPING_DESCRIPTOR_FEATURE_COUNT + 0;
+  int BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE = ISLIZAA_MAPPING_PROVIDER_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Base Path</b></em>' attribute.
@@ -193,7 +193,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BUNDLE_BASED_MAPPING_DESCRIPTOR__BASE_PATH = ISLIZAA_MAPPING_DESCRIPTOR_FEATURE_COUNT + 1;
+  int BUNDLE_BASED_MAPPING_DESCRIPTOR__BASE_PATH = ISLIZAA_MAPPING_PROVIDER_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Bundle Based Mapping Descriptor</em>' class.
@@ -202,7 +202,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BUNDLE_BASED_MAPPING_DESCRIPTOR_FEATURE_COUNT = ISLIZAA_MAPPING_DESCRIPTOR_FEATURE_COUNT + 2;
+  int BUNDLE_BASED_MAPPING_DESCRIPTOR_FEATURE_COUNT = ISLIZAA_MAPPING_PROVIDER_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Resolve Image</em>' operation.
@@ -211,7 +211,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BUNDLE_BASED_MAPPING_DESCRIPTOR___RESOLVE_IMAGE__STRING = ISLIZAA_MAPPING_DESCRIPTOR___RESOLVE_IMAGE__STRING;
+  int BUNDLE_BASED_MAPPING_DESCRIPTOR___RESOLVE_IMAGE__STRING = ISLIZAA_MAPPING_PROVIDER___RESOLVE_IMAGE__STRING;
 
   /**
    * The number of operations of the '<em>Bundle Based Mapping Descriptor</em>' class.
@@ -220,7 +220,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BUNDLE_BASED_MAPPING_DESCRIPTOR_OPERATION_COUNT = ISLIZAA_MAPPING_DESCRIPTOR_OPERATION_COUNT + 0;
+  int BUNDLE_BASED_MAPPING_DESCRIPTOR_OPERATION_COUNT = ISLIZAA_MAPPING_PROVIDER_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.WorkspaceBasedMappingDescriptorImpl <em>Workspace Based Mapping Descriptor</em>}' class.
@@ -233,13 +233,13 @@ public interface HierarchicalGraphUIPackage extends EPackage {
   int WORKSPACE_BASED_MAPPING_DESCRIPTOR = 2;
 
   /**
-   * The feature id for the '<em><b>Mapping Descriptor</b></em>' reference.
+   * The feature id for the '<em><b>Mapping Provider</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int WORKSPACE_BASED_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR = ISLIZAA_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR;
+  int WORKSPACE_BASED_MAPPING_DESCRIPTOR__MAPPING_PROVIDER = ISLIZAA_MAPPING_PROVIDER__MAPPING_PROVIDER;
 
   /**
    * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -248,7 +248,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int WORKSPACE_BASED_MAPPING_DESCRIPTOR__QUALIFIED_NAME = ISLIZAA_MAPPING_DESCRIPTOR__QUALIFIED_NAME;
+  int WORKSPACE_BASED_MAPPING_DESCRIPTOR__QUALIFIED_NAME = ISLIZAA_MAPPING_PROVIDER__QUALIFIED_NAME;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -257,7 +257,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int WORKSPACE_BASED_MAPPING_DESCRIPTOR__NAME = ISLIZAA_MAPPING_DESCRIPTOR__NAME;
+  int WORKSPACE_BASED_MAPPING_DESCRIPTOR__NAME = ISLIZAA_MAPPING_PROVIDER__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -266,7 +266,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int WORKSPACE_BASED_MAPPING_DESCRIPTOR__DESCRIPTION = ISLIZAA_MAPPING_DESCRIPTOR__DESCRIPTION;
+  int WORKSPACE_BASED_MAPPING_DESCRIPTOR__DESCRIPTION = ISLIZAA_MAPPING_PROVIDER__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Base Path</b></em>' attribute.
@@ -275,7 +275,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int WORKSPACE_BASED_MAPPING_DESCRIPTOR__BASE_PATH = ISLIZAA_MAPPING_DESCRIPTOR_FEATURE_COUNT + 0;
+  int WORKSPACE_BASED_MAPPING_DESCRIPTOR__BASE_PATH = ISLIZAA_MAPPING_PROVIDER_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Workspace Based Mapping Descriptor</em>' class.
@@ -284,7 +284,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int WORKSPACE_BASED_MAPPING_DESCRIPTOR_FEATURE_COUNT = ISLIZAA_MAPPING_DESCRIPTOR_FEATURE_COUNT + 1;
+  int WORKSPACE_BASED_MAPPING_DESCRIPTOR_FEATURE_COUNT = ISLIZAA_MAPPING_PROVIDER_FEATURE_COUNT + 1;
 
   /**
    * The operation id for the '<em>Resolve Image</em>' operation.
@@ -293,7 +293,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int WORKSPACE_BASED_MAPPING_DESCRIPTOR___RESOLVE_IMAGE__STRING = ISLIZAA_MAPPING_DESCRIPTOR___RESOLVE_IMAGE__STRING;
+  int WORKSPACE_BASED_MAPPING_DESCRIPTOR___RESOLVE_IMAGE__STRING = ISLIZAA_MAPPING_PROVIDER___RESOLVE_IMAGE__STRING;
 
   /**
    * The number of operations of the '<em>Workspace Based Mapping Descriptor</em>' class.
@@ -302,7 +302,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int WORKSPACE_BASED_MAPPING_DESCRIPTOR_OPERATION_COUNT = ISLIZAA_MAPPING_DESCRIPTOR_OPERATION_COUNT + 0;
+  int WORKSPACE_BASED_MAPPING_DESCRIPTOR_OPERATION_COUNT = ISLIZAA_MAPPING_PROVIDER_OPERATION_COUNT + 0;
 
 
   /**
@@ -410,68 +410,79 @@ public interface HierarchicalGraphUIPackage extends EPackage {
 
 
   /**
-   * Returns the meta object for class '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor <em>ISlizaa Mapping Descriptor</em>}'.
+   * The meta object id for the '<em>IMapping Provider</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>ISlizaa Mapping Descriptor</em>'.
-   * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor
+   * @see org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider
+   * @see org.slizaa.neo4j.hierarchicalgraph.ui.impl.HierarchicalGraphUIPackageImpl#getIMappingProvider()
    * @generated
    */
-  EClass getISlizaaMappingDescriptor();
+  int IMAPPING_PROVIDER = 6;
+
 
   /**
-   * Returns the meta object for the reference '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor#getMappingDescriptor <em>Mapping Descriptor</em>}'.
+   * Returns the meta object for class '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider <em>ISlizaa Mapping Provider</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Mapping Descriptor</em>'.
-   * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor#getMappingDescriptor()
-   * @see #getISlizaaMappingDescriptor()
+   * @return the meta object for class '<em>ISlizaa Mapping Provider</em>'.
+   * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider
    * @generated
    */
-  EReference getISlizaaMappingDescriptor_MappingDescriptor();
+  EClass getISlizaaMappingProvider();
 
   /**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor#getQualifiedName <em>Qualified Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider#getMappingProvider <em>Mapping Provider</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Mapping Provider</em>'.
+   * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider#getMappingProvider()
+   * @see #getISlizaaMappingProvider()
+   * @generated
+   */
+  EAttribute getISlizaaMappingProvider_MappingProvider();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider#getQualifiedName <em>Qualified Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Qualified Name</em>'.
-   * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor#getQualifiedName()
-   * @see #getISlizaaMappingDescriptor()
+   * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider#getQualifiedName()
+   * @see #getISlizaaMappingProvider()
    * @generated
    */
-  EAttribute getISlizaaMappingDescriptor_QualifiedName();
+  EAttribute getISlizaaMappingProvider_QualifiedName();
 
   /**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor#getName()
-   * @see #getISlizaaMappingDescriptor()
+   * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider#getName()
+   * @see #getISlizaaMappingProvider()
    * @generated
    */
-  EAttribute getISlizaaMappingDescriptor_Name();
+  EAttribute getISlizaaMappingProvider_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor#getDescription <em>Description</em>}'.
+   * Returns the meta object for the attribute '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider#getDescription <em>Description</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Description</em>'.
-   * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor#getDescription()
-   * @see #getISlizaaMappingDescriptor()
+   * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider#getDescription()
+   * @see #getISlizaaMappingProvider()
    * @generated
    */
-  EAttribute getISlizaaMappingDescriptor_Description();
+  EAttribute getISlizaaMappingProvider_Description();
 
   /**
-   * Returns the meta object for the '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor#resolveImage(java.lang.String) <em>Resolve Image</em>}' operation.
+   * Returns the meta object for the '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider#resolveImage(java.lang.String) <em>Resolve Image</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Resolve Image</em>' operation.
-   * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor#resolveImage(java.lang.String)
+   * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider#resolveImage(java.lang.String)
    * @generated
    */
-  EOperation getISlizaaMappingDescriptor__ResolveImage__String();
+  EOperation getISlizaaMappingProvider__ResolveImage__String();
 
   /**
    * Returns the meta object for class '{@link org.slizaa.neo4j.hierarchicalgraph.ui.BundleBasedMappingDescriptor <em>Bundle Based Mapping Descriptor</em>}'.
@@ -602,6 +613,17 @@ public interface HierarchicalGraphUIPackage extends EPackage {
   EDataType getBundle();
 
   /**
+   * Returns the meta object for data type '{@link org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider <em>IMapping Provider</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>IMapping Provider</em>'.
+   * @see org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider
+   * @model instanceClass="org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider"
+   * @generated
+   */
+  EDataType getIMappingProvider();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -625,22 +647,22 @@ public interface HierarchicalGraphUIPackage extends EPackage {
    */
   interface Literals {
     /**
-     * The meta object literal for the '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor <em>ISlizaa Mapping Descriptor</em>}' class.
+     * The meta object literal for the '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider <em>ISlizaa Mapping Provider</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor
-     * @see org.slizaa.neo4j.hierarchicalgraph.ui.impl.HierarchicalGraphUIPackageImpl#getISlizaaMappingDescriptor()
+     * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider
+     * @see org.slizaa.neo4j.hierarchicalgraph.ui.impl.HierarchicalGraphUIPackageImpl#getISlizaaMappingProvider()
      * @generated
      */
-    EClass ISLIZAA_MAPPING_DESCRIPTOR = eINSTANCE.getISlizaaMappingDescriptor();
+    EClass ISLIZAA_MAPPING_PROVIDER = eINSTANCE.getISlizaaMappingProvider();
 
     /**
-     * The meta object literal for the '<em><b>Mapping Descriptor</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Mapping Provider</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ISLIZAA_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR = eINSTANCE.getISlizaaMappingDescriptor_MappingDescriptor();
+    EAttribute ISLIZAA_MAPPING_PROVIDER__MAPPING_PROVIDER = eINSTANCE.getISlizaaMappingProvider_MappingProvider();
 
     /**
      * The meta object literal for the '<em><b>Qualified Name</b></em>' attribute feature.
@@ -648,7 +670,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ISLIZAA_MAPPING_DESCRIPTOR__QUALIFIED_NAME = eINSTANCE.getISlizaaMappingDescriptor_QualifiedName();
+    EAttribute ISLIZAA_MAPPING_PROVIDER__QUALIFIED_NAME = eINSTANCE.getISlizaaMappingProvider_QualifiedName();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -656,7 +678,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ISLIZAA_MAPPING_DESCRIPTOR__NAME = eINSTANCE.getISlizaaMappingDescriptor_Name();
+    EAttribute ISLIZAA_MAPPING_PROVIDER__NAME = eINSTANCE.getISlizaaMappingProvider_Name();
 
     /**
      * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
@@ -664,7 +686,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ISLIZAA_MAPPING_DESCRIPTOR__DESCRIPTION = eINSTANCE.getISlizaaMappingDescriptor_Description();
+    EAttribute ISLIZAA_MAPPING_PROVIDER__DESCRIPTION = eINSTANCE.getISlizaaMappingProvider_Description();
 
     /**
      * The meta object literal for the '<em><b>Resolve Image</b></em>' operation.
@@ -672,7 +694,7 @@ public interface HierarchicalGraphUIPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation ISLIZAA_MAPPING_DESCRIPTOR___RESOLVE_IMAGE__STRING = eINSTANCE.getISlizaaMappingDescriptor__ResolveImage__String();
+    EOperation ISLIZAA_MAPPING_PROVIDER___RESOLVE_IMAGE__STRING = eINSTANCE.getISlizaaMappingProvider__ResolveImage__String();
 
     /**
      * The meta object literal for the '{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.BundleBasedMappingDescriptorImpl <em>Bundle Based Mapping Descriptor</em>}' class.
@@ -779,6 +801,16 @@ public interface HierarchicalGraphUIPackage extends EPackage {
      * @generated
      */
     EDataType BUNDLE = eINSTANCE.getBundle();
+
+    /**
+     * The meta object literal for the '<em>IMapping Provider</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider
+     * @see org.slizaa.neo4j.hierarchicalgraph.ui.impl.HierarchicalGraphUIPackageImpl#getIMappingProvider()
+     * @generated
+     */
+    EDataType IMAPPING_PROVIDER = eINSTANCE.getIMappingProvider();
 
   }
 

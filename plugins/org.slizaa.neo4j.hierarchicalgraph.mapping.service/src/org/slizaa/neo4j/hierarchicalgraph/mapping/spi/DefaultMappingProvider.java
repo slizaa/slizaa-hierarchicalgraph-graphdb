@@ -9,7 +9,7 @@ public class DefaultMappingProvider implements IMappingProvider {
 
   private IDependencyProvider _dependencyProvider;
 
-  private ILabelProvider      _labelProvider;
+  private ILabelDefinitionProvider      _labelProvider;
 
   /**
    * <p>
@@ -17,7 +17,7 @@ public class DefaultMappingProvider implements IMappingProvider {
    * </p>
    */
   public DefaultMappingProvider(IHierarchyProvider hierarchyProvider, IDependencyProvider dependencyProvider,
-      ILabelProvider labelProvider) {
+      ILabelDefinitionProvider labelProvider) {
     _hierarchyProvider = checkNotNull(hierarchyProvider);
     _dependencyProvider = checkNotNull(dependencyProvider);
     _labelProvider = checkNotNull(labelProvider);
@@ -31,7 +31,7 @@ public class DefaultMappingProvider implements IMappingProvider {
     return _dependencyProvider;
   }
 
-  public ILabelProvider getLabelProvider() {
+  public ILabelDefinitionProvider getLabelProvider() {
     return _labelProvider;
   }
 }

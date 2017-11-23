@@ -4,7 +4,7 @@
     creationIcons="false" editDirectory="/org.slizaa.neo4j.hierarchicalgraph.ui.edit/src-gen"
     modelPluginID="org.slizaa.neo4j.hierarchicalgraph.ui" modelName="Hierarchicalgraph-ui"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    bundleManifest="false" complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.slizaa.neo4j.hierarchicalgraph.mapping.dsl/model/generated/MappingDsl.genmodel#//mappingDsl"
+    bundleManifest="false" complianceLevel="8.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>hierarchicalgraph-ui.ecore</foreignModel>
   <genPackages prefix="HierarchicalGraphUI" basePackage="org.slizaa.neo4j.hierarchicalgraph"

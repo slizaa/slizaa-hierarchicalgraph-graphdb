@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphUIPackage;
-import org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor;
+import org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider;
 import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorList;
 
 /**
@@ -59,7 +59,7 @@ public class MappingDescriptorListImpl extends MinimalEObjectImpl.Container impl
    * @generated
    * @ordered
    */
-  protected EList<ISlizaaMappingDescriptor> mappingDescriptors;
+  protected EList<ISlizaaMappingProvider> mappingDescriptors;
 
   /**
    * <!-- begin-user-doc -->
@@ -106,9 +106,9 @@ public class MappingDescriptorListImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ISlizaaMappingDescriptor> getMappingDescriptors() {
+  public EList<ISlizaaMappingProvider> getMappingDescriptors() {
     if (mappingDescriptors == null) {
-      mappingDescriptors = new EObjectResolvingEList<ISlizaaMappingDescriptor>(ISlizaaMappingDescriptor.class, this, HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_LIST__MAPPING_DESCRIPTORS);
+      mappingDescriptors = new EObjectResolvingEList<ISlizaaMappingProvider>(ISlizaaMappingProvider.class, this, HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_LIST__MAPPING_DESCRIPTORS);
     }
     return mappingDescriptors;
   }
@@ -143,7 +143,7 @@ public class MappingDescriptorListImpl extends MinimalEObjectImpl.Container impl
         return;
       case HierarchicalGraphUIPackage.MAPPING_DESCRIPTOR_LIST__MAPPING_DESCRIPTORS:
         getMappingDescriptors().clear();
-        getMappingDescriptors().addAll((Collection<? extends ISlizaaMappingDescriptor>)newValue);
+        getMappingDescriptors().addAll((Collection<? extends ISlizaaMappingProvider>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

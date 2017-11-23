@@ -22,7 +22,7 @@ import org.osgi.framework.Bundle;
  * @model
  * @generated
  */
-public interface BundleBasedMappingDescriptor extends ISlizaaMappingDescriptor {
+public interface BundleBasedMappingDescriptor extends ISlizaaMappingProvider {
   /**
    * Returns the value of the '<em><b>Bundle</b></em>' attribute.
    * <!-- begin-user-doc -->

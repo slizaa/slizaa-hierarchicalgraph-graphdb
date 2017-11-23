@@ -60,7 +60,7 @@ public class WorkspaceBasedMappingDescriptorItemProvider
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addMappingDescriptorPropertyDescriptor(object);
+      addMappingProviderPropertyDescriptor(object);
       addQualifiedNamePropertyDescriptor(object);
       addNamePropertyDescriptor(object);
       addDescriptionPropertyDescriptor(object);
@@ -70,23 +70,23 @@ public class WorkspaceBasedMappingDescriptorItemProvider
   }
 
   /**
-   * This adds a property descriptor for the Mapping Descriptor feature.
+   * This adds a property descriptor for the Mapping Provider feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addMappingDescriptorPropertyDescriptor(Object object) {
+  protected void addMappingProviderPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_ISlizaaMappingDescriptor_mappingDescriptor_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_ISlizaaMappingDescriptor_mappingDescriptor_feature", "_UI_ISlizaaMappingDescriptor_type"),
-         HierarchicalGraphUIPackage.Literals.ISLIZAA_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR,
+         getString("_UI_ISlizaaMappingProvider_mappingProvider_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_ISlizaaMappingProvider_mappingProvider_feature", "_UI_ISlizaaMappingProvider_type"),
+         HierarchicalGraphUIPackage.Literals.ISLIZAA_MAPPING_PROVIDER__MAPPING_PROVIDER,
          true,
          false,
-         true,
-         null,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
          null,
          null));
   }
@@ -102,9 +102,9 @@ public class WorkspaceBasedMappingDescriptorItemProvider
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_ISlizaaMappingDescriptor_qualifiedName_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_ISlizaaMappingDescriptor_qualifiedName_feature", "_UI_ISlizaaMappingDescriptor_type"),
-         HierarchicalGraphUIPackage.Literals.ISLIZAA_MAPPING_DESCRIPTOR__QUALIFIED_NAME,
+         getString("_UI_ISlizaaMappingProvider_qualifiedName_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_ISlizaaMappingProvider_qualifiedName_feature", "_UI_ISlizaaMappingProvider_type"),
+         HierarchicalGraphUIPackage.Literals.ISLIZAA_MAPPING_PROVIDER__QUALIFIED_NAME,
          false,
          false,
          false,
@@ -124,9 +124,9 @@ public class WorkspaceBasedMappingDescriptorItemProvider
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_ISlizaaMappingDescriptor_name_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_ISlizaaMappingDescriptor_name_feature", "_UI_ISlizaaMappingDescriptor_type"),
-         HierarchicalGraphUIPackage.Literals.ISLIZAA_MAPPING_DESCRIPTOR__NAME,
+         getString("_UI_ISlizaaMappingProvider_name_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_ISlizaaMappingProvider_name_feature", "_UI_ISlizaaMappingProvider_type"),
+         HierarchicalGraphUIPackage.Literals.ISLIZAA_MAPPING_PROVIDER__NAME,
          false,
          false,
          false,
@@ -146,9 +146,9 @@ public class WorkspaceBasedMappingDescriptorItemProvider
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_ISlizaaMappingDescriptor_description_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_ISlizaaMappingDescriptor_description_feature", "_UI_ISlizaaMappingDescriptor_type"),
-         HierarchicalGraphUIPackage.Literals.ISLIZAA_MAPPING_DESCRIPTOR__DESCRIPTION,
+         getString("_UI_ISlizaaMappingProvider_description_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_ISlizaaMappingProvider_description_feature", "_UI_ISlizaaMappingProvider_type"),
+         HierarchicalGraphUIPackage.Literals.ISLIZAA_MAPPING_PROVIDER__DESCRIPTION,
          false,
          false,
          false,
@@ -191,6 +191,16 @@ public class WorkspaceBasedMappingDescriptorItemProvider
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected boolean shouldComposeCreationImage() {
+    return true;
+  }
+
+  /**
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -217,6 +227,7 @@ public class WorkspaceBasedMappingDescriptorItemProvider
     updateChildren(notification);
 
     switch (notification.getFeatureID(WorkspaceBasedMappingDescriptor.class)) {
+      case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR__MAPPING_PROVIDER:
       case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR__QUALIFIED_NAME:
       case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR__NAME:
       case HierarchicalGraphUIPackage.WORKSPACE_BASED_MAPPING_DESCRIPTOR__DESCRIPTION:

@@ -9,14 +9,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.osgi.framework.Bundle;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.dsl.mappingDsl.MappingDescriptor;
-
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 import org.slizaa.neo4j.hierarchicalgraph.ui.BundleBasedMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphUIPackage;
 
@@ -28,7 +25,7 @@ import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphUIPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.BundleBasedMappingDescriptorImpl#getMappingDescriptor <em>Mapping Descriptor</em>}</li>
+ *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.BundleBasedMappingDescriptorImpl#getMappingProvider <em>Mapping Provider</em>}</li>
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.BundleBasedMappingDescriptorImpl#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.BundleBasedMappingDescriptorImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.slizaa.neo4j.hierarchicalgraph.ui.impl.BundleBasedMappingDescriptorImpl#getDescription <em>Description</em>}</li>
@@ -40,14 +37,24 @@ import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphUIPackage;
  */
 public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Container implements BundleBasedMappingDescriptor {
   /**
-   * The cached value of the '{@link #getMappingDescriptor() <em>Mapping Descriptor</em>}' reference.
+   * The default value of the '{@link #getMappingProvider() <em>Mapping Provider</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getMappingDescriptor()
+   * @see #getMappingProvider()
    * @generated
    * @ordered
    */
-  protected MappingDescriptor mappingDescriptor;
+  protected static final IMappingProvider MAPPING_PROVIDER_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getMappingProvider() <em>Mapping Provider</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMappingProvider()
+   * @generated
+   * @ordered
+   */
+  protected IMappingProvider mappingProvider = MAPPING_PROVIDER_EDEFAULT;
 
   /**
    * The default value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
@@ -143,16 +150,8 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
    * <!-- end-user-doc -->
    * @generated
    */
-  public MappingDescriptor getMappingDescriptor() {
-    if (mappingDescriptor != null && mappingDescriptor.eIsProxy()) {
-      InternalEObject oldMappingDescriptor = (InternalEObject)mappingDescriptor;
-      mappingDescriptor = (MappingDescriptor)eResolveProxy(oldMappingDescriptor);
-      if (mappingDescriptor != oldMappingDescriptor) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR, oldMappingDescriptor, mappingDescriptor));
-      }
-    }
-    return mappingDescriptor;
+  public IMappingProvider getMappingProvider() {
+    return mappingProvider;
   }
 
   /**
@@ -160,20 +159,11 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
    * <!-- end-user-doc -->
    * @generated
    */
-  public MappingDescriptor basicGetMappingDescriptor() {
-    return mappingDescriptor;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setMappingDescriptor(MappingDescriptor newMappingDescriptor) {
-    MappingDescriptor oldMappingDescriptor = mappingDescriptor;
-    mappingDescriptor = newMappingDescriptor;
+  public void setMappingProvider(IMappingProvider newMappingProvider) {
+    IMappingProvider oldMappingProvider = mappingProvider;
+    mappingProvider = newMappingProvider;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR, oldMappingDescriptor, mappingDescriptor));
+      eNotify(new ENotificationImpl(this, Notification.SET, HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_PROVIDER, oldMappingProvider, mappingProvider));
   }
 
   /**
@@ -270,9 +260,8 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR:
-        if (resolve) return getMappingDescriptor();
-        return basicGetMappingDescriptor();
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_PROVIDER:
+        return getMappingProvider();
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__QUALIFIED_NAME:
         return getQualifiedName();
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__NAME:
@@ -295,8 +284,8 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR:
-        setMappingDescriptor((MappingDescriptor)newValue);
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_PROVIDER:
+        setMappingProvider((IMappingProvider)newValue);
         return;
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE:
         setBundle((Bundle)newValue);
@@ -316,8 +305,8 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR:
-        setMappingDescriptor((MappingDescriptor)null);
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_PROVIDER:
+        setMappingProvider(MAPPING_PROVIDER_EDEFAULT);
         return;
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__BUNDLE:
         setBundle(BUNDLE_EDEFAULT);
@@ -337,8 +326,8 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_DESCRIPTOR:
-        return mappingDescriptor != null;
+      case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__MAPPING_PROVIDER:
+        return MAPPING_PROVIDER_EDEFAULT == null ? mappingProvider != null : !MAPPING_PROVIDER_EDEFAULT.equals(mappingProvider);
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__QUALIFIED_NAME:
         return QUALIFIED_NAME_EDEFAULT == null ? getQualifiedName() != null : !QUALIFIED_NAME_EDEFAULT.equals(getQualifiedName());
       case HierarchicalGraphUIPackage.BUNDLE_BASED_MAPPING_DESCRIPTOR__NAME:
@@ -377,7 +366,9 @@ public class BundleBasedMappingDescriptorImpl extends MinimalEObjectImpl.Contain
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (bundle: ");
+    result.append(" (mappingProvider: ");
+    result.append(mappingProvider);
+    result.append(", bundle: ");
     result.append(bundle);
     result.append(", basePath: ");
     result.append(basePath);

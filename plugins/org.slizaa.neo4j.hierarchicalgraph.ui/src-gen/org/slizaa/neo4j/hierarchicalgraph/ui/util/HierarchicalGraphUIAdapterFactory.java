@@ -68,8 +68,8 @@ public class HierarchicalGraphUIAdapterFactory extends AdapterFactoryImpl {
   protected HierarchicalGraphUISwitch<Adapter> modelSwitch =
     new HierarchicalGraphUISwitch<Adapter>() {
       @Override
-      public Adapter caseISlizaaMappingDescriptor(ISlizaaMappingDescriptor object) {
-        return createISlizaaMappingDescriptorAdapter();
+      public Adapter caseISlizaaMappingProvider(ISlizaaMappingProvider object) {
+        return createISlizaaMappingProviderAdapter();
       }
       @Override
       public Adapter caseBundleBasedMappingDescriptor(BundleBasedMappingDescriptor object) {
@@ -108,16 +108,16 @@ public class HierarchicalGraphUIAdapterFactory extends AdapterFactoryImpl {
 
 
   /**
-   * Creates a new adapter for an object of class '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor <em>ISlizaa Mapping Descriptor</em>}'.
+   * Creates a new adapter for an object of class '{@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider <em>ISlizaa Mapping Provider</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor
+   * @see org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider
    * @generated
    */
-  public Adapter createISlizaaMappingDescriptorAdapter() {
+  public Adapter createISlizaaMappingProviderAdapter() {
     return null;
   }
 

@@ -13,7 +13,7 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.Hierarchicalg
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultMappingProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IHierarchyProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelProvider;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 
 public class MappingServiceTest {
@@ -56,7 +56,7 @@ public class MappingServiceTest {
 
     IHierarchyProvider hierarchyProvider = new SimpleJTypeHierarchyProvider(_boltClientConnection.getBoltClient());
     IDependencyProvider dependencyProvider = new SimpleJTypeDependencyProvider(_boltClientConnection.getBoltClient());
-    ILabelProvider labelProvider = new DummyLabelProvider();
+    ILabelDefinitionProvider labelProvider = new DummyLabelProvider();
 
     return new DefaultMappingProvider(hierarchyProvider, dependencyProvider, labelProvider);
   }

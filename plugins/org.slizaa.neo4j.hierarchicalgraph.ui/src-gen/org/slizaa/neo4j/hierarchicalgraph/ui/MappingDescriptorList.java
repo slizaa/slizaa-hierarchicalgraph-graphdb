@@ -52,7 +52,7 @@ public interface MappingDescriptorList extends EObject {
 
   /**
    * Returns the value of the '<em><b>Mapping Descriptors</b></em>' reference list.
-   * The list contents are of type {@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingDescriptor}.
+   * The list contents are of type {@link org.slizaa.neo4j.hierarchicalgraph.ui.ISlizaaMappingProvider}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Mapping Descriptors</em>' reference list isn't clear,
@@ -64,6 +64,6 @@ public interface MappingDescriptorList extends EObject {
    * @model
    * @generated
    */
-  EList<ISlizaaMappingDescriptor> getMappingDescriptors();
+  EList<ISlizaaMappingProvider> getMappingDescriptors();
 
 } // MappingDescriptorList
