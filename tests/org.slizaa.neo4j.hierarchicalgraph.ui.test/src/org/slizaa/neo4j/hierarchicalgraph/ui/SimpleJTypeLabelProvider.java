@@ -15,17 +15,39 @@ public class SimpleJTypeLabelProvider implements ILabelDefinitionProvider {
   @Override
   public ILabelDefinition getLabelDefinition(HGNode node) {
 
+    //
     DefaultLabelDefinition defaultLabelDefinition = new DefaultLabelDefinition();
 
     //
-    URL url = this.getClass().getClassLoader().getResource("org/slizaa/neo4j/hierarchicalgraph/ui/icons/HGNode.png");
+    defaultLabelDefinition.setBaseImage(icon("icons/class_obj.png"));
+    defaultLabelDefinition.setText(property(node, "fqn"));
 
-    checkNotNull(url);
-
-    defaultLabelDefinition.setBaseImage(url);
-    defaultLabelDefinition.setText(nodeSource(node).getProperties().get("fqn"));
-
+    //
     return defaultLabelDefinition;
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param node
+   * @return
+   */
+  private String property(HGNode node, String propertyName) {
+    return nodeSource(node).getProperties().get(propertyName);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param path
+   * @return
+   */
+  private URL icon(String path) {
+    URL url = this.getClass().getClassLoader().getResource("icons/class_obj.png");
+    checkNotNull(url);
+    return url;
   }
 
   /**
