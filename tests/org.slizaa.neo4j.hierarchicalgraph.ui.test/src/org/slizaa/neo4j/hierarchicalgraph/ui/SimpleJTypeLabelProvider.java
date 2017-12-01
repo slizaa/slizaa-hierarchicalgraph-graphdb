@@ -1,16 +1,7 @@
 package org.slizaa.neo4j.hierarchicalgraph.ui;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.net.URL;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
-
-import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultLabelDefinition;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinition;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.AbstractLabelDefinitionProvider;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinition.OverlayPosition;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
 
 /**
@@ -20,132 +11,111 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  *
  */
-public class SimpleJTypeLabelProvider extends AbstractDslLabelDefinitonProvider implements ILabelDefinitionProvider {
-
-  /** - */
-  private ThreadLocal<HGNode>                 _currentHgNode;
-
-  /** - */
-  private ThreadLocal<DefaultLabelDefinition> _currentLabelDefinition;
+public class SimpleJTypeLabelProvider extends AbstractLabelDefinitionProvider implements ILabelDefinitionProvider {
 
   /**
    * {@inheritDoc}
    */
   @Override
-  public ILabelDefinition getLabelDefinition(HGNode n) {
+  protected LabelDefinitionProcessor createLabelDefinitionProcessor() {
 
-    _currentHgNode.set(n);
-
-    //
-    return Dsl.
-        when(containsLabel("Schnurz")).
-            then((node, label) -> label.setBaseImage(icon("icons/Schnurz.png"))).
-
-        //
-        choice().
-
-            //
-            when(containsLabel("Type")).
-                then((node, label) -> label.setBaseImage(icon("icons/class_obj.png"))).
-
-            //
-            when(containsLabel("Schnurz")).
-                then((node, label) -> label.setBaseImage(icon("icons/Schnurz.png"))).
-
-            //
-            otherwise((node, label) -> label.setBaseImage(icon("icons/Schnurz.png"))).
+    //@formatter:off
+    return exclusiveChoice().
         
-            build();
-
-    // dsl().exclusiveChoice()
-    // .when(n -> nodeSource(n).getLabels().contains("Type"), dl -> dl.setBaseImage(icon("icons/class_obj.png"))).
-    //
-    // // handle type
-    // when(containsLabel("Type")).then(dl -> dl.setBaseImage(icon("icons/class_obj.png"))).
-    //
-    // // handle
-    // when(containsLabel("Schnurz"), setBaseImage(icon("icons/class_obj.png"))).
-    //
-    // // handle bla
-    // when(containsLabel("Blah"), setBaseImage(icon("icons/class_obj.png"))).
-    //
-    // // handle type
-    // when(containsLabel("Type"), when(contains())).
-    //
-    // //
-    // endExclusiveChoice().when();
-
-    // //
-    // DefaultLabelDefinition defaultLabelDefinition = new DefaultLabelDefinition();
-    //
-    // //
-    // defaultLabelDefinition.setBaseImage());
-    // defaultLabelDefinition.setText(property(node, "fqn"));
-
-    //
-    ILabelDefinition result = _currentLabelDefinition.get();
-
-    //
-    _currentHgNode.set(null);
-    _currentLabelDefinition.set(null);
-
-    //
-    return result;
-  }
-
-  private Rule when(Function<HGNode, Boolean> containsLabel) {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  private Dsl dsl() {
-
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  private Function<HGNode, Boolean> containsLabel(String string) {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  // private Rule when(Function<HGNode, Boolean> condition) {
-  //
-  // return null;
-  // }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @param node
-   * @return
-   */
-  private String property(HGNode node, String propertyName) {
-    return nodeSource(node).getProperties().get(propertyName);
+        // Module
+        when(nodeHasLabel("Module")).then(handleModule()).
+        
+        // Package
+        when(nodeHasLabel("Directory")).then(handleDirectory()).
+        
+        // Resource
+        when(nodeHasLabel("Resource")).then(handleResource()).
+        
+        // Type
+        when(nodeHasLabel("Type")).then(handleType()).
+    
+        // all other nodes
+        otherwise(setBaseImage(fromClasspath("icons/jar_obj.png")).
+              and(setLabelText(propertyValue("name"))));
+    
+    //@formatter:on
   }
 
   /**
    * <p>
    * </p>
    *
-   * @param path
    * @return
    */
-  private URL icon(String path) {
-    URL url = this.getClass().getClassLoader().getResource("icons/class_obj.png");
-    checkNotNull(url);
-    return url;
+  protected LabelDefinitionProcessor handleModule() {
+    return setBaseImage(fromClasspath("icons/jar_obj.png")).and(setLabelText(propertyValue("name")));
   }
 
   /**
    * <p>
    * </p>
    *
-   * @param node
    * @return
    */
-  private Neo4JBackedNodeSource nodeSource(HGNode node) {
-    return node.getNodeSource(Neo4JBackedNodeSource.class).get();
+  protected LabelDefinitionProcessor handleDirectory() {
+
+    //@formatter:off
+    return exclusiveChoice().
+        
+        // Packages
+        when(nodeHasLabel("Package")).
+          then(setBaseImage(fromClasspath("icons/package_obj.png")).
+           and(setLabelText(propertyValue("fqn", str -> str.replace('/', '.'))))).
+        
+        // Directories
+        otherwise(setBaseImage(fromClasspath("icons/fldr_obj.png")).
+              and(setLabelText(propertyValue("name"))));
+    //@formatter:on
   }
+
+  private LabelDefinitionProcessor handleResource() {
+
+    //@formatter:off
+    return executeAll(
+        
+        exclusiveChoice().
+          when(nodeHasLabel("ClassFile")).then(setBaseImage(fromClasspath("icons/classf_obj.png"))).
+          otherwise(setBaseImage(fromClasspath("icons/file_obj.png"))),
+        
+        setLabelText(propertyValue("name"))
+    );
+    //@formatter:on    
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  protected LabelDefinitionProcessor handleType() {
+
+    //@formatter:off
+    return executeAll(
+        
+        setLabelText(propertyValue("name")),
+        
+        when(nodeHasProperty("final")).
+          then(setOverlayImage(fromClasspath("icons/class_obj.png"), OverlayPosition.TOP_RIGHT)),
+        
+        when(nodeHasLabel("Class")).
+          then(setBaseImage(fromClasspath("icons/class_obj.png"))),
+          
+        when(nodeHasLabel("Annotation")).
+          then(setBaseImage(fromClasspath("icons/annotation_obj.png"))),   
+          
+        when(nodeHasLabel("Enum")).
+          then(setBaseImage(fromClasspath("icons/enum_obj.png"))),
+          
+        when(nodeHasLabel("Interface")).
+          then(setBaseImage(fromClasspath("icons/int_obj.png")))  
+        );
+    //@formatter:on
+  }
+
 }

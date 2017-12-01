@@ -1,5 +1,7 @@
 package org.slizaa.neo4j.hierarchicalgraph.mapping.spi;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.net.URL;
 
 /**
@@ -44,36 +46,36 @@ public class DefaultLabelDefinition implements ILabelDefinition {
     return _baseImage;
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
-  public URL getOverlayTopRight() {
-    return _overlayTopRight;
+  public boolean hasOverlayImage(OverlayPosition overlayPosition) {
+    switch (checkNotNull(overlayPosition)) {
+    case TOP_RIGHT:
+      return _overlayTopRight != null;
+    case TOP_LEFT:
+      return _overlayTopLeft != null;
+    case BOTTOM_LEFT:
+      return _overlayBottomLeft != null;
+    case BOTTOM_RIGHT:
+      return _overlayBottomRight != null;
+    default:
+      return false;
+    }
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
-  public URL getOverlayBottomRight() {
-    return _overlayBottomRight;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public URL getOverlayTopLeft() {
-    return _overlayTopLeft;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public URL getOverlayBottomLeft() {
-    return _overlayBottomLeft;
+  public URL getOverlayImage(OverlayPosition overlayPosition) {
+    switch (checkNotNull(overlayPosition)) {
+    case TOP_RIGHT:
+      return _overlayTopRight;
+    case TOP_LEFT:
+      return _overlayTopLeft;
+    case BOTTOM_LEFT:
+      return _overlayBottomLeft;
+    case BOTTOM_RIGHT:
+      return _overlayBottomRight;
+    default:
+      throw new RuntimeException(String.format("Unknown overlay position '%s'.", overlayPosition));
+    }
   }
 
   /**
@@ -88,25 +90,27 @@ public class DefaultLabelDefinition implements ILabelDefinition {
     _baseImage = baseImage;
   }
 
-  public void setOverlayTopRight(URL overlayTopRight) {
-    _overlayTopRight = overlayTopRight;
-  }
-
-  public void setOverlayBottomRight(URL overlayBottomRight) {
-    _overlayBottomRight = overlayBottomRight;
-  }
-
-  public void setOverlayTopLeft(URL overlayTopLeft) {
-    _overlayTopLeft = overlayTopLeft;
-  }
-
-  public void setOverlayBottomLeft(URL overlayBottomLeft) {
-    _overlayBottomLeft = overlayBottomLeft;
+  public void setOverlayImage(URL image, OverlayPosition position) {
+    switch (checkNotNull(position)) {
+    case TOP_RIGHT:
+      _overlayTopRight = image;
+      break;
+    case TOP_LEFT:
+      _overlayTopLeft = image;
+      break;
+    case BOTTOM_LEFT:
+      _overlayBottomLeft = image;
+      break;
+    case BOTTOM_RIGHT:
+      _overlayBottomRight = image;
+      break;
+    default:
+      throw new RuntimeException(String.format("Unknown overlay position '%s'.", position));
+    }
   }
 
   public void setText(String text) {
     _text = text;
   }
-  
-  
+
 }

@@ -1,0 +1,103 @@
+	//
+	visualization {
+		
+		node hasLabel("MODULE") {
+			textLabel propertyValue("name")
+			baseImage "icons/jar_obj.png"
+		}
+		
+		node hasLabel("DIRECTORY") {
+			textLabel propertyValue("fqn")
+			baseImage "icons/fldr_obj.png"
+			
+			if (hasLabel("PACKAGE")) {
+				baseImage "icons/package_obj.png"
+			}
+		}
+		
+		node hasLabel("METHOD") {
+		
+			textLabel methodDescriptorFromProperty("fqn")
+			
+			if (propertyHasValue("visibility", "public")) {
+				baseImage "icons/methpub_obj.png"
+			}
+			if (propertyHasValue("visibility", "protected")) {
+				baseImage "icons/methpro_obj.png"
+			}
+			if (propertyHasValue("visibility", "private")) {
+				baseImage "icons/methpri_obj.png"
+			}
+			if (propertyHasValue("visibility", "default")) {
+				baseImage "icons/methdef_obj.png"
+			}
+			
+			if (hasLabel("CONSTRUCTOR")) {
+				overlayImageTopRight "icons/constr_ovr.png"
+			}
+			if (propertyExists("abstract")) {
+				overlayImageTopRight "icons/abstract_co.png"
+			}
+			if (propertyExists("final")) {
+				overlayImageTopRight "icons/final_co.png"
+			}
+			if (propertyExists("static")) {
+				overlayImageTopLeft "icons/static_co.png"
+			}
+		}
+		
+		node hasLabel("FIELD") {
+			textLabel propertyValue("name")
+			
+			if (propertyHasValue("visibility", "public")) {
+				baseImage "icons/field_public_obj.png"
+			}
+			if (propertyHasValue("visibility", "protected")) {
+				baseImage "icons/field_protected_obj.png"
+			}
+			if (propertyHasValue("visibility", "private")) {
+				baseImage "icons/field_private_obj.png"
+			}
+			if (propertyHasValue("visibility", "default")) {
+				baseImage "icons/field_default_obj.png"
+			}		
+		}		
+
+		node hasLabel("CLASS") {
+			
+			textLabel propertyValue("name")
+			baseImage "icons/class_obj.png"
+			
+			if (propertyExists("final")) {
+				overlayImageTopRight "icons/final_co.png"
+			}	
+		}	
+		
+		node hasLabel("ANNOTATION") {
+			textLabel propertyValue("name")
+			baseImage "icons/annotation_obj.png"			
+		}
+		
+		node hasLabel("ENUM") {
+			textLabel propertyValue("name")
+			baseImage "icons/enum_obj.png"			
+		}
+		
+		node hasLabel("INTERFACE") {
+			textLabel propertyValue("name")
+			baseImage "icons/int_obj.png"			
+		}
+		
+//		node hasLabel("Directory") {
+//			textLabel propertyValue("fileName")
+//			baseImage "icons/fldr_obj.png"		
+//		}
+		
+		node hasLabel("RESOURCE") {
+			textLabel propertyValue("name")
+			baseImage "icons/file_obj.png"		
+			
+			if (hasLabel("CLASSFILE")) {
+				baseImage "icons/classf_obj.png"
+			}	
+		}	

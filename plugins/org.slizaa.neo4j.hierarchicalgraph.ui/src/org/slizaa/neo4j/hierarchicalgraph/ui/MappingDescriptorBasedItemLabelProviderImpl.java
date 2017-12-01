@@ -21,6 +21,7 @@ import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultLabelDefinition;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinition;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinition.OverlayPosition;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
 import org.slizaa.neo4j.hierarchicalgraph.ui.internal.OverlayImageRegistry;
 
@@ -85,8 +86,10 @@ public class MappingDescriptorBasedItemLabelProviderImpl implements INodeLabelPr
     //
     if (labelDefinition.hasBaseImage()) {
       return _imageRegistry.getOverlayImage(labelDefinition.getBaseImage(),
-          new URL[] { labelDefinition.getOverlayTopLeft(), labelDefinition.getOverlayBottomRight(),
-              labelDefinition.getOverlayBottomLeft(), labelDefinition.getOverlayBottomRight() });
+          new URL[] { labelDefinition.getOverlayImage(OverlayPosition.TOP_LEFT),
+              labelDefinition.getOverlayImage(OverlayPosition.TOP_RIGHT),
+              labelDefinition.getOverlayImage(OverlayPosition.BOTTOM_LEFT),
+              labelDefinition.getOverlayImage(OverlayPosition.BOTTOM_RIGHT) });
     }
 
     //
