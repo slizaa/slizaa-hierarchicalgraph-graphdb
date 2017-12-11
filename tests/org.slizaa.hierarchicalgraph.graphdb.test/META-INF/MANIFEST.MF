@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.slizaa.neo4j.hierarchicalgraph.test
 Bundle-SymbolicName: org.slizaa.hierarchicalgraph.graphdb.test
 Bundle-Version: 1.0.0.qualifier
-Fragment-Host: org.slizaa.neo4j.hierarchicalgraph;bundle-version="0.0.3"
+Fragment-Host: org.slizaa.hierarchicalgraph.graphdb.model;bundle-version="0.0.3"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,

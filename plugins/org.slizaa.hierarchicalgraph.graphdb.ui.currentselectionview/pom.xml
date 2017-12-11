@@ -8,7 +8,7 @@
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../../pom.xml</relativePath>
 	</parent>
-	
-	<artifactId>org.slizaa.neo4j.hierarchicalgraph.mapping.service</artifactId>
+
+	<artifactId>org.slizaa.hierarchicalgraph.graphdb.ui.currentselectionview</artifactId>
 	<packaging>eclipse-plugin</packaging>
 </project>

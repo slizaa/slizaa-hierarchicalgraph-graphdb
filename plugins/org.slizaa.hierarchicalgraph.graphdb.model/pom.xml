@@ -9,6 +9,6 @@
 		<relativePath>../../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>org.slizaa.neo4j.ui.currentselection</artifactId>
+	<artifactId>org.slizaa.hierarchicalgraph.graphdb.model</artifactId>
 	<packaging>eclipse-plugin</packaging>
 </project>

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.slizaa.neo4j.ui.currentselection
-Bundle-SymbolicName: org.slizaa.neo4j.ui.currentselection;singleton:=true
+Bundle-SymbolicName: org.slizaa.hierarchicalgraph.graphdb.ui.currentselectionview;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.swt;bundle-version="3.105.2",
@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.swt;bundle-version="3.105.2",
  org.eclipse.osgi;bundle-version="3.11.2",
  com.google.guava;bundle-version="15.0.0",
  org.slizaa.hierarchicalgraph.core.model;bundle-version="0.0.4",
- org.slizaa.neo4j.hierarchicalgraph;bundle-version="0.0.4",
+ org.slizaa.hierarchicalgraph.graphdb.model;bundle-version="0.0.4",
  org.slizaa.hierarchicalgraph.core.selection;bundle-version="0.0.4",
  com.google.gson;bundle-version="2.5.0"
 Bundle-ActivationPolicy: lazy
