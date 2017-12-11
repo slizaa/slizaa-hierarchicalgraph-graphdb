@@ -1,16 +1,10 @@
-package org.slizaa.neo4j.hierarchicalgraph.ui;
+package org.slizaa.graphdb.testfwk;
 
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 
-/**
- * <p>
- * </p>
- *
- * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
- */
-public class TEMPORARY_NodeComparator implements INodeComparator {
+public class SimpleJTypeNodeComparator implements INodeComparator {
 
   /**
    * {@inheritDoc}
@@ -23,17 +17,17 @@ public class TEMPORARY_NodeComparator implements INodeComparator {
       HGNode hgNode = (HGNode) element;
       Neo4JBackedNodeSource nodeSource = (Neo4JBackedNodeSource) hgNode.getNodeSource();
 
-      if (nodeSource.getLabels().contains("FIELD")) {
+      if (nodeSource.getLabels().contains("Field")) {
         return 1;
-      } else if (nodeSource.getLabels().contains("METHOD")) {
+      } else if (nodeSource.getLabels().contains("Method")) {
         return 2;
-      } else if (nodeSource.getLabels().contains("DIRECTORY")) {
+      } else if (nodeSource.getLabels().contains("Package")) {
+        return 2;
+      } else if (nodeSource.getLabels().contains("Directory")) {
         return 1;
-      } else if (nodeSource.getLabels().contains("PACKAGE")) {
-        return 2;
-      } else if (nodeSource.getLabels().contains("RESOURCE")) {
+      }  else if (nodeSource.getLabels().contains("Resource")) {
         return 3;
-      } else if (nodeSource.getLabels().contains("TYPE")) {
+      } else if (nodeSource.getLabels().contains("Type")) {
         return 4;
       }
     }
@@ -58,20 +52,20 @@ public class TEMPORARY_NodeComparator implements INodeComparator {
     Neo4JBackedNodeSource nodeSource2 = (Neo4JBackedNodeSource) ((HGNode) e2).getNodeSource();
 
     //
-    if ((nodeSource1.getLabels().contains("FIELD") && nodeSource2.getLabels().contains("FIELD"))
-        || (nodeSource1.getLabels().contains("METHOD") && nodeSource2.getLabels().contains("METHOD"))
-        || (nodeSource1.getLabels().contains("TYPE") && nodeSource2.getLabels().contains("TYPE"))) {
+    if ((nodeSource1.getLabels().contains("Field") && nodeSource2.getLabels().contains("Field"))
+        || (nodeSource1.getLabels().contains("Method") && nodeSource2.getLabels().contains("Method"))
+        || (nodeSource1.getLabels().contains("Type") && nodeSource2.getLabels().contains("Type"))) {
 
       return nodeSource1.getProperties().get("name").compareTo(nodeSource2.getProperties().get("name"));
     }
     //
-    else if (((nodeSource1.getLabels().contains("DIRECTORY") && nodeSource2.getLabels().contains("DIRECTORY"))
-        || (nodeSource1.getLabels().contains("RESOURCE") && nodeSource2.getLabels().contains("RESOURCE")))
-        && nodeSource1.getProperties().containsKey("fqn") && nodeSource2.getProperties().containsKey("fqn")) {
+    else if (((nodeSource1.getLabels().contains("Directory") && nodeSource2.getLabels().contains("Directory"))
+        || (nodeSource1.getLabels().contains("Resource") && nodeSource2.getLabels().contains("Resource")))) {
+      
       return nodeSource1.getProperties().get("fqn").compareTo(nodeSource2.getProperties().get("fqn"));
     }
     //
-    else if (((nodeSource1.getLabels().contains("MODULE") && nodeSource2.getLabels().contains("MODULE")))
+    else if (((nodeSource1.getLabels().contains("Module") && nodeSource2.getLabels().contains("Module")))
         && nodeSource1.getProperties().containsKey("name") && nodeSource2.getProperties().containsKey("name")) {
       return nodeSource1.getProperties().get("name").compareTo(nodeSource2.getProperties().get("name"));
     }

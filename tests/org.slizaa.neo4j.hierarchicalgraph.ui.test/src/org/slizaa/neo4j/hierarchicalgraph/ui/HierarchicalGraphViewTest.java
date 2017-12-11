@@ -5,6 +5,7 @@ import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
 import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
@@ -49,7 +50,10 @@ public class HierarchicalGraphViewTest extends AbstractSlizaaUiTest {
     IHierarchicalGraphMappingService mappingService = HierarchicalGraphMappingServiceFactory
         .newHierarchicalGraphMappingService();
 
-    HGRootNode rootNode = mappingService.convert(createMappingProvider(), _boltClientConnection.getBoltClient(), null);
+    //
+    IMappingProvider mappingProvider = createMappingProvider();
+    
+    HGRootNode rootNode = mappingService.convert(mappingProvider, _boltClientConnection.getBoltClient(), null);
     rootNode.registerExtension(INodeLabelProvider.class,
         new MappingDescriptorBasedItemLabelProviderImpl(new SimpleJTypeLabelProvider(), new ImageRegistry(display())));
 
@@ -84,7 +88,8 @@ public class HierarchicalGraphViewTest extends AbstractSlizaaUiTest {
     IHierarchyProvider hierarchyProvider = new SimpleJTypeHierarchyProvider(_boltClientConnection.getBoltClient());
     IDependencyProvider dependencyProvider = new SimpleJTypeDependencyProvider(_boltClientConnection.getBoltClient());
     ILabelDefinitionProvider labelProvider = new SimpleJTypeLabelProvider();
-
-    return new DefaultMappingProvider(hierarchyProvider, dependencyProvider, labelProvider);
+    INodeComparator nodeComparator = new SimpleJTypeNodeComparator();
+    
+    return new DefaultMappingProvider(hierarchyProvider, dependencyProvider, labelProvider, nodeComparator);
   }
 }

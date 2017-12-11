@@ -1,9 +1,9 @@
-package org.slizaa.neo4j.testfwk.internal.exporter;
+package org.slizaa.neo4j.testfwk.alt.internal.exporter;
 
-import static org.slizaa.neo4j.testfwk.internal.exporter.XmiUtils.save;
-import static org.slizaa.neo4j.testfwk.internal.exporter.mapping.GraphFactoryFunctions.createDependencies;
-import static org.slizaa.neo4j.testfwk.internal.exporter.mapping.GraphFactoryFunctions.createFirstLevelElements;
-import static org.slizaa.neo4j.testfwk.internal.exporter.mapping.GraphFactoryFunctions.createHierarchy;
+import static org.slizaa.neo4j.testfwk.alt.internal.exporter.XmiUtils.save;
+import static org.slizaa.neo4j.testfwk.alt.internal.exporter.mapping.GraphFactoryFunctions.createDependencies;
+import static org.slizaa.neo4j.testfwk.alt.internal.exporter.mapping.GraphFactoryFunctions.createFirstLevelElements;
+import static org.slizaa.neo4j.testfwk.alt.internal.exporter.mapping.GraphFactoryFunctions.createHierarchy;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +22,7 @@ import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.neo4j.dbadapter.DbAdapterFactory;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
-import org.slizaa.neo4j.testfwk.internal.exporter.mapping.Neo4jResultJsonConverter;
+import org.slizaa.neo4j.testfwk.alt.internal.exporter.mapping.Neo4jResultJsonConverter;
 
 public class TestModelCreator {
 

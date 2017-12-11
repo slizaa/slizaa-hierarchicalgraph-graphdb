@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.testfwk.internal.exporter.mapping;
+package org.slizaa.neo4j.testfwk.alt.internal.exporter.mapping;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

@@ -22,6 +22,7 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
+import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
@@ -29,6 +30,7 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.service.HierarchicalGraphMappi
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IHierarchyProvider;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 
 /**
@@ -153,7 +155,9 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
       // register default extensions
       rootNode.registerExtension(Neo4jClient.class, boltClient);
       // rootNode.registerExtension(IProxyDependencyResolver.class, new CustomProxyDependencyResolver());
-      // rootNode.registerExtension(MappingDescriptor.class, mappingDescriptor);
+      rootNode.registerExtension(IMappingProvider.class, mappingDescriptor);
+      rootNode.registerExtension(INodeComparator.class, mappingDescriptor.getNodeComparator());
+      rootNode.registerExtension(ILabelDefinitionProvider.class, mappingDescriptor.getLabelDefinitionProvider());
 
       //
       // return addEditingDomain(rootNode);

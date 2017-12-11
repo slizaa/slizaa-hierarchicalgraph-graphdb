@@ -2,6 +2,7 @@ package org.slizaa.neo4j.hierarchicalgraph.ui;
 
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappingsdialog.MappingDescriptorUtil;
 import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappingsdialog.SelectMappingDialog;
 
@@ -13,7 +14,7 @@ public class MappingSelectorUtil {
    *
    * @return
    */
-  public static ISlizaaMappingDescriptor openSelectMappingDescriptorDialog() {
+  public static IMappingProvider openSelectMappingDescriptorDialog() {
 
     //
     SelectMappingDialog mappingDialog = new SelectMappingDialog(Display.getCurrent().getActiveShell(),

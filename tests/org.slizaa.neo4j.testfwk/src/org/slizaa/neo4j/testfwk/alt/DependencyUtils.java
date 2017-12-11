@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.testfwk;
+package org.slizaa.neo4j.testfwk.alt;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

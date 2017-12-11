@@ -1,5 +1,7 @@
 package org.slizaa.neo4j.hierarchicalgraph.mapping.spi;
 
+import org.slizaa.hierarchicalgraph.spi.INodeComparator;
+
 public interface IMappingProvider {
 
   /**
@@ -18,5 +20,13 @@ public interface IMappingProvider {
    * <p>
    * </p>
    */
-  ILabelDefinitionProvider getLabelProvider();
+  ILabelDefinitionProvider getLabelDefinitionProvider();
+  
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  INodeComparator getNodeComparator();
 }

@@ -1,9 +1,9 @@
-package org.slizaa.neo4j.testfwk.internal.exporter.mapping;
+package org.slizaa.neo4j.testfwk.alt.internal.exporter.mapping;
 
 import java.util.List;
 
 import org.neo4j.driver.v1.StatementResult;
-import org.slizaa.neo4j.testfwk.internal.exporter.mapping.GraphFactoryFunctions.Neo4jRelationship;
+import org.slizaa.neo4j.testfwk.alt.internal.exporter.mapping.GraphFactoryFunctions.Neo4jRelationship;
 
 public class Neo4jResultJsonConverter {
 

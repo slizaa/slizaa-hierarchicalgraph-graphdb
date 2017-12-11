@@ -6,6 +6,7 @@ import org.junit.ClassRule;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.algorithms.AdjacencyMatrix;
+import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
 import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
 import org.slizaa.neo4j.graphdb.testfwk.TestDB;
@@ -57,7 +58,8 @@ public class MappingServiceTest {
     IHierarchyProvider hierarchyProvider = new SimpleJTypeHierarchyProvider(_boltClientConnection.getBoltClient());
     IDependencyProvider dependencyProvider = new SimpleJTypeDependencyProvider(_boltClientConnection.getBoltClient());
     ILabelDefinitionProvider labelProvider = new DummyLabelProvider();
+    INodeComparator nodeComparator = new DummyNodeComparator();
 
-    return new DefaultMappingProvider(hierarchyProvider, dependencyProvider, labelProvider);
+    return new DefaultMappingProvider(hierarchyProvider, dependencyProvider, labelProvider, nodeComparator);
   }
 }

@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.hierarchicalgraph.ui;
+package org.slizaa.graphdb.testfwk;
 
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.AbstractLabelDefinitionProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinition.OverlayPosition;
