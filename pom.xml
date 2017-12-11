@@ -11,12 +11,14 @@
 
 	<modules>
 		<module>releng/org.slizaa.hierarchicalgraph.graphdb.target</module>
-		
+
 		<module>plugins/org.slizaa.neo4j.hierarchicalgraph</module>
-<!--  		<module>plugins/org.slizaa.neo4j.hierarchicalgraph.mapping.service</module>
-		<module>plugins/org.slizaa.neo4j.hierarchicalgraph.ui</module>
-		<module>plugins/org.slizaa.neo4j.hierarchicalgraph.ui.edit</module>
-		<module>plugins/org.slizaa.neo4j.ui.currentselection</module> -->
+		<module>plugins/org.slizaa.neo4j.hierarchicalgraph.mapping.service</module> 
+		<!-- <module>plugins/org.slizaa.neo4j.hierarchicalgraph.ui</module> <module>plugins/org.slizaa.neo4j.hierarchicalgraph.ui.edit</module> 
+			<module>plugins/org.slizaa.neo4j.ui.currentselection</module> -->
+
+		<module>tests/org.slizaa.hierarchicalgraph.graphdb.testfwk</module>
+		<module>tests/org.slizaa.hierarchicalgraph.graphdb.test</module>
 	</modules>
 
 	<!-- tycho requires maven >= 3.0 -->

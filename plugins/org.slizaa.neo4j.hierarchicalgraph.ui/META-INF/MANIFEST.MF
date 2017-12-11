@@ -18,7 +18,7 @@ Import-Package: javax.inject;version="1.0.0",
 Service-Component: OSGI-INF/org.slizaa.neo4j.hierarchicalgraph.ui.actions.DisposeHierarchicalGraphTreeAction.xml,
  OSGI-INF/org.slizaa.neo4j.hierarchicalgraph.ui.actions.CreateHierarchicalGraphTreeAction.xml
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.slizaa.ui.tree;bundle-version="0.0.3",
+Require-Bundle: org.slizaa.hierarchicalgraph.core.ui.tree;bundle-version="1.0.0",
  org.eclipse.emf.ecore;bundle-version="2.12.0";visibility:=reexport,
  org.slizaa.neo4j.hierarchicalgraph;bundle-version="0.0.3",
  org.slizaa.neo4j.hierarchicalgraph.mapping.service;bundle-version="0.0.3",
@@ -29,8 +29,8 @@ Require-Bundle: org.slizaa.ui.tree;bundle-version="0.0.3",
  org.eclipse.e4.ui.model.workbench;bundle-version="1.2.0",
  org.eclipse.core.jobs;bundle-version="3.8.0",
  org.eclipse.e4.core.contexts;bundle-version="1.5.0",
- org.slizaa.ui.shared;bundle-version="0.0.3",
- org.slizaa.hierarchicalgraph.selection;bundle-version="0.0.3",
+ org.slizaa.hierarchicalgraph.core.ui.shared;bundle-version="0.0.3",
+ org.slizaa.hierarchicalgraph.core.selection;bundle-version="0.0.3",
  org.eclipse.ui;bundle-version="3.108.0",
  org.eclipse.core.runtime;bundle-version="3.12.0",
  org.eclipse.emf.edit;bundle-version="2.11.1",
@@ -38,5 +38,5 @@ Require-Bundle: org.slizaa.ui.tree;bundle-version="0.0.3",
  org.eclipse.debug.core;bundle-version="3.10.100",
  org.eclipse.e4.core.di.annotations;bundle-version="1.5.0",
  org.eclipse.emf.edit.ui;bundle-version="2.12.0",
- org.slizaa.workbench.model;bundle-version="0.0.4"
+ org.slizaa.hierarchicalgraph.core.workbench.model;bundle-version="1.0.0"
 Bundle-Activator: org.slizaa.neo4j.hierarchicalgraph.ui.internal.Activator
