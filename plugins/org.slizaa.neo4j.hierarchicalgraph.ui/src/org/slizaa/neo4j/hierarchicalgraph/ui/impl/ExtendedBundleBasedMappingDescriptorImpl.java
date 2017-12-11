@@ -9,7 +9,7 @@ public class ExtendedBundleBasedMappingDescriptorImpl extends BundleBasedMapping
    */
   @Override
   public String getQualifiedName() {
-    return getMappingDescriptor().getQualifiedName();
+    return getMappingProvider().getQualifiedName();
   }
 
   /**

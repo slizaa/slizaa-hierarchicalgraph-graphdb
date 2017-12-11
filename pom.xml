@@ -20,6 +20,7 @@
 
 		<module>tests/org.slizaa.hierarchicalgraph.graphdb.testfwk</module>
 		<module>tests/org.slizaa.hierarchicalgraph.graphdb.model.test</module>
+		<module>tests/org.slizaa.hierarchicalgraph.graphdb.mapping.test</module>
 	</modules>
 
 	<!-- tycho requires maven >= 3.0 -->

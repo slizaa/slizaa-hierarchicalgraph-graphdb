@@ -12,10 +12,12 @@ import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
 import org.slizaa.neo4j.graphdb.testfwk.TestDB;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.HierarchicalgraphMappingServiceImpl;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultMappingProvider;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultMappingProviderMetaData;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IHierarchyProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProviderMetaData;
 
 public class MappingServiceTest {
 
@@ -55,11 +57,13 @@ public class MappingServiceTest {
    */
   private IMappingProvider createMappingProvider() {
 
+    IMappingProviderMetaData mappingProviderMetaData = new DefaultMappingProviderMetaData("test", "test");
     IHierarchyProvider hierarchyProvider = new SimpleJTypeHierarchyProvider(_boltClientConnection.getBoltClient());
     IDependencyProvider dependencyProvider = new SimpleJTypeDependencyProvider(_boltClientConnection.getBoltClient());
     ILabelDefinitionProvider labelProvider = new DummyLabelProvider();
     INodeComparator nodeComparator = new DummyNodeComparator();
 
-    return new DefaultMappingProvider(hierarchyProvider, dependencyProvider, labelProvider, nodeComparator);
+    return new DefaultMappingProvider(mappingProviderMetaData, hierarchyProvider, dependencyProvider, labelProvider,
+        nodeComparator);
   }
 }

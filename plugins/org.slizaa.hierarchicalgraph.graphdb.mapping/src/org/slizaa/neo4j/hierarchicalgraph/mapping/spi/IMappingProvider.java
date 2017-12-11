@@ -7,6 +7,14 @@ public interface IMappingProvider {
   /**
    * <p>
    * </p>
+   *
+   * @return
+   */
+  IMappingProviderMetaData getMetaInformation();
+
+  /**
+   * <p>
+   * </p>
    */
   IHierarchyProvider getHierarchyProvider();
 
@@ -21,7 +29,7 @@ public interface IMappingProvider {
    * </p>
    */
   ILabelDefinitionProvider getLabelDefinitionProvider();
-  
+
   /**
    * <p>
    * </p>
