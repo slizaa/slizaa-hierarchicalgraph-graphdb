@@ -11,7 +11,6 @@ import java.util.function.Function;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinition.OverlayPosition;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.LabelMappingDsl.LabelDefinitionProcessor;
 
 public class LabelMappingDsl {
 
