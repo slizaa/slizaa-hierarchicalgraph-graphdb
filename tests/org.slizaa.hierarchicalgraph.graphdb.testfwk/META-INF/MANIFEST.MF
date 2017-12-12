@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.slizaa.neo4j.testfwk
+Bundle-Name: org.slizaa.hierarchicalgraph.graphdb.testfwk
 Bundle-SymbolicName: org.slizaa.hierarchicalgraph.graphdb.testfwk
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
@@ -8,7 +8,6 @@ Bundle-ClassPath: .
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.slizaa.hierarchicalgraph.core.model;bundle-version="1.0.0",
  org.slizaa.hierarchicalgraph.graphdb.model;bundle-version="0.0.3",
- org.slizaa.neo4j.testfwk.dbserver;bundle-version="0.0.4",
  org.slizaa.hierarchicalgraph.graphdb.mapping;bundle-version="0.0.4",
  org.eclipse.osgi.services,
  org.eclipse.osgi;bundle-version="3.11.0",

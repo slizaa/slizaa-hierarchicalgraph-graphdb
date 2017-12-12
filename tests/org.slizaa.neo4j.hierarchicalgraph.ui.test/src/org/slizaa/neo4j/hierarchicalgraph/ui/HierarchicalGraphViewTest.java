@@ -5,6 +5,7 @@ import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.hierarchicalgraph.core.testfwk.ui.AbstractSlizaaUiTest;
 import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
@@ -13,11 +14,12 @@ import org.slizaa.neo4j.graphdb.testfwk.TestDB;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.HierarchicalGraphMappingServiceFactory;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultMappingProvider;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultMappingProviderMetaData;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IHierarchyProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
-import org.slizaa.testfwk.ui.AbstractSlizaaUiTest;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProviderMetaData;
 
 public class HierarchicalGraphViewTest extends AbstractSlizaaUiTest {
 
@@ -52,7 +54,7 @@ public class HierarchicalGraphViewTest extends AbstractSlizaaUiTest {
 
     //
     IMappingProvider mappingProvider = createMappingProvider();
-    
+
     HGRootNode rootNode = mappingService.convert(mappingProvider, _boltClientConnection.getBoltClient(), null);
     rootNode.registerExtension(INodeLabelProvider.class,
         new MappingDescriptorBasedItemLabelProviderImpl(new SimpleJTypeLabelProvider(), new ImageRegistry(display())));
@@ -85,11 +87,12 @@ public class HierarchicalGraphViewTest extends AbstractSlizaaUiTest {
    */
   private IMappingProvider createMappingProvider() {
 
+    IMappingProviderMetaData metaData = new DefaultMappingProviderMetaData("Test", "Test");
     IHierarchyProvider hierarchyProvider = new SimpleJTypeHierarchyProvider(_boltClientConnection.getBoltClient());
     IDependencyProvider dependencyProvider = new SimpleJTypeDependencyProvider(_boltClientConnection.getBoltClient());
     ILabelDefinitionProvider labelProvider = new SimpleJTypeLabelProvider();
     INodeComparator nodeComparator = new SimpleJTypeNodeComparator();
-    
-    return new DefaultMappingProvider(hierarchyProvider, dependencyProvider, labelProvider, nodeComparator);
+
+    return new DefaultMappingProvider(metaData, hierarchyProvider, dependencyProvider, labelProvider, nodeComparator);
   }
 }
