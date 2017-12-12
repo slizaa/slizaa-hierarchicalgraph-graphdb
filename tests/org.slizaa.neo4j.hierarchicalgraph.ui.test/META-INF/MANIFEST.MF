@@ -19,5 +19,6 @@ Require-Bundle: org.eclipse.swtbot.eclipse.core;bundle-version="2.5.0",
  org.slizaa.scanner.core.mvnresolver.uber;bundle-version="1.0.0",
  org.slizaa.neo4j.testfwk.dbserver;bundle-version="1.0.0",
  org.slizaa.hierarchicalgraph.core.testfwk.ui;bundle-version="1.0.0",
- org.mockito.mockito-all;bundle-version="1.10.19"
+ org.mockito.mockito-all;bundle-version="1.10.19",
+ org.slizaa.hierarchicalgraph.core.model.edit;bundle-version="1.0.0"
 

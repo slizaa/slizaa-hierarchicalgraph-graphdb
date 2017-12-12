@@ -60,24 +60,7 @@ public class HierarchicalGraphViewTest extends AbstractSlizaaUiTest {
         new MappingDescriptorBasedItemLabelProviderImpl(new SimpleJTypeLabelProvider(), new ImageRegistry(display())));
 
     workbenchModel().setRootNode(rootNode);
-
-    displaySleep();
   }
-
-  // /**
-  // * <p>
-  // * </p>
-  // *
-  // */
-  // @Before
-  // public void setup() {
-  //
-  // }
-  //
-  // @Override
-  // protected void configureComposedAdapterFactory(ComposedAdapterFactory composedAdapterFactory) {
-  // composedAdapterFactory.addAdapterFactory(new HierarchicalGraphUIItemProviderAdapterFactory());
-  // }
 
   /**
    * <p>
