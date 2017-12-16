@@ -1,7 +1,7 @@
 package org.slizaa.neo4j.hierarchicalgraph.ui.edit;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.slizaa.neo4j.hierarchicalgraph.ui.BundleBasedMappingDescriptor;
+import org.slizaa.hierarchicalgraph.graphdb.ui.hierarchicalgraphview.BundleBasedMappingDescriptor;
 import org.slizaa.neo4j.hierarchicalgraph.ui.provider.BundleBasedMappingDescriptorItemProvider;
 
 public class ExtendedBundleBasedMappingDescriptorItemProvider extends BundleBasedMappingDescriptorItemProvider {

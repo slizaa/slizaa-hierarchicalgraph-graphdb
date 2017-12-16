@@ -1,7 +1,7 @@
 package org.slizaa.neo4j.hierarchicalgraph.ui.edit;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorList;
+import org.slizaa.hierarchicalgraph.graphdb.ui.hierarchicalgraphview.MappingDescriptorList;
 import org.slizaa.neo4j.hierarchicalgraph.ui.provider.MappingDescriptorListItemProvider;
 
 public class ExtendedMappingDescriptorListItemProvider extends MappingDescriptorListItemProvider {

@@ -15,12 +15,12 @@
 		<module>plugins/org.slizaa.hierarchicalgraph.graphdb.model</module>
 		<module>plugins/org.slizaa.hierarchicalgraph.graphdb.mapping</module> 
 		<module>plugins/org.slizaa.hierarchicalgraph.graphdb.ui.currentselectionview</module>
-		<!-- <module>plugins/org.slizaa.neo4j.hierarchicalgraph.ui</module> <module>plugins/org.slizaa.neo4j.hierarchicalgraph.ui.edit</module>  -->
-			
+		<module>plugins/org.slizaa.hierarchicalgraph.graphdb.ui.hierarchicalgraphview</module>
 
 		<module>tests/org.slizaa.hierarchicalgraph.graphdb.testfwk</module>
 		<module>tests/org.slizaa.hierarchicalgraph.graphdb.model.test</module>
 		<module>tests/org.slizaa.hierarchicalgraph.graphdb.mapping.test</module>
+		<module>tests/org.slizaa.hierarchicalgraph.graphdb.ui.hierarchicalgraphview.test</module>
 	</modules>
 
 	<!-- tycho requires maven >= 3.0 -->

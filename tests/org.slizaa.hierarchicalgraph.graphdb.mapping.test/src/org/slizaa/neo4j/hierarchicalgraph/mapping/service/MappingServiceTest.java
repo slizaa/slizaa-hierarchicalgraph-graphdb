@@ -4,21 +4,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.ClassRule;
 import org.junit.Test;
+import org.slizaa.graphdb.testfwk.SimpleJTypeMappingProvider;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.algorithms.AdjacencyMatrix;
-import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
 import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
 import org.slizaa.neo4j.graphdb.testfwk.TestDB;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.HierarchicalgraphMappingServiceImpl;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultMappingProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultMappingProviderMetaData;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IHierarchyProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProviderMetaData;
 
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
 public class MappingServiceTest {
 
   @ClassRule
@@ -37,7 +36,8 @@ public class MappingServiceTest {
 
     IHierarchicalGraphMappingService mappingService = new HierarchicalgraphMappingServiceImpl();
 
-    HGRootNode rootNode = mappingService.convert(createMappingProvider(), _boltClientConnection.getBoltClient(), null);
+    HGRootNode rootNode = mappingService.convert(new SimpleJTypeMappingProvider(_boltClientConnection.getBoltClient()),
+        _boltClientConnection.getBoltClient(), null);
 
     assertThat(rootNode.getChildren()).hasSize(2);
 
@@ -47,23 +47,5 @@ public class MappingServiceTest {
     int[][] matrix = AdjacencyMatrix.computeAdjacencyMatrix(rootNode.getChildren().get(1).getChildren());
 
     AdjacencyMatrix.printMatrix(matrix);
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   */
-  private IMappingProvider createMappingProvider() {
-
-    IMappingProviderMetaData mappingProviderMetaData = new DefaultMappingProviderMetaData("test", "test");
-    IHierarchyProvider hierarchyProvider = new SimpleJTypeHierarchyProvider(_boltClientConnection.getBoltClient());
-    IDependencyProvider dependencyProvider = new SimpleJTypeDependencyProvider(_boltClientConnection.getBoltClient());
-    ILabelDefinitionProvider labelProvider = new DummyLabelProvider();
-    INodeComparator nodeComparator = new DummyNodeComparator();
-
-    return new DefaultMappingProvider(mappingProviderMetaData, hierarchyProvider, dependencyProvider, labelProvider,
-        nodeComparator);
   }
 }

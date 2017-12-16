@@ -22,11 +22,11 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphUIPackage;
-import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorContainer;
+import org.slizaa.hierarchicalgraph.graphdb.ui.hierarchicalgraphview.HierarchicalGraphUIPackage;
+import org.slizaa.hierarchicalgraph.graphdb.ui.hierarchicalgraphview.MappingDescriptorContainer;
 
 /**
- * This is the item provider adapter for a {@link org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorContainer} object.
+ * This is the item provider adapter for a {@link org.slizaa.hierarchicalgraph.graphdb.ui.hierarchicalgraphview.MappingDescriptorContainer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
