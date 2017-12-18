@@ -25,4 +25,21 @@ public interface IMappingProviderMetaData {
    * @return
    */
   String getDescription();
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  String[] getCategories();
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param category
+   * @return
+   */
+  String getCategoryValue(String category);
 }

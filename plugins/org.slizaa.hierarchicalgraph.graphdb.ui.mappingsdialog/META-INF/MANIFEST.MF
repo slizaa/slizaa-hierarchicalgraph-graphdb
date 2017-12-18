@@ -4,3 +4,5 @@ Bundle-Name: org.slizaa.hierarchicalgraph.graphdb.ui.mappingsdialog
 Bundle-SymbolicName: org.slizaa.hierarchicalgraph.graphdb.ui.mappingsdialog
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.jface;bundle-version="3.13.1",
+ org.eclipse.core.runtime;bundle-version="3.13.0"
