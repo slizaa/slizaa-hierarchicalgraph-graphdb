@@ -1,6 +1,6 @@
 package org.slizaa.neo4j.hierarchicalgraph.mapping.spi;
 
-public interface IMappingProviderMetaData {
+public interface IMappingProviderMetadata {
 
   /**
    * <p>

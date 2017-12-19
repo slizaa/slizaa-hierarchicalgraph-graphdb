@@ -10,7 +10,7 @@ public interface IMappingProvider {
    *
    * @return
    */
-  IMappingProviderMetaData getMetaInformation();
+  IMappingProviderMetadata getMetaInformation();
 
   /**
    * <p>

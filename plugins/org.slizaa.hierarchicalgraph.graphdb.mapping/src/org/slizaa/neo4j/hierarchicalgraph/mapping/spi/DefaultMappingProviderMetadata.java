@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class DefaultMappingProviderMetaData implements IMappingProviderMetaData {
+public class DefaultMappingProviderMetadata implements IMappingProviderMetadata {
 
   /** - */
   private String              _identifier;
@@ -27,30 +27,48 @@ public class DefaultMappingProviderMetaData implements IMappingProviderMetaData 
 
   /**
    * <p>
-   * Creates a new instance of type {@link DefaultMappingProviderMetaData}.
+   * Creates a new instance of type {@link DefaultMappingProviderMetadata}.
    * </p>
    *
    * @param identifier
    * @param name
    */
-  public DefaultMappingProviderMetaData(String identifier, String name) {
+  public DefaultMappingProviderMetadata(String identifier, String name) {
     this(identifier, name, null);
   }
 
   /**
    * <p>
-   * Creates a new instance of type {@link DefaultMappingProviderMetaData}.
+   * Creates a new instance of type {@link DefaultMappingProviderMetadata}.
    * </p>
    *
    * @param identifier
    * @param name
    * @param description
    */
-  public DefaultMappingProviderMetaData(String identifier, String name, String description) {
+  public DefaultMappingProviderMetadata(String identifier, String name, String description) {
     _identifier = checkNotNull(identifier);
     _name = checkNotNull(name);
     _description = description;
     _categories = new HashMap<>();
+  }
+
+  /**
+   * <p>
+   * Creates a new instance of type {@link DefaultMappingProviderMetadata}.
+   * </p>
+   *
+   * @param identifier
+   * @param name
+   * @param description
+   * @param categories
+   */
+  public DefaultMappingProviderMetadata(String identifier, String name, String description,
+      Map<String, String> categories) {
+    _identifier = checkNotNull(identifier);
+    _name = checkNotNull(name);
+    _description = description;
+    _categories = categories != null ? new HashMap<>(categories) : new HashMap<>();
   }
 
   /**

@@ -7,7 +7,7 @@ import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 public class DefaultMappingProvider implements IMappingProvider {
 
   /** - */
-  private IMappingProviderMetaData _metaData;
+  private IMappingProviderMetadata _metaData;
 
   /** - */
   private IHierarchyProvider              _hierarchyProvider;
@@ -23,7 +23,7 @@ public class DefaultMappingProvider implements IMappingProvider {
    * Creates a new instance of type {@link ${enclosing_type}}.
    * </p>
    */
-  public DefaultMappingProvider(IMappingProviderMetaData metaInformation, IHierarchyProvider hierarchyProvider,
+  public DefaultMappingProvider(IMappingProviderMetadata metaInformation, IHierarchyProvider hierarchyProvider,
       IDependencyProvider dependencyProvider, ILabelDefinitionProvider labelProvider, INodeComparator nodeComparator) {
     _metaData = checkNotNull(metaInformation);
     _hierarchyProvider = checkNotNull(hierarchyProvider);
@@ -32,7 +32,7 @@ public class DefaultMappingProvider implements IMappingProvider {
     _nodeComparator = checkNotNull(nodeComparator);
   }
 
-  public IMappingProviderMetaData getMetaInformation() {
+  public IMappingProviderMetadata getMetaInformation() {
     return _metaData;
   }
 
