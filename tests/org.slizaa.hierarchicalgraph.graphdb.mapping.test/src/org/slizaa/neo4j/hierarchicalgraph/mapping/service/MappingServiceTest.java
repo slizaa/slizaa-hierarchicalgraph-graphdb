@@ -10,7 +10,7 @@ import org.slizaa.hierarchicalgraph.algorithms.AdjacencyMatrix;
 import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
 import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
 import org.slizaa.neo4j.graphdb.testfwk.TestDB;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.HierarchicalgraphMappingServiceImpl;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.DefaultMappingService;
 
 /**
  * <p>
@@ -34,7 +34,7 @@ public class MappingServiceTest {
   @Test
   public void testMappingService() {
 
-    IHierarchicalGraphMappingService mappingService = new HierarchicalgraphMappingServiceImpl();
+    IMappingService mappingService = new DefaultMappingService();
 
     HGRootNode rootNode = mappingService.convert(new SimpleJTypeMappingProvider(_boltClientConnection.getBoltClient()),
         _boltClientConnection.getBoltClient(), null);

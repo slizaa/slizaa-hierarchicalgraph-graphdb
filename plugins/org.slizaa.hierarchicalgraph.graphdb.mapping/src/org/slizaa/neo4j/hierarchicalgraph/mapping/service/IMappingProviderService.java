@@ -10,7 +10,7 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public interface IHierarchicalGraphMappingProviderService {
+public interface IMappingProviderService {
 
   /**
    * <p>

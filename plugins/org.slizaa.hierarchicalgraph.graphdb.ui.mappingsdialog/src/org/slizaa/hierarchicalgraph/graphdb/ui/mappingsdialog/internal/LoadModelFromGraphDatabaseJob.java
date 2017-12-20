@@ -12,7 +12,7 @@ import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.ui.MappingDescriptorBasedItemLabelProviderImpl;
 import org.slizaa.workbench.model.SlizaaWorkbenchModel;
 
@@ -34,7 +34,7 @@ public class LoadModelFromGraphDatabaseJob extends Job {
   private SlizaaWorkbenchModel             _workbenchModel;
 
   /** - */
-  private IHierarchicalGraphMappingService _mappingService;
+  private IMappingService _mappingService;
 
   /**
    * <p>
@@ -46,7 +46,7 @@ public class LoadModelFromGraphDatabaseJob extends Job {
    *          TODO
    */
   public LoadModelFromGraphDatabaseJob(SlizaaWorkbenchModel workbenchModel,
-      IHierarchicalGraphMappingService mappingService, Neo4jClient neo4jClient,
+      IMappingService mappingService, Neo4jClient neo4jClient,
       ISlizaaMappingDescriptor slizaaMappingDescriptor) {
     super("Creating hierarchical graph");
 

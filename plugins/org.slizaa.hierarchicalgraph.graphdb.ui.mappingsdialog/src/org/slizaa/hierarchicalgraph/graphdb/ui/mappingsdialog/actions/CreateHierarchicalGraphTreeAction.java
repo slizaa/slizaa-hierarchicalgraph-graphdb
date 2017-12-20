@@ -12,7 +12,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.osgi.service.component.annotations.Component;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphViewPart;
 import org.slizaa.neo4j.hierarchicalgraph.ui.LoadModelFromGraphDatabaseJob;
 import org.slizaa.neo4j.hierarchicalgraph.ui.internal.mappingsdialog.MappingDescriptorUtil;
@@ -25,7 +25,7 @@ public class CreateHierarchicalGraphTreeAction implements ISlizaaActionContribut
 
   @Inject SlizaaWorkbenchModel             _workbenchModel;
 
-  @Inject IHierarchicalGraphMappingService _mappingService;
+  @Inject IMappingService _mappingService;
 
   @Inject
   private EPartService                     _partService;

@@ -10,7 +10,7 @@ import java.util.Map;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingProviderService;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IMappingProviderService;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 
 /**
@@ -35,7 +35,7 @@ class MappingProviderTreeContentProvider implements ITreeContentProvider {
    *
    * @param mappingProviderService
    */
-  public MappingProviderTreeContentProvider(IHierarchicalGraphMappingProviderService mappingProviderService,
+  public MappingProviderTreeContentProvider(IMappingProviderService mappingProviderService,
       String category) {
 
     //

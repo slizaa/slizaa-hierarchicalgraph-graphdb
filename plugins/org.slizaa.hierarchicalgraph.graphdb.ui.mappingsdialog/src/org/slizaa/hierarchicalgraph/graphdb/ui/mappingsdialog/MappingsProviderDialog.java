@@ -2,7 +2,6 @@ package org.slizaa.hierarchicalgraph.graphdb.ui.mappingsdialog;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
@@ -11,7 +10,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingProviderService;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IMappingProviderService;
 
 /**
  * <p>
@@ -22,7 +21,7 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMapp
 public class MappingsProviderDialog extends TitleAreaDialog {
 
   /** - */
-  private IHierarchicalGraphMappingProviderService _mappingService;
+  private IMappingProviderService _mappingService;
 
   /**
    * <p>
@@ -32,7 +31,7 @@ public class MappingsProviderDialog extends TitleAreaDialog {
    * @param parentShell
    * @param mappingProviderService
    */
-  public MappingsProviderDialog(Shell parentShell, IHierarchicalGraphMappingProviderService mappingProviderService) {
+  public MappingsProviderDialog(Shell parentShell, IMappingProviderService mappingProviderService) {
     super(parentShell);
 
     //
@@ -47,8 +46,8 @@ public class MappingsProviderDialog extends TitleAreaDialog {
     super.create();
 
     //
-    setTitle("This is my first custom dialog");
-    setMessage("This is a TitleAreaDialog", IMessageProvider.INFORMATION);
+    setTitle("Select the graph mapping");
+    setMessage("Select Mapping");
   }
 
   /**
@@ -63,7 +62,7 @@ public class MappingsProviderDialog extends TitleAreaDialog {
     GridLayout layout = new GridLayout(2, false);
     container.setLayout(layout);
 
-    final TreeViewer tv = new TreeViewer(container, SWT.SINGLE);
+    final TreeViewer tv = new TreeViewer(container, SWT.SINGLE | SWT.BORDER);
     tv.getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
     tv.setContentProvider(new MappingProviderTreeContentProvider(_mappingService, "location"));
     tv.setLabelProvider(new MappingProviderLabelProvider());

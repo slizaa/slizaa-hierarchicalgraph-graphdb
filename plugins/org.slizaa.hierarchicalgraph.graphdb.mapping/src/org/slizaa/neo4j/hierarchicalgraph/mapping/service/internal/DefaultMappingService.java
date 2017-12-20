@@ -26,8 +26,8 @@ import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.service.HierarchicalGraphMappingException;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.service.MappingException;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IHierarchyProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
@@ -40,7 +40,7 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
 @Component
-public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMappingService {
+public class DefaultMappingService implements IMappingService {
 
   /** create the node source creator function */
   static Function<Long, INodeSource> createNodeSourceFunction = (id) -> {
@@ -58,7 +58,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
    */
   @Override
   public HGRootNode convert(IMappingProvider mappingDescriptor, final Neo4jClient boltClient,
-      IProgressMonitor progressMonitor) throws HierarchicalGraphMappingException {
+      IProgressMonitor progressMonitor) throws MappingException {
 
     checkNotNull(mappingDescriptor);
     checkNotNull(boltClient);
@@ -165,7 +165,7 @@ public class HierarchicalgraphMappingServiceImpl implements IHierarchicalGraphMa
     }
     //
     catch (Exception e) {
-      throw new HierarchicalGraphMappingException(e.getMessage(), e);
+      throw new MappingException(e.getMessage(), e);
     }
   }
 

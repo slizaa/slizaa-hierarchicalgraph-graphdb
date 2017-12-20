@@ -12,8 +12,8 @@ import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
 import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
 import org.slizaa.neo4j.graphdb.testfwk.TestDB;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.service.HierarchicalGraphMappingServiceFactory;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IHierarchicalGraphMappingService;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.service.MappingFactory;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 
 public class HierarchicalGraphViewTest extends AbstractSlizaaUiTest {
@@ -42,8 +42,8 @@ public class HierarchicalGraphViewTest extends AbstractSlizaaUiTest {
   public void testMappingService() {
 
     //
-    IHierarchicalGraphMappingService mappingService = HierarchicalGraphMappingServiceFactory
-        .newHierarchicalGraphMappingService();
+    IMappingService mappingService = MappingFactory
+        .newMappingService();
 
     //
     IMappingProvider mappingProvider = new SimpleJTypeMappingProvider(_boltClientConnection.getBoltClient());
