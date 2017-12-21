@@ -9,6 +9,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swtbot.swt.finder.SWTBot;
 import org.eclipse.swtbot.swt.finder.junit.SWTBotJunit4ClassRunner;
+import org.eclipse.swtbot.swt.finder.waits.Conditions;
+import org.eclipse.swtbot.swt.finder.widgets.SWTBotTreeItem;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -45,32 +47,32 @@ public class MappingsDialogTest {
   /**
    * <p>
    * </p>
-   * @throws InterruptedException 
+   *
+   * @throws InterruptedException
    */
   @Test
   public void testMappingsDialog() throws InterruptedException {
 
     //
     Shell shell = new Shell(Display.getDefault());
-    
+
     //
-    when(_mappingProviderService.getMappingProviders()).thenReturn(Arrays.asList(
+    when(this._mappingProviderService.getMappingProviders()).thenReturn(Arrays.asList(
         new DummyMappingProvider("test", "test", "description", Collections.singletonMap("location", "workspace")),
         new DummyMappingProvider("test", "test", "description", Collections.singletonMap("location", "provided"))));
 
     //
-    MappingsProviderDialog dialog = new MappingsProviderDialog(shell, _mappingProviderService);
+    MappingsProviderDialog dialog = new MappingsProviderDialog(shell, this._mappingProviderService);
     dialog.setBlockOnOpen(false);
     dialog.open();
 
     //
-    System.out.println("HURZ");
-    
     SWTBot swtBot = new SWTBot();
-    System.out.println(swtBot.button("OK").widget);
-    System.out.println(swtBot.tree().widget);
-    System.out.println(swtBot.tree().expandNode("workspace"));
-    swtBot.button("OK").click();
-    
+    SWTBotTreeItem treeItem = swtBot.tree().getTreeItem("workspace");
+    treeItem.doubleClick();
+    swtBot.waitUntil(Conditions.treeItemHasNode(treeItem, "test"));
+    treeItem = swtBot.tree().getTreeItem("provided");
+    treeItem.doubleClick();
+    swtBot.waitUntil(Conditions.treeItemHasNode(treeItem, "test"));
   }
 }

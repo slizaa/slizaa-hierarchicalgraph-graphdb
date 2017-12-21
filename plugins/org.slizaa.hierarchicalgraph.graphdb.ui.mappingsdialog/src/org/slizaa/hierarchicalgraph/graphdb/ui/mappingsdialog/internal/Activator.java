@@ -9,13 +9,10 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
   // The plug-in ID
-  public static final String         PLUGIN_ID         = "org.slizaa.neo4j.hierarchicalgraph.mapping.service"; //$NON-NLS-1$
+  public static final String PLUGIN_ID = "org.slizaa.hierarchicalgraph.graphdb.ui.mappingsdialog"; //$NON-NLS-1$
 
   // The shared instance
-  private static Activator           plugin;
-
-  /** - */
-  private BundleBasedMappingsTracker _tracker;
+  private static Activator   plugin;
 
   /**
    * {@inheritDoc}
@@ -24,9 +21,6 @@ public class Activator extends AbstractUIPlugin {
   public void start(BundleContext context) throws Exception {
     super.start(context);
     plugin = this;
-
-    _tracker = new BundleBasedMappingsTracker(context);
-    _tracker.open();
   }
 
   /**
@@ -36,18 +30,6 @@ public class Activator extends AbstractUIPlugin {
   public void stop(BundleContext context) throws Exception {
     plugin = null;
     super.stop(context);
-
-    _tracker.close();
-  }
-
-  /**
-   * <p>
-   * </p>
-   *
-   * @return
-   */
-  public BundleBasedMappingsTracker getMappingsTracker() {
-    return _tracker;
   }
 
   /**
