@@ -1,5 +1,7 @@
 package org.slizaa.neo4j.hierarchicalgraph;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -28,12 +30,11 @@ public class MappingTest {
   public void init() throws Exception {
 
     //
-    _rootNode = TestModelFactory.createGraphFromDefaultMapping(_boltClientConnection.getBoltClient());
+    this._rootNode = TestModelFactory.createGraphFromDefaultMapping(_boltClientConnection.getBoltClient());
   }
 
   @Test
   public void testMapping() {
-
-    GraphUtil.dump(_rootNode);
+    assertThat(this._rootNode.getChildren()).hasSize(2);
   }
 }
