@@ -13,3 +13,10 @@ before_script:
 
 script:
 - mvn clean install -f pom.xml
+
+after_success:
+- chmod +x ./.travis/artifact-delete.sh
+- chmod +x ./.travis/artifact-upload.sh
+- "./.travis/artifact-delete.sh"
+- "./.travis/artifact-upload.sh"
+
