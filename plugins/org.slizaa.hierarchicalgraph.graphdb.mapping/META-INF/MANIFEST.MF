@@ -4,6 +4,7 @@ Bundle-Name: org.slizaa.neo4j.hierarchicalgraph.mapping.service
 Bundle-SymbolicName: org.slizaa.hierarchicalgraph.graphdb.mapping
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Slizaa-SpiApi: true
 Require-Bundle: org.slizaa.hierarchicalgraph.core.model;bundle-version="1.0.0",
  org.slizaa.hierarchicalgraph.graphdb.model;bundle-version="0.0.3",
  org.eclipse.emf.edit;bundle-version="2.11.1",
