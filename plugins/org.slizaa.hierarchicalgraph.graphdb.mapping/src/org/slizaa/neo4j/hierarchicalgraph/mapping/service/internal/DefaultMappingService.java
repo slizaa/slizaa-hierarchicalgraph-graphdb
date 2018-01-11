@@ -26,12 +26,13 @@ import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.service.MappingException;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IMappingService;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.service.MappingException;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IHierarchyProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.opencypher.IBoltClientAware;
 
 /**
  * <p>
@@ -76,19 +77,21 @@ public class DefaultMappingService implements IMappingService {
       rootNode.setNodeSource(rootNodeSource);
 
       // process root, hierarchy and dependency queries
-      IHierarchyProvider hierarchyProvider = mappingDescriptor.getHierarchyProvider();
+      IHierarchyProvider hierarchyProvider = initializeBoltClientAwareService(mappingDescriptor.getHierarchyProvider(),
+          boltClient, progressMonitor);
+
       if (hierarchyProvider != null) {
 
         //
         report(subMonitor, "Requesting root nodes...");
-        List<Long> rootNodes = hierarchyProvider.getToplevelNodeIds(boltClient, progressMonitor);
+        List<Long> rootNodes = hierarchyProvider.getToplevelNodeIds();
 
         report(subMonitor, "Creating root nodes...");
         createFirstLevelElements(rootNodes.toArray(new Long[0]), rootNode, createNodeSourceFunction, progressMonitor);
 
         //
         report(subMonitor, "Requesting nodes...");
-        List<Long[]> parentChildNodeIds = hierarchyProvider.getParentChildNodeIds(boltClient, progressMonitor);
+        List<Long[]> parentChildNodeIds = hierarchyProvider.getParentChildNodeIds();
 
         report(subMonitor, "Creating nodes...");
         createHierarchy(parentChildNodeIds, rootNode, createNodeSourceFunction, progressMonitor);
@@ -97,13 +100,15 @@ public class DefaultMappingService implements IMappingService {
         removeDanglingNodes(rootNode);
 
         //
-        IDependencyProvider dependencyProvider = mappingDescriptor.getDependencyProvider();
+        IDependencyProvider dependencyProvider = initializeBoltClientAwareService(
+            mappingDescriptor.getDependencyProvider(), boltClient, progressMonitor);
+
         if (dependencyProvider != null) {
 
           report(subMonitor, "Creating dependencies...");
 
           //
-          createDependencies(dependencyProvider.getDependencies(boltClient, progressMonitor), rootNode,
+          createDependencies(dependencyProvider.getDependencies(), rootNode,
               (id, type) -> GraphFactoryFunctions.createDependencySource(id, type, null), false, progressMonitor);
         }
       }
@@ -167,6 +172,25 @@ public class DefaultMappingService implements IMappingService {
     catch (Exception e) {
       throw new MappingException(e.getMessage(), e);
     }
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @param service
+   * @param boltClient
+   * @param progressMonitor
+   * @throws Exception
+   */
+  private <T> T initializeBoltClientAwareService(T service, final Neo4jClient boltClient,
+      IProgressMonitor progressMonitor) throws Exception {
+
+    if (service instanceof IBoltClientAware) {
+      ((IBoltClientAware) service).initialize(boltClient, progressMonitor);
+    }
+
+    return service;
   }
 
   private void removeDanglingNodes(final HGRootNode rootNode) {

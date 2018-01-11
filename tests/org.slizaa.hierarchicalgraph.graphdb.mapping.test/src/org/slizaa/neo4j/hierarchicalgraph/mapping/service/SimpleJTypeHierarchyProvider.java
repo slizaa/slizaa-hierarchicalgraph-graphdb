@@ -1,7 +1,6 @@
 package org.slizaa.neo4j.hierarchicalgraph.mapping.service;
 
-import org.slizaa.neo4j.dbadapter.Neo4jClient;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.AbstractQueryBasedHierarchyProvider;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.opencypher.AbstractQueryBasedHierarchyProvider;
 
 /**
  * <p>
@@ -13,21 +12,11 @@ public class SimpleJTypeHierarchyProvider extends AbstractQueryBasedHierarchyPro
 
   /**
    * <p>
-   * Creates a new instance of type {@link SimpleJTypeHierarchyProvider}.
-   * </p>
-   *
-   * @param boltClient
-   */
-  public SimpleJTypeHierarchyProvider(Neo4jClient boltClient) {
-    super(boltClient);
-  }
-
-  /**
-   * <p>
    * </p>
    *
    * @return
    */
+  @Override
   protected String[] toplevelNodeIdQueries() {
     return new String[] { "Match (module:Module) Return id(module) as id" };
   }
@@ -38,6 +27,7 @@ public class SimpleJTypeHierarchyProvider extends AbstractQueryBasedHierarchyPro
    *
    * @return
    */
+  @Override
   protected String[] parentChildNodeIdsQueries() {
     return new String[] {
         "Match (module:Module)-[:CONTAINS]->(d:Directory) WHERE d.isEmpty=false Return DISTINCT id(module), id(d)",

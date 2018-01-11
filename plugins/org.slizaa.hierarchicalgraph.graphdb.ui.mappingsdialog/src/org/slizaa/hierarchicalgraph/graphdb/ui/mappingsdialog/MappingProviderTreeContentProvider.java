@@ -2,7 +2,6 @@ package org.slizaa.hierarchicalgraph.graphdb.ui.mappingsdialog;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,15 +34,14 @@ class MappingProviderTreeContentProvider implements ITreeContentProvider {
    *
    * @param mappingProviderService
    */
-  public MappingProviderTreeContentProvider(IMappingProviderService mappingProviderService,
-      String category) {
+  public MappingProviderTreeContentProvider(IMappingProviderService mappingProviderService, String category) {
 
     //
     checkNotNull(mappingProviderService);
     checkNotNull(category);
 
     //
-    _mappingProviders = new HashMap<>();
+    this._mappingProviders = new HashMap<>();
 
     //
     for (IMappingProvider mappingProvider : mappingProviderService.getMappingProviders()) {
@@ -57,7 +55,8 @@ class MappingProviderTreeContentProvider implements ITreeContentProvider {
       }
 
       //
-      List<IMappingProvider> providerList = _mappingProviders.computeIfAbsent(categoryValue, k -> new LinkedList<>());
+      List<IMappingProvider> providerList = this._mappingProviders.computeIfAbsent(categoryValue,
+          k -> new LinkedList<>());
       providerList.add(mappingProvider);
     }
   }
@@ -65,13 +64,15 @@ class MappingProviderTreeContentProvider implements ITreeContentProvider {
   /**
    * {@inheritDoc}
    */
+  @Override
   public Object[] getChildren(Object element) {
-    return element instanceof String ? _mappingProviders.get(element).toArray() : new Object[0];
+    return element instanceof String ? this._mappingProviders.get(element).toArray() : new Object[0];
   }
 
   /**
    * {@inheritDoc}
    */
+  @Override
   public Object getParent(Object element) {
     // TODO
     return null;
@@ -80,6 +81,7 @@ class MappingProviderTreeContentProvider implements ITreeContentProvider {
   /**
    * {@inheritDoc}
    */
+  @Override
   public boolean hasChildren(Object element) {
     return getChildren(element).length > 0;
   }
@@ -87,14 +89,17 @@ class MappingProviderTreeContentProvider implements ITreeContentProvider {
   /**
    * {@inheritDoc}
    */
+  @Override
   public Object[] getElements(Object element) {
-    return _mappingProviders.keySet().toArray();
+    return this._mappingProviders.keySet().toArray();
   }
 
+  @Override
   public void dispose() {
     // TODO
   }
 
+  @Override
   public void inputChanged(Viewer arg0, Object arg1, Object arg2) {
     // TODO
   }

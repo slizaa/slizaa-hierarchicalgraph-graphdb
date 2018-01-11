@@ -1,9 +1,14 @@
-package org.slizaa.neo4j.hierarchicalgraph.mapping.spi;
+/**
+ *
+ */
+package org.slizaa.neo4j.hierarchicalgraph.mapping.internal;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider.IMappingProviderMetadata;
 
 /**
  * <p>
@@ -47,10 +52,10 @@ public class DefaultMappingProviderMetadata implements IMappingProviderMetadata 
    * @param description
    */
   public DefaultMappingProviderMetadata(String identifier, String name, String description) {
-    _identifier = checkNotNull(identifier);
-    _name = checkNotNull(name);
-    _description = description;
-    _categories = new HashMap<>();
+    this._identifier = checkNotNull(identifier);
+    this._name = checkNotNull(name);
+    this._description = description;
+    this._categories = new HashMap<>();
   }
 
   /**
@@ -65,10 +70,10 @@ public class DefaultMappingProviderMetadata implements IMappingProviderMetadata 
    */
   public DefaultMappingProviderMetadata(String identifier, String name, String description,
       Map<String, String> categories) {
-    _identifier = checkNotNull(identifier);
-    _name = checkNotNull(name);
-    _description = description;
-    _categories = categories != null ? new HashMap<>(categories) : new HashMap<>();
+    this._identifier = checkNotNull(identifier);
+    this._name = checkNotNull(name);
+    this._description = description;
+    this._categories = categories != null ? new HashMap<>(categories) : new HashMap<>();
   }
 
   /**
@@ -78,8 +83,8 @@ public class DefaultMappingProviderMetadata implements IMappingProviderMetadata 
    * @param categoryValues
    */
   public void setCategoryValues(Map<String, String> categoryValues) {
-    _categories.clear();
-    _categories.putAll(categoryValues);
+    this._categories.clear();
+    this._categories.putAll(categoryValues);
   }
 
   /**
@@ -89,31 +94,31 @@ public class DefaultMappingProviderMetadata implements IMappingProviderMetadata 
    * @param description
    */
   public void setDescription(String description) {
-    _description = description;
+    this._description = description;
   }
 
   @Override
   public String getIdentifier() {
-    return _identifier;
+    return this._identifier;
   }
 
   @Override
   public String getName() {
-    return _name;
+    return this._name;
   }
 
   @Override
   public String getDescription() {
-    return _description;
+    return this._description;
   }
 
   @Override
   public String[] getCategories() {
-    return _categories.keySet().toArray(new String[0]);
+    return this._categories.keySet().toArray(new String[0]);
   }
 
   @Override
   public String getCategoryValue(String category) {
-    return _categories.get(checkNotNull(category));
+    return this._categories.get(checkNotNull(category));
   }
 }

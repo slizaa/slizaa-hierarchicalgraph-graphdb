@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.hierarchicalgraph.mapping.spi;
+package org.slizaa.neo4j.hierarchicalgraph.mapping.spi.labelprovider;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -10,7 +10,7 @@ import java.util.function.Function;
 
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinition.OverlayPosition;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider.OverlayPosition;
 
 public class LabelMappingDsl {
 
@@ -54,7 +54,7 @@ public class LabelMappingDsl {
      * @param condition
      */
     public LabelMappingConditionBuilder(Function<HGNode, Boolean> condition) {
-      _condition = checkNotNull(condition);
+      this._condition = checkNotNull(condition);
     }
 
     /**
@@ -71,7 +71,7 @@ public class LabelMappingDsl {
 
       //
       return (n, l) -> {
-        if (_condition.apply(n)) {
+        if (this._condition.apply(n)) {
           processor.processLabelDefinition(n, l);
         }
       };
@@ -100,7 +100,7 @@ public class LabelMappingDsl {
     public ExclusiveChoiceAlternative when(Function<HGNode, Boolean> condition) {
 
       ExclusiveChoiceAlternative builder = new ExclusiveChoiceAlternative(this, condition);
-      _alternatives.add(builder);
+      this._alternatives.add(builder);
       return builder;
     }
 
@@ -117,7 +117,7 @@ public class LabelMappingDsl {
       return (n, l) -> {
 
         //
-        for (ExclusiveChoiceAlternative alternative : _alternatives) {
+        for (ExclusiveChoiceAlternative alternative : this._alternatives) {
           if (alternative.getCondition().apply(n)) {
             alternative.getProcessor().processLabelDefinition(n, l);
             return;
@@ -152,8 +152,8 @@ public class LabelMappingDsl {
     public ExclusiveChoiceAlternative(ExclusiveChoiceBuilder parent, Function<HGNode, Boolean> condition) {
 
       //
-      _parent = checkNotNull(parent);
-      _condition = checkNotNull(condition);
+      this._parent = checkNotNull(parent);
+      this._condition = checkNotNull(condition);
     }
 
     /**
@@ -163,11 +163,11 @@ public class LabelMappingDsl {
      * @return
      */
     public Function<HGNode, Boolean> getCondition() {
-      return _condition;
+      return this._condition;
     }
 
     public LabelDefinitionProcessor getProcessor() {
-      return _processor;
+      return this._processor;
     }
 
     /**
@@ -178,8 +178,8 @@ public class LabelMappingDsl {
      * @return
      */
     public ExclusiveChoiceBuilder then(LabelDefinitionProcessor processor) {
-      _processor = checkNotNull(processor);
-      return _parent;
+      this._processor = checkNotNull(processor);
+      return this._parent;
     }
   }
 
@@ -308,7 +308,7 @@ public class LabelMappingDsl {
       }
     };
   }
-  
+
   /**
    * <p>
    * </p>

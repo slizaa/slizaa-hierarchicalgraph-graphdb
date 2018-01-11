@@ -13,6 +13,8 @@ Require-Bundle: org.slizaa.hierarchicalgraph.core.model;bundle-version="1.0.0",
  org.eclipse.core.resources;bundle-version="3.11.0",
  com.google.guava;bundle-version="15.0.0"
 Export-Package: org.slizaa.neo4j.hierarchicalgraph.mapping.service,
- org.slizaa.neo4j.hierarchicalgraph.mapping.spi
+ org.slizaa.neo4j.hierarchicalgraph.mapping.spi,
+ org.slizaa.neo4j.hierarchicalgraph.mapping.spi.labelprovider,
+ org.slizaa.neo4j.hierarchicalgraph.mapping.spi.opencypher
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.DefaultMappingService.xml

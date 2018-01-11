@@ -1,9 +1,7 @@
 package org.slizaa.neo4j.hierarchicalgraph.mapping.spi;
 
 import java.util.List;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.slizaa.neo4j.dbadapter.Neo4jClient;
+import java.util.function.Function;
 
 public interface IDependencyProvider {
 
@@ -11,7 +9,63 @@ public interface IDependencyProvider {
    * <p>
    * </p>
    *
+   * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+   */
+  public interface IDependency {
+
+    /**
+     * <p>
+     * </p>
+     *
+     * @return
+     */
+    public long getIdStart();
+
+    /**
+     * <p>
+     * </p>
+     *
+     * @return
+     */
+    public long getIdTarget();
+
+    /**
+     * <p>
+     * </p>
+     *
+     * @return
+     */
+    public long getIdRel();
+
+    /**
+     * <p>
+     * </p>
+     *
+     * @return
+     */
+    public String getType();
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+   */
+  public interface IProxyDependency {
+
+    /**
+     * <p>
+     * </p>
+     */
+    public Function<List<IDependency>, IDependency> getResolveFunction();
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
    * @return
    */
-  List<AbstractDependency> getDependencies(Neo4jClient neo4jClient, IProgressMonitor progressMonitor) throws Exception;
+  List<IDependency> getDependencies() throws Exception;
 }

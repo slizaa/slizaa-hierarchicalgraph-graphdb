@@ -2,9 +2,6 @@ package org.slizaa.neo4j.hierarchicalgraph.mapping.spi;
 
 import java.util.List;
 
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.slizaa.neo4j.dbadapter.Neo4jClient;
-
 /**
  * <p>
  * </p>
@@ -19,7 +16,7 @@ public interface IHierarchyProvider {
    *
    * @return
    */
-  List<Long> getToplevelNodeIds(Neo4jClient neo4jClient, IProgressMonitor progressMonitor) throws Exception;
+  List<Long> getToplevelNodeIds() throws Exception;
 
   /**
    * <p>
@@ -27,5 +24,5 @@ public interface IHierarchyProvider {
    *
    * @return
    */
-  List<Long[]> getParentChildNodeIds(Neo4jClient neo4jClient, IProgressMonitor progressMonitor) throws Exception;
+  List<Long[]> getParentChildNodeIds() throws Exception;
 }

@@ -1,8 +1,9 @@
-package org.slizaa.neo4j.hierarchicalgraph.mapping.spi;
+package org.slizaa.neo4j.hierarchicalgraph.mapping.spi.labelprovider;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
 
 /**
  * <p>
@@ -48,12 +49,12 @@ public abstract class AbstractLabelDefinitionProvider extends LabelMappingDsl im
   private LabelDefinitionProcessor processor() {
 
     //
-    if (_processor == null) {
-      _processor = createLabelDefinitionProcessor();
-      checkNotNull(_processor);
+    if (this._processor == null) {
+      this._processor = createLabelDefinitionProcessor();
+      checkNotNull(this._processor);
     }
 
     //
-    return _processor;
+    return this._processor;
   }
 }

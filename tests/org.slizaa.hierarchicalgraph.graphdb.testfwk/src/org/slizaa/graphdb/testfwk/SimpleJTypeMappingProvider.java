@@ -3,11 +3,8 @@
  */
 package org.slizaa.graphdb.testfwk;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import org.slizaa.neo4j.dbadapter.Neo4jClient;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultMappingProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultMappingProviderMetadata;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider.DefaultMappingProvider;
 
 /**
  * <p>
@@ -16,14 +13,16 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultMappingProviderMeta
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  *
  */
-public class SimpleJTypeMappingProvider extends DefaultMappingProvider {
+public class SimpleJTypeMappingProvider extends DefaultMappingProvider implements IMappingProvider {
 
-  public SimpleJTypeMappingProvider(Neo4jClient boltClient) {
+  /**
+   * <p>
+   * Creates a new instance of type {@link SimpleJTypeMappingProvider}.
+   * </p>
+   */
+  public SimpleJTypeMappingProvider() {
 
-    //
-    super(new DefaultMappingProviderMetadata("Test", "Test"),
-        new SimpleJTypeHierarchyProvider(checkNotNull(boltClient)), new SimpleJTypeDependencyProvider(boltClient),
-        new SimpleJTypeLabelProvider(), new SimpleJTypeNodeComparator());
+    super(IMappingProviderMetadata.createMetadata("test", "test", null, null), new SimpleJTypeHierarchyProvider(),
+        new SimpleJTypeDependencyProvider(), new SimpleJTypeLabelProvider(), new SimpleJTypeNodeComparator());
   }
-
 }

@@ -1,8 +1,7 @@
 package org.slizaa.graphdb.testfwk;
 
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.AbstractLabelDefinitionProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinition.OverlayPosition;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.labelprovider.AbstractLabelDefinitionProvider;
 
 /**
  * <p>
@@ -21,23 +20,23 @@ public class SimpleJTypeLabelProvider extends AbstractLabelDefinitionProvider im
 
     //@formatter:off
     return exclusiveChoice().
-        
+
         // Module
-        when(nodeHasLabel("Module")).then(handleModule()).
-        
+        when(nodeHasLabel("Module")).then(layoutModule()).
+
         // Package
-        when(nodeHasLabel("Directory")).then(handleDirectory()).
-        
+        when(nodeHasLabel("Directory")).then(layoutDirectory()).
+
         // Resource
-        when(nodeHasLabel("Resource")).then(handleResource()).
-        
+        when(nodeHasLabel("Resource")).then(layoutResource()).
+
         // Type
-        when(nodeHasLabel("Type")).then(handleType()).
-    
+        when(nodeHasLabel("Type")).then(layoutType()).
+
         // all other nodes
         otherwise(setBaseImage(fromClasspath("icons/jar_obj.png")).
               and(setLabelText(propertyValue("name"))));
-    
+
     //@formatter:on
   }
 
@@ -47,7 +46,7 @@ public class SimpleJTypeLabelProvider extends AbstractLabelDefinitionProvider im
    *
    * @return
    */
-  protected LabelDefinitionProcessor handleModule() {
+  protected LabelDefinitionProcessor layoutModule() {
     return setBaseImage(fromClasspath("icons/jar_obj.png")).and(setLabelText(propertyValue("name")));
   }
 
@@ -57,34 +56,34 @@ public class SimpleJTypeLabelProvider extends AbstractLabelDefinitionProvider im
    *
    * @return
    */
-  protected LabelDefinitionProcessor handleDirectory() {
+  protected LabelDefinitionProcessor layoutDirectory() {
 
     //@formatter:off
     return exclusiveChoice().
-        
+
         // Packages
         when(nodeHasLabel("Package")).
           then(setBaseImage(fromClasspath("icons/package_obj.png")).
            and(setLabelText(propertyValue("fqn", str -> str.replace('/', '.'))))).
-        
+
         // Directories
         otherwise(setBaseImage(fromClasspath("icons/fldr_obj.png")).
               and(setLabelText(propertyValue("fqn"))));
     //@formatter:on
   }
 
-  private LabelDefinitionProcessor handleResource() {
+  private LabelDefinitionProcessor layoutResource() {
 
     //@formatter:off
     return executeAll(
-        
+
         exclusiveChoice().
           when(nodeHasLabel("ClassFile")).then(setBaseImage(fromClasspath("icons/classf_obj.png"))).
           otherwise(setBaseImage(fromClasspath("icons/file_obj.png"))),
-        
+
         setLabelText(propertyValue("name"))
     );
-    //@formatter:on    
+    //@formatter:on
   }
 
   /**
@@ -93,27 +92,27 @@ public class SimpleJTypeLabelProvider extends AbstractLabelDefinitionProvider im
    *
    * @return
    */
-  protected LabelDefinitionProcessor handleType() {
+  protected LabelDefinitionProcessor layoutType() {
 
     //@formatter:off
     return executeAll(
-        
+
         setLabelText(propertyValue("name")),
-        
+
         when(nodeHasProperty("final")).
           then(setOverlayImage(fromClasspath("icons/class_obj.png"), OverlayPosition.TOP_RIGHT)),
-        
+
         when(nodeHasLabel("Class")).
           then(setBaseImage(fromClasspath("icons/class_obj.png"))),
-          
+
         when(nodeHasLabel("Annotation")).
-          then(setBaseImage(fromClasspath("icons/annotation_obj.png"))),   
-          
+          then(setBaseImage(fromClasspath("icons/annotation_obj.png"))),
+
         when(nodeHasLabel("Enum")).
           then(setBaseImage(fromClasspath("icons/enum_obj.png"))),
-          
+
         when(nodeHasLabel("Interface")).
-          then(setBaseImage(fromClasspath("icons/int_obj.png")))  
+          then(setBaseImage(fromClasspath("icons/int_obj.png")))
         );
     //@formatter:on
   }

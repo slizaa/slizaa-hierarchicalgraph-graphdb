@@ -19,8 +19,9 @@ import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.AbstractDependency;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.SimpleDependency;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.internal.DefaultDependency;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider.IDependency;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider.IProxyDependency;
 
 /**
  * <p>
@@ -136,7 +137,7 @@ public class GraphFactoryFunctions {
    * @param rootElement
    * @param dependencySourceCreator
    */
-  public static List<HGCoreDependency> createDependencies(List<AbstractDependency> dependencies, HGRootNode rootElement,
+  public static List<HGCoreDependency> createDependencies(List<IDependency> dependencies, HGRootNode rootElement,
       BiFunction<Long, String, IDependencySource> dependencySourceCreator, boolean reinitializeCaches,
       IProgressMonitor progressMonitor) {
 
@@ -155,19 +156,22 @@ public class GraphFactoryFunctions {
         subMonitor.split(1);
       }
 
-      if (element.isSimpleDependency()) {
+      if (element instanceof IProxyDependency) {
+
+        // TODO: DefaultProxyDependency
+
+      }
+      //
+      else {
 
         //
-        SimpleDependency simpleDependency = (SimpleDependency) element;
+        DefaultDependency simpleDependency = (DefaultDependency) element;
 
         //
         result.add(createDependency(simpleDependency.getIdStart(), simpleDependency.getIdTarget(),
             simpleDependency.getIdTarget(), simpleDependency.getType(), rootElement, dependencySourceCreator, false,
             reinitializeCaches));
-
       }
-
-      // TODO: ProxyDependency
     });
 
     //
@@ -269,26 +273,26 @@ public class GraphFactoryFunctions {
     public String _type;
 
     public Neo4jRelationship(long idStart, long idTarget, long idRel, String type) {
-      _idStart = idStart;
-      _idTarget = idTarget;
-      _idRel = idRel;
-      _type = type;
+      this._idStart = idStart;
+      this._idTarget = idTarget;
+      this._idRel = idRel;
+      this._type = type;
     }
 
     public long getIdStart() {
-      return _idStart;
+      return this._idStart;
     }
 
     public long getIdTarget() {
-      return _idTarget;
+      return this._idTarget;
     }
 
     public long getIdRel() {
-      return _idRel;
+      return this._idRel;
     }
 
     public String getType() {
-      return _type;
+      return this._type;
     }
   }
 }

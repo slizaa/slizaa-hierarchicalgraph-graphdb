@@ -36,7 +36,7 @@ public class MappingServiceTest {
 
     IMappingService mappingService = new DefaultMappingService();
 
-    HGRootNode rootNode = mappingService.convert(new SimpleJTypeMappingProvider(_boltClientConnection.getBoltClient()),
+    HGRootNode rootNode = mappingService.convert(new SimpleJTypeMappingProvider(),
         _boltClientConnection.getBoltClient(), null);
 
     assertThat(rootNode.getChildren()).hasSize(2);

@@ -16,10 +16,10 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultLabelDefinition;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinition;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinition.OverlayPosition;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider.ILabelDefinition;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider.OverlayPosition;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.labelprovider.DefaultLabelDefinition;
 
 public class LabelDefinitionProvider2NoteLabelProviderAdapter implements INodeLabelProvider {
 
@@ -91,8 +91,8 @@ public class LabelDefinitionProvider2NoteLabelProviderAdapter implements INodeLa
     //
     try {
       // TODO
-      return this._imageRegistry
-          .getImage(new URL("platform:/plugin/org.slizaa.hierarchicalgraph.graphdb.ui.hierarchicalgraphview/icons/HGNode.png"));
+      return this._imageRegistry.getImage(
+          new URL("platform:/plugin/org.slizaa.hierarchicalgraph.graphdb.ui.hierarchicalgraphview/icons/HGNode.png"));
     } catch (MalformedURLException e) {
       throw new RuntimeException(e);
     }

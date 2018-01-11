@@ -1,20 +1,8 @@
 package org.slizaa.graphdb.testfwk;
 
-import org.slizaa.neo4j.dbadapter.Neo4jClient;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.AbstractQueryBasedDependencyProvider;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.opencypher.AbstractQueryBasedDependencyProvider;
 
 public class SimpleJTypeDependencyProvider extends AbstractQueryBasedDependencyProvider {
-
-  /**
-   * <p>
-   * Creates a new instance of type {@link SimpleJTypeDependencyProvider}.
-   * </p>
-   *
-   * @param boltClient
-   */
-  public SimpleJTypeDependencyProvider(Neo4jClient boltClient) {
-    super(boltClient);
-  }
 
   @Override
   protected String[] simpleDependenciesQueries() {

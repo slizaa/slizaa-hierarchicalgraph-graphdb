@@ -1,8 +1,11 @@
-package org.slizaa.neo4j.hierarchicalgraph.mapping.spi;
+package org.slizaa.neo4j.hierarchicalgraph.mapping.spi.labelprovider;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.net.URL;
+
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider.ILabelDefinition;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider.OverlayPosition;
 
 /**
  * <p>
@@ -35,7 +38,7 @@ public class DefaultLabelDefinition implements ILabelDefinition {
    */
   @Override
   public boolean hasBaseImage() {
-    return _baseImage != null;
+    return this._baseImage != null;
   }
 
   /**
@@ -43,20 +46,20 @@ public class DefaultLabelDefinition implements ILabelDefinition {
    */
   @Override
   public URL getBaseImage() {
-    return _baseImage;
+    return this._baseImage;
   }
 
   @Override
   public boolean hasOverlayImage(OverlayPosition overlayPosition) {
     switch (checkNotNull(overlayPosition)) {
     case TOP_RIGHT:
-      return _overlayTopRight != null;
+      return this._overlayTopRight != null;
     case TOP_LEFT:
-      return _overlayTopLeft != null;
+      return this._overlayTopLeft != null;
     case BOTTOM_LEFT:
-      return _overlayBottomLeft != null;
+      return this._overlayBottomLeft != null;
     case BOTTOM_RIGHT:
-      return _overlayBottomRight != null;
+      return this._overlayBottomRight != null;
     default:
       return false;
     }
@@ -66,13 +69,13 @@ public class DefaultLabelDefinition implements ILabelDefinition {
   public URL getOverlayImage(OverlayPosition overlayPosition) {
     switch (checkNotNull(overlayPosition)) {
     case TOP_RIGHT:
-      return _overlayTopRight;
+      return this._overlayTopRight;
     case TOP_LEFT:
-      return _overlayTopLeft;
+      return this._overlayTopLeft;
     case BOTTOM_LEFT:
-      return _overlayBottomLeft;
+      return this._overlayBottomLeft;
     case BOTTOM_RIGHT:
-      return _overlayBottomRight;
+      return this._overlayBottomRight;
     default:
       throw new RuntimeException(String.format("Unknown overlay position '%s'.", overlayPosition));
     }
@@ -83,26 +86,26 @@ public class DefaultLabelDefinition implements ILabelDefinition {
    */
   @Override
   public String getText() {
-    return _text;
+    return this._text;
   }
 
   public void setBaseImage(URL baseImage) {
-    _baseImage = baseImage;
+    this._baseImage = baseImage;
   }
 
   public void setOverlayImage(URL image, OverlayPosition position) {
     switch (checkNotNull(position)) {
     case TOP_RIGHT:
-      _overlayTopRight = image;
+      this._overlayTopRight = image;
       break;
     case TOP_LEFT:
-      _overlayTopLeft = image;
+      this._overlayTopLeft = image;
       break;
     case BOTTOM_LEFT:
-      _overlayBottomLeft = image;
+      this._overlayBottomLeft = image;
       break;
     case BOTTOM_RIGHT:
-      _overlayBottomRight = image;
+      this._overlayBottomRight = image;
       break;
     default:
       throw new RuntimeException(String.format("Unknown overlay position '%s'.", position));
@@ -110,7 +113,7 @@ public class DefaultLabelDefinition implements ILabelDefinition {
   }
 
   public void setText(String text) {
-    _text = text;
+    this._text = text;
   }
 
 }

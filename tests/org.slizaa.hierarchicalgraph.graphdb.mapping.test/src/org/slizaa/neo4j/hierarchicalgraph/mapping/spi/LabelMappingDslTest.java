@@ -4,9 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultLabelDefinition;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinition.OverlayPosition;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.LabelMappingDsl;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider.OverlayPosition;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.labelprovider.DefaultLabelDefinition;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.labelprovider.LabelMappingDsl;
 
 public class LabelMappingDslTest extends LabelMappingDsl {
 
@@ -62,7 +62,7 @@ public class LabelMappingDslTest extends LabelMappingDsl {
 
     //@formatter:off
     DefaultLabelDefinition labelDefinition = process(
-      
+
       exclusiveChoice().
         when(n -> false).then(setOverlayImage(fromClasspath("icons/final_co.png"), OverlayPosition.TOP_RIGHT)).
         when(n -> false).then(setOverlayImage(fromClasspath("icons/final_co.png"), OverlayPosition.TOP_LEFT)).
@@ -114,7 +114,8 @@ public class LabelMappingDslTest extends LabelMappingDsl {
   public void testWhen_True() {
 
     //
-    DefaultLabelDefinition labelDefinition = process(when(n -> true).then(setBaseImage(fromClasspath("icons/final_co.png"))));
+    DefaultLabelDefinition labelDefinition = process(
+        when(n -> true).then(setBaseImage(fromClasspath("icons/final_co.png"))));
 
     //
     assertThat(labelDefinition.getBaseImage()).isNotNull().isEqualTo(fromClasspath("icons/final_co.png"));

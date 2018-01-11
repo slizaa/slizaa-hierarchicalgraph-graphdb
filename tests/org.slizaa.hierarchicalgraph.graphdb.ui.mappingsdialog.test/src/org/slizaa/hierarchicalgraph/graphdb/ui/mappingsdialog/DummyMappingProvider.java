@@ -3,12 +3,10 @@ package org.slizaa.hierarchicalgraph.graphdb.ui.mappingsdialog;
 import java.util.Map;
 
 import org.slizaa.hierarchicalgraph.spi.INodeComparator;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.DefaultMappingProviderMetadata;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IHierarchyProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProviderMetadata;
 
 public class DummyMappingProvider implements IMappingProvider {
 
@@ -26,7 +24,7 @@ public class DummyMappingProvider implements IMappingProvider {
    * @param categories
    */
   public DummyMappingProvider(String identifier, String name, String description, Map<String, String> categories) {
-    _metadata = new DefaultMappingProviderMetadata(identifier, name, description, categories);
+    this._metadata = IMappingProviderMetadata.createMetadata(identifier, name, description, categories);
   }
 
   /**
@@ -34,7 +32,7 @@ public class DummyMappingProvider implements IMappingProvider {
    */
   @Override
   public IMappingProviderMetadata getMetaInformation() {
-    return _metadata;
+    return this._metadata;
   }
 
   /**
