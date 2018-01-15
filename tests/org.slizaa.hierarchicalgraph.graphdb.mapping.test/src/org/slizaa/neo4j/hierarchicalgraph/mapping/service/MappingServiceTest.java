@@ -10,7 +10,7 @@ import org.slizaa.hierarchicalgraph.algorithms.AdjacencyMatrix;
 import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
 import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
 import org.slizaa.neo4j.graphdb.testfwk.TestDB;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.DefaultMappingService;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.DefaultMappingService;
 
 /**
  * <p>
