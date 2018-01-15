@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IMappingProviderService;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 
 /**
@@ -32,19 +32,20 @@ class MappingProviderTreeContentProvider implements ITreeContentProvider {
    * Creates a new instance of type {@link MappingProviderTreeContentProvider}.
    * </p>
    *
-   * @param mappingProviderService
+   * @param mappingProviderSupplier
+   * @param category
    */
-  public MappingProviderTreeContentProvider(IMappingProviderService mappingProviderService, String category) {
+  public MappingProviderTreeContentProvider(Supplier<List<IMappingProvider>> mappingProviderSupplier, String category) {
 
     //
-    checkNotNull(mappingProviderService);
+    checkNotNull(mappingProviderSupplier);
     checkNotNull(category);
 
     //
     this._mappingProviders = new HashMap<>();
 
     //
-    for (IMappingProvider mappingProvider : mappingProviderService.getMappingProviders()) {
+    for (IMappingProvider mappingProvider : mappingProviderSupplier.get()) {
 
       // value
       String categoryValue = mappingProvider.getMetaInformation().getCategoryValue(category);

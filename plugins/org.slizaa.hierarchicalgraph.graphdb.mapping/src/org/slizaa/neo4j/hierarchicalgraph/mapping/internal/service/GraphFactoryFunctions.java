@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal;
+package org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -19,7 +19,7 @@ import org.slizaa.hierarchicalgraph.INodeSource;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.internal.DefaultDependency;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.internal.spi.DefaultDependency;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider.IDependency;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider.IProxyDependency;
 

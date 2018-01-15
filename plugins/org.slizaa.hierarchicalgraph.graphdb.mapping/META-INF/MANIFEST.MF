@@ -4,11 +4,17 @@ Bundle-Name: org.slizaa.neo4j.hierarchicalgraph.mapping.service
 Bundle-SymbolicName: org.slizaa.hierarchicalgraph.graphdb.mapping
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Slizaa-SpiApi: true
+Slizaa-SpiApi: org.slizaa.hierarchicalgraph.core.model,
+ org.slizaa.hierarchicalgraph.graphdb.model,
+ org.slizaa.neo4j.dbadapter,
+ org.eclipse.emf.common,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore
 Require-Bundle: org.slizaa.hierarchicalgraph.core.model;bundle-version="1.0.0",
  org.slizaa.hierarchicalgraph.graphdb.model;bundle-version="0.0.3",
- org.eclipse.emf.edit;bundle-version="2.11.1",
+ org.slizaa.neo4j.dbadapter;bundle-version="1.0.0",
  org.eclipse.core.runtime;bundle-version="3.11.1",
+ org.eclipse.emf.edit;bundle-version="2.11.1",
  org.eclipse.osgi.services;bundle-version="3.5.100",
  org.eclipse.core.resources;bundle-version="3.11.0",
  com.google.guava;bundle-version="15.0.0"
@@ -17,4 +23,4 @@ Export-Package: org.slizaa.neo4j.hierarchicalgraph.mapping.service,
  org.slizaa.neo4j.hierarchicalgraph.mapping.spi.labelprovider,
  org.slizaa.neo4j.hierarchicalgraph.mapping.spi.opencypher
 Bundle-ActivationPolicy: lazy
-Service-Component: OSGI-INF/org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.DefaultMappingService.xml
+Service-Component: OSGI-INF/org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.DefaultMappingService.xml

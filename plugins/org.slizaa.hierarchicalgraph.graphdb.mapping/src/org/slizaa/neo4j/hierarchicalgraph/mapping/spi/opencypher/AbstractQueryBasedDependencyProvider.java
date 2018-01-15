@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.internal.DefaultDependency;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.internal.spi.DefaultDependency;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider;
 
 /**

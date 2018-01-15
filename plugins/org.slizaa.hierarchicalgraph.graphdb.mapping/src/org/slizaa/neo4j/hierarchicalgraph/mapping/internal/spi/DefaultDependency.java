@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.hierarchicalgraph.mapping.internal;
+package org.slizaa.neo4j.hierarchicalgraph.mapping.internal.spi;
 
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider.IDependency;
 

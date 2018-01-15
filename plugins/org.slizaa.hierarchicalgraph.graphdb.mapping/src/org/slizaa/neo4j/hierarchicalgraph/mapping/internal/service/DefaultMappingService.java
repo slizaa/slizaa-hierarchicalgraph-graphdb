@@ -1,9 +1,9 @@
-package org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal;
+package org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.GraphFactoryFunctions.createDependencies;
-import static org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.GraphFactoryFunctions.createFirstLevelElements;
-import static org.slizaa.neo4j.hierarchicalgraph.mapping.service.internal.GraphFactoryFunctions.createHierarchy;
+import static org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.GraphFactoryFunctions.createDependencies;
+import static org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.GraphFactoryFunctions.createFirstLevelElements;
+import static org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.GraphFactoryFunctions.createHierarchy;
 
 import java.util.List;
 import java.util.function.Function;
