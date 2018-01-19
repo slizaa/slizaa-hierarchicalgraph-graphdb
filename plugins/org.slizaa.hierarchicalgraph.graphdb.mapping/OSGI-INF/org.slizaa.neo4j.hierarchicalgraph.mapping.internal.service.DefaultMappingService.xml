@@ -3,5 +3,6 @@
    <service>
       <provide interface="org.slizaa.neo4j.hierarchicalgraph.mapping.service.IMappingService"/>
    </service>
+   <reference bind="addMappingParticipator" interface="org.slizaa.neo4j.hierarchicalgraph.mapping.service.IMappingParticipator" name="MappingParticipator" unbind="removeMappingParticipator"/>
    <implementation class="org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.DefaultMappingService"/>
 </scr:component>

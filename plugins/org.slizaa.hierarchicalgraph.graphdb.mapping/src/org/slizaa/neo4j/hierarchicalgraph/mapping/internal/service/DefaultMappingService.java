@@ -5,7 +5,9 @@ import static org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.GraphF
 import static org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.GraphFactoryFunctions.createFirstLevelElements;
 import static org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.GraphFactoryFunctions.createHierarchy;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -18,6 +20,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.INodeSource;
@@ -26,6 +29,7 @@ import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
+import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IMappingParticipator;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.MappingException;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider;
@@ -43,16 +47,29 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.opencypher.IBoltClientAwar
 @Component
 public class DefaultMappingService implements IMappingService {
 
+  /** - */
+  private List<IMappingParticipator> _mappingParticipators    = new CopyOnWriteArrayList<>();
+
   /** create the node source creator function */
   static Function<Long, INodeSource> createNodeSourceFunction = (id) -> {
 
-    // create the node source
-    INodeSource nodeSource = Neo4jHierarchicalgraphFactory.eINSTANCE.createNeo4JBackedNodeSource();
-    nodeSource.setIdentifier(id);
+                                                                // create the node source
+                                                                INodeSource nodeSource = Neo4jHierarchicalgraphFactory.eINSTANCE
+                                                                    .createNeo4JBackedNodeSource();
+                                                                nodeSource.setIdentifier(id);
 
-    // return the result
-    return nodeSource;
-  };
+                                                                // return the result
+                                                                return nodeSource;
+                                                              };
+
+  @Reference()
+  public void addMappingParticipator(IMappingParticipator mappingParticipator) {
+    _mappingParticipators.add(mappingParticipator);
+  }
+
+  public void removeMappingParticipator(IMappingParticipator mappingParticipator) {
+    _mappingParticipators.remove(mappingParticipator);
+  }
 
   /**
    * {@inheritDoc}
@@ -163,6 +180,13 @@ public class DefaultMappingService implements IMappingService {
       rootNode.registerExtension(IMappingProvider.class, mappingDescriptor);
       rootNode.registerExtension(INodeComparator.class, mappingDescriptor.getNodeComparator());
       rootNode.registerExtension(ILabelDefinitionProvider.class, mappingDescriptor.getLabelDefinitionProvider());
+
+      //
+      for (IMappingParticipator mappingParticipator : _mappingParticipators) {
+        
+        //
+        mappingParticipator.postCreate(rootNode, mappingDescriptor, boltClient);
+      }
 
       //
       // return addEditingDomain(rootNode);

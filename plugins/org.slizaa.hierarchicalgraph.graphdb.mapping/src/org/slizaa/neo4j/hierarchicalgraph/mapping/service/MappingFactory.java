@@ -7,7 +7,6 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.DefaultMappin
  * </p>
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
- *
  */
 public class MappingFactory {
 
@@ -23,9 +22,7 @@ public class MappingFactory {
    *
    * @return
    */
-  public static IMappingService newMappingService() {
-
-    //
+  public static IMappingService createMappingServiceForStandaloneSetup() {
     return new DefaultMappingService();
   }
 }
