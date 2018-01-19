@@ -77,8 +77,8 @@ public class DefaultMappingService implements IMappingService {
       rootNode.setNodeSource(rootNodeSource);
 
       // process root, hierarchy and dependency queries
-      IHierarchyProvider hierarchyProvider = initializeBoltClientAwareService(mappingDescriptor.getHierarchyProvider(),
-          boltClient, progressMonitor);
+      IHierarchyProvider hierarchyProvider = initializeBoltClientAwareMappingProviderComponent(
+          mappingDescriptor.getHierarchyProvider(), boltClient, progressMonitor);
 
       if (hierarchyProvider != null) {
 
@@ -100,7 +100,7 @@ public class DefaultMappingService implements IMappingService {
         removeDanglingNodes(rootNode);
 
         //
-        IDependencyProvider dependencyProvider = initializeBoltClientAwareService(
+        IDependencyProvider dependencyProvider = initializeBoltClientAwareMappingProviderComponent(
             mappingDescriptor.getDependencyProvider(), boltClient, progressMonitor);
 
         if (dependencyProvider != null) {
@@ -183,18 +183,25 @@ public class DefaultMappingService implements IMappingService {
    * @param progressMonitor
    * @throws Exception
    */
-  private <T> T initializeBoltClientAwareService(T service, final Neo4jClient boltClient,
+  private <T> T initializeBoltClientAwareMappingProviderComponent(T component, final Neo4jClient boltClient,
       IProgressMonitor progressMonitor) throws Exception {
 
-    if (service instanceof IBoltClientAware) {
-      ((IBoltClientAware) service).initialize(boltClient, progressMonitor);
+    if (component instanceof IBoltClientAware) {
+      ((IBoltClientAware) component).initialize(boltClient, progressMonitor);
     }
 
-    return service;
+    return component;
   }
 
+  /**
+   * <p>
+   * </p>
+   *
+   * @param rootNode
+   */
   private void removeDanglingNodes(final HGRootNode rootNode) {
 
+    //
     List<Object> nodeKeys2Remove = ((ExtendedHGRootNodeImpl) rootNode).getIdToNodeMap().entrySet().stream()
         .filter((n) -> {
           try {
@@ -204,7 +211,7 @@ public class DefaultMappingService implements IMappingService {
           }
         }).map(n -> n.getKey()).collect(Collectors.toList());
 
-    System.out.println("REMOVING: " + nodeKeys2Remove);
+    //
     nodeKeys2Remove.forEach(k -> ((ExtendedHGRootNodeImpl) rootNode).getIdToNodeMap().remove(k));
   }
 
