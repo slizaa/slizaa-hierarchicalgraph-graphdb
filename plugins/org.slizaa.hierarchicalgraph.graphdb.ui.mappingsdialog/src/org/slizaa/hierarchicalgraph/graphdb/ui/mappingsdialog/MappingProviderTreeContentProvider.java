@@ -2,10 +2,7 @@ package org.slizaa.hierarchicalgraph.graphdb.ui.mappingsdialog;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -21,11 +18,7 @@ import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 class MappingProviderTreeContentProvider implements ITreeContentProvider {
 
   /** - */
-  final static String                         UNCATEGORIZED = MappingProviderTreeContentProvider.class.getName()
-      + "###UNCATEGORIZED";
-
-  /** - */
-  private Map<String, List<IMappingProvider>> _mappingProviders;
+  private Supplier<List<IMappingProvider>> _mappingProviderSupplier;
 
   /**
    * <p>
@@ -33,33 +26,14 @@ class MappingProviderTreeContentProvider implements ITreeContentProvider {
    * </p>
    *
    * @param mappingProviderSupplier
-   * @param category
    */
-  public MappingProviderTreeContentProvider(Supplier<List<IMappingProvider>> mappingProviderSupplier, String category) {
+  public MappingProviderTreeContentProvider(Supplier<List<IMappingProvider>> mappingProviderSupplier) {
 
     //
     checkNotNull(mappingProviderSupplier);
-    checkNotNull(category);
 
     //
-    this._mappingProviders = new HashMap<>();
-
-    //
-    for (IMappingProvider mappingProvider : mappingProviderSupplier.get()) {
-
-      // value
-      String categoryValue = mappingProvider.getMetaInformation().getCategoryValue(category);
-
-      //
-      if (categoryValue == null) {
-        categoryValue = UNCATEGORIZED;
-      }
-
-      //
-      List<IMappingProvider> providerList = this._mappingProviders.computeIfAbsent(categoryValue,
-          k -> new LinkedList<>());
-      providerList.add(mappingProvider);
-    }
+    this._mappingProviderSupplier = mappingProviderSupplier;
   }
 
   /**
@@ -67,7 +41,7 @@ class MappingProviderTreeContentProvider implements ITreeContentProvider {
    */
   @Override
   public Object[] getChildren(Object element) {
-    return element instanceof String ? this._mappingProviders.get(element).toArray() : new Object[0];
+    return new Object[0];
   }
 
   /**
@@ -92,7 +66,7 @@ class MappingProviderTreeContentProvider implements ITreeContentProvider {
    */
   @Override
   public Object[] getElements(Object element) {
-    return this._mappingProviders.keySet().toArray();
+    return this._mappingProviderSupplier.get().toArray();
   }
 
   @Override

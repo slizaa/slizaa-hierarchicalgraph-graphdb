@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.List;
 import java.util.function.Supplier;
 
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -30,6 +31,9 @@ public class MappingsProviderDialog extends TitleAreaDialog {
   /** - */
   private Supplier<List<IMappingProvider>> _mappingProviderSupplier;
 
+  /** - */
+  private IMappingProvider                 _selectedMappingProvider;
+
   /**
    * <p>
    * Creates a new instance of type {@link MappingsProviderDialog}.
@@ -40,9 +44,20 @@ public class MappingsProviderDialog extends TitleAreaDialog {
    */
   public MappingsProviderDialog(Shell parentShell, Supplier<List<IMappingProvider>> mappingProviderSupplier) {
     super(parentShell);
+    setBlockOnOpen(true);
 
     //
     this._mappingProviderSupplier = checkNotNull(mappingProviderSupplier);
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @return
+   */
+  public IMappingProvider getSelectedMappingProvider() {
+    return this._selectedMappingProvider;
   }
 
   /**
@@ -85,7 +100,7 @@ public class MappingsProviderDialog extends TitleAreaDialog {
 
     final TreeViewer tv = new TreeViewer(container, SWT.SINGLE | SWT.BORDER);
     tv.getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
-    tv.setContentProvider(new MappingProviderTreeContentProvider(this._mappingProviderSupplier, "location"));
+    tv.setContentProvider(new MappingProviderTreeContentProvider(this._mappingProviderSupplier));
     tv.setLabelProvider(new MappingProviderLabelProvider());
     tv.setInput("root");
     tv.addDoubleClickListener(event -> {
@@ -97,16 +112,32 @@ public class MappingsProviderDialog extends TitleAreaDialog {
         }
       }
     });
+    tv.addSelectionChangedListener(event -> {
+
+      //
+      Object selection = event.getStructuredSelection().getFirstElement();
+      this._selectedMappingProvider = selection instanceof IMappingProvider ? (IMappingProvider) selection : null;
+
+      //
+      validate();
+    });
     return area;
   }
 
+  /**
+   * <p>
+   * </p>
+   *
+   */
+  private void validate() {
+    getButton(IDialogConstants.OK_ID).setEnabled(this._selectedMappingProvider != null);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
   @Override
   protected boolean isResizable() {
     return true;
-  }
-
-  @Override
-  protected void okPressed() {
-    super.okPressed();
   }
 }

@@ -3,17 +3,13 @@ package org.slizaa.hierarchicalgraph.graphdb.ui.mappingsdialog;
 import java.util.Arrays;
 import java.util.Collections;
 
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swtbot.swt.finder.SWTBot;
 import org.eclipse.swtbot.swt.finder.junit.SWTBotJunit4ClassRunner;
-import org.eclipse.swtbot.swt.finder.waits.Conditions;
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotTreeItem;
-import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.slizaa.hierarchicalgraph.core.testfwk.ui.rules.ImageRegistryRule;
-import org.slizaa.hierarchicalgraph.core.testfwk.ui.rules.SwtBotRule;
 
 /**
  * <p>
@@ -24,13 +20,6 @@ import org.slizaa.hierarchicalgraph.core.testfwk.ui.rules.SwtBotRule;
 @RunWith(SWTBotJunit4ClassRunner.class)
 public class MappingsDialogTest {
 
-  /** - */
-  @ClassRule
-  public static SwtBotRule        swtBotRule        = new SwtBotRule();
-
-  @ClassRule
-  public static ImageRegistryRule imageRegistryRule = new ImageRegistryRule(() -> swtBotRule.display());
-
   /**
    * <p>
    * </p>
@@ -38,6 +27,7 @@ public class MappingsDialogTest {
    * @throws InterruptedException
    */
   @Test
+  @Ignore
   public void testMappingsDialog() throws InterruptedException {
 
     //
@@ -48,16 +38,18 @@ public class MappingsDialogTest {
         () -> Arrays.asList(
             new DummyMappingProvider("test", "test", "description", Collections.singletonMap("location", "workspace")),
             new DummyMappingProvider("test", "test", "description", Collections.singletonMap("location", "provided"))));
-    dialog.setBlockOnOpen(false);
+    dialog.setBlockOnOpen(true);
     dialog.open();
+    if (dialog.getReturnCode() == Window.OK) {
+      System.out.println("SELECTED " + dialog.getSelectedMappingProvider());
+    }
 
-    //
-    SWTBot swtBot = new SWTBot();
-    SWTBotTreeItem treeItem = swtBot.tree().getTreeItem("workspace");
-    treeItem.doubleClick();
-    swtBot.waitUntil(Conditions.treeItemHasNode(treeItem, "test"));
-    treeItem = swtBot.tree().getTreeItem("provided");
-    treeItem.doubleClick();
-    swtBot.waitUntil(Conditions.treeItemHasNode(treeItem, "test"));
+    // SWTBot swtBot = new SWTBot();
+    // SWTBotTreeItem treeItem = swtBot.tree().getTreeItem("workspace");
+    // treeItem.doubleClick();
+    // swtBot.waitUntil(Conditions.treeItemHasNode(treeItem, "test"));
+    // treeItem = swtBot.tree().getTreeItem("provided");
+    // treeItem.doubleClick();
+    // swtBot.waitUntil(Conditions.treeItemHasNode(treeItem, "test"));
   }
 }
