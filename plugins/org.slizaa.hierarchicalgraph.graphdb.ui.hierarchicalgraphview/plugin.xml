@@ -6,7 +6,7 @@
       <e4view
             class="org.slizaa.hierarchicalgraph.graphdb.ui.hierarchicalgraphview.HierarchicalGraphViewPart"
             icon="icons/HGRootNode.gif"
-            id="org.slizaa.neo4j.hierarchicalgraph.ui.HierarchicalGraphViewPart"
+            id="org.slizaa.hierarchicalgraph.graphdb.ui.hierarchicalgraphview.HierarchicalGraphViewPart"
             name="Model Explorer"
             restorable="true">
       </e4view>

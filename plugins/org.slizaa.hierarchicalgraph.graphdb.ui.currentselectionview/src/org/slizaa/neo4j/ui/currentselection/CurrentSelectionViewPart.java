@@ -1,12 +1,9 @@
 /*******************************************************************************
- * Copyright (c) Gerd W�therich 2012-2016.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the GNU Public License v3.0
- * which accompanies this distribution, and is available at
+ * Copyright (c) Gerd W�therich 2012-2016. All rights reserved. This program and the accompanying materials are made
+ * available under the terms of the GNU Public License v3.0 which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/gpl.html
- * 
- * Contributors:
- *    Gerd W�therich (gerd@gerd-wuetherich.de) - initial API and implementation
+ *
+ * Contributors: Gerd W�therich (gerd@gerd-wuetherich.de) - initial API and implementation
  ******************************************************************************/
 package org.slizaa.neo4j.ui.currentselection;
 
@@ -50,6 +47,7 @@ public class CurrentSelectionViewPart extends AbstractSlizaaWorkbenchModelCompon
    *
    * @param parent
    */
+  @Override
   @PostConstruct
   public void createComposite(Composite parent) {
 
@@ -59,21 +57,21 @@ public class CurrentSelectionViewPart extends AbstractSlizaaWorkbenchModelCompon
     layout.marginWidth = 0;
     parent.setLayout(layout);
 
-    _browser = new Browser(parent, SWT.NONE);
-    _browser.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_CYAN));
+    this._browser = new Browser(parent, SWT.NONE);
+    this._browser.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_CYAN));
     GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
-    _browser.setLayoutData(gridData);
-    _browser.setUrl(Activator.getDefault().getMainUrl());
+    this._browser.setLayoutData(gridData);
+    this._browser.setUrl(Activator.getDefault().getMainUrl());
 
     //
-    new CustomFunction(_browser, "currentNodeSelection");
+    new CustomFunction(this._browser, "currentNodeSelection");
   }
 
   @Override
   protected void handleNodeSelectionChanged(NodeSelection oldValue, NodeSelection newValue) {
-    _currenNodeSelection = newValue;
-    _browser.setUrl(Activator.getDefault().getMainUrl());
-    _browser.refresh();
+    this._currenNodeSelection = newValue;
+    this._browser.setUrl(Activator.getDefault().getMainUrl());
+    this._browser.refresh();
   }
 
   /**
@@ -97,10 +95,10 @@ public class CurrentSelectionViewPart extends AbstractSlizaaWorkbenchModelCompon
       JsonArray jsonArray = new JsonArray();
 
       //
-      if (_currenNodeSelection != null) {
+      if (CurrentSelectionViewPart.this._currenNodeSelection != null) {
 
         //
-        _currenNodeSelection.getNodes().forEach(node -> {
+        CurrentSelectionViewPart.this._currenNodeSelection.getNodes().forEach(node -> {
 
           // get the node source
           Neo4JBackedNodeSource nodeSource = node.getNodeSource(Neo4JBackedNodeSource.class).get();
