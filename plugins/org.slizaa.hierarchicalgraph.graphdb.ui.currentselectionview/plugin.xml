@@ -6,9 +6,9 @@
       <e4view
             class="org.slizaa.neo4j.ui.currentselection.CurrentSelectionViewPart"
             id="org.slizaa.neo4j.ui.currentselection.CurrentSelectionViewPart"
-            name="Selection"
+            name="Properties"
             restorable="true"
-            icon="icons/currentSelectionView.png">
+            icon="icons/currentSelectionView.gif">
       </e4view>
    </extension>
 </plugin>
