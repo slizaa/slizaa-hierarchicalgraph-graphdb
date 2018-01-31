@@ -41,7 +41,7 @@ public class HierarchicalGraphViewTest extends AbstractSlizaaUiTest {
   public void testMappingService() {
 
     //
-    IMappingService mappingService = MappingFactory.newMappingService();
+    IMappingService mappingService = MappingFactory.createMappingServiceForStandaloneSetup();
 
     //
     IMappingProvider mappingProvider = new SimpleJTypeMappingProvider();
