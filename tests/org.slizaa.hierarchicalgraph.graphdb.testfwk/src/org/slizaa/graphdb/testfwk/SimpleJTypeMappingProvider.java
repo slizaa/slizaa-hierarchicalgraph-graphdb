@@ -3,8 +3,8 @@
  */
 package org.slizaa.graphdb.testfwk;
 
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider.DefaultMappingProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.DefaultMappingProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IMappingProvider;
 
 /**
  * <p>

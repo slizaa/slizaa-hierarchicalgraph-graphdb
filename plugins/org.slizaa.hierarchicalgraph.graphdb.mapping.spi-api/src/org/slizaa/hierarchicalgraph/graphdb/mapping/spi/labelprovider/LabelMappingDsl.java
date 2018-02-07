@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.hierarchicalgraph.mapping.spi.labelprovider;
+package org.slizaa.hierarchicalgraph.graphdb.mapping.spi.labelprovider;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -9,8 +9,8 @@ import java.util.Objects;
 import java.util.function.Function;
 
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.ILabelDefinitionProvider.OverlayPosition;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider.OverlayPosition;
 
 public class LabelMappingDsl {
 

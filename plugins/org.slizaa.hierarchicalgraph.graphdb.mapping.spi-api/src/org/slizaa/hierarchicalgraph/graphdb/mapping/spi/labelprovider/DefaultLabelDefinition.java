@@ -1,11 +1,11 @@
-package org.slizaa.neo4j.hierarchicalgraph.mapping.spi.labelprovider;
+package org.slizaa.hierarchicalgraph.graphdb.mapping.spi.labelprovider;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.net.URL;
 
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider.ILabelDefinition;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider.OverlayPosition;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.ILabelDefinitionProvider.ILabelDefinition;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.ILabelDefinitionProvider.OverlayPosition;
 
 /**
  * <p>

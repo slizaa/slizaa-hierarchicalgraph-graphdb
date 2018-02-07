@@ -16,12 +16,12 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions;
 import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.DefaultDependency;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyProvider.IDependency;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyProvider.IProxyDependency;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.internal.spi.DefaultDependency;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider.IDependency;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider.IProxyDependency;
 
 /**
  * <p>

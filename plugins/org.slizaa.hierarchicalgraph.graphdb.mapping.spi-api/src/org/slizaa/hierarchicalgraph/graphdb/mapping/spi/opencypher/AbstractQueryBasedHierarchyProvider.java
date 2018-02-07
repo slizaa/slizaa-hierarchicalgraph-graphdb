@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.hierarchicalgraph.mapping.spi.opencypher;
+package org.slizaa.hierarchicalgraph.graphdb.mapping.spi.opencypher;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IHierarchyProvider;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IHierarchyProvider;
 
 public abstract class AbstractQueryBasedHierarchyProvider implements IHierarchyProvider, IBoltClientAware {
 

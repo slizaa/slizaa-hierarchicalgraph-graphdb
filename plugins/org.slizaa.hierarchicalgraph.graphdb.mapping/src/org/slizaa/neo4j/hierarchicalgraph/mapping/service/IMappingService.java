@@ -2,9 +2,9 @@ package org.slizaa.neo4j.hierarchicalgraph.mapping.service;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.slizaa.hierarchicalgraph.HGRootNode;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IMappingProvider;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.DefaultMappingService;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 
 /**
  * <p>

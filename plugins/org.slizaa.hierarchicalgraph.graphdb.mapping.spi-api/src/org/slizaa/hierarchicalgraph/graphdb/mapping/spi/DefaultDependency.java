@@ -1,6 +1,6 @@
-package org.slizaa.neo4j.hierarchicalgraph.mapping.internal.spi;
+package org.slizaa.hierarchicalgraph.graphdb.mapping.spi;
 
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider.IDependency;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyProvider.IDependency;
 
 /**
  * <p>

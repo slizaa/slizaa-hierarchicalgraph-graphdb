@@ -17,6 +17,7 @@
 
 		<module>plugins/org.slizaa.hierarchicalgraph.graphdb.model</module>
 		<module>plugins/org.slizaa.hierarchicalgraph.graphdb.mapping</module>
+		<module>plugins/org.slizaa.hierarchicalgraph.graphdb.mapping.spi-api</module>
 		<module>plugins/org.slizaa.hierarchicalgraph.graphdb.ui.currentselectionview</module>
 		<module>plugins/org.slizaa.hierarchicalgraph.graphdb.ui.hierarchicalgraphview</module>
 		<module>plugins/org.slizaa.hierarchicalgraph.graphdb.ui.mappingsdialog</module>

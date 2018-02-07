@@ -3,7 +3,7 @@ package org.slizaa.hierarchicalgraph.graphdb.ui.mappingsdialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IMappingProvider;
 
 /**
  * <p>
