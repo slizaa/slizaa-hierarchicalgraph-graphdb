@@ -17,8 +17,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IMappingProvider;
 import org.slizaa.hierarchicalgraph.graphdb.ui.mappingsdialog.internal.Images;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 
 /**
  * <p>

@@ -1,7 +1,7 @@
 /**
  *
  */
-package org.slizaa.neo4j.hierarchicalgraph.mapping.annotations;
+package org.slizaa.hierarchicalgraph.graphdb.mapping.spi.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

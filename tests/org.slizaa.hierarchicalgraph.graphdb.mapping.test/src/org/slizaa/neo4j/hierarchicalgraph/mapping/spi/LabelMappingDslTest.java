@@ -4,9 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider.OverlayPosition;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.labelprovider.DefaultLabelDefinition;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.labelprovider.LabelMappingDsl;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.ILabelDefinitionProvider.OverlayPosition;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.labelprovider.DefaultLabelDefinition;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.labelprovider.LabelMappingDsl;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.labelprovider.LabelMappingDsl.LabelDefinitionProcessor;
 
 public class LabelMappingDslTest extends LabelMappingDsl {
 

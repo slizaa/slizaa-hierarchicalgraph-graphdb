@@ -1,4 +1,4 @@
-package org.slizaa.neo4j.hierarchicalgraph.mapping.spi;
+package org.slizaa.hierarchicalgraph.graphdb.mapping.spi;
 
 import java.net.URL;
 

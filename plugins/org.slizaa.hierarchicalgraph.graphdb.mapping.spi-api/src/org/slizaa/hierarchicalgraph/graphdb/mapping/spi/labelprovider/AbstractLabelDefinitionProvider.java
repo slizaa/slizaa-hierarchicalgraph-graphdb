@@ -1,9 +1,9 @@
-package org.slizaa.neo4j.hierarchicalgraph.mapping.spi.labelprovider;
+package org.slizaa.hierarchicalgraph.graphdb.mapping.spi.labelprovider;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.ILabelDefinitionProvider;
 
 /**
  * <p>

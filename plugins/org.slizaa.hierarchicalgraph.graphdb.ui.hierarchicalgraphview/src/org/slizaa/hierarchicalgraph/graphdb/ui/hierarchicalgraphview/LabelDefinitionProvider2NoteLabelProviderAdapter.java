@@ -15,11 +15,11 @@ import java.net.URL;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.ILabelDefinitionProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.ILabelDefinitionProvider.ILabelDefinition;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.ILabelDefinitionProvider.OverlayPosition;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.labelprovider.DefaultLabelDefinition;
 import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider.ILabelDefinition;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider.OverlayPosition;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.labelprovider.DefaultLabelDefinition;
 
 public class LabelDefinitionProvider2NoteLabelProviderAdapter implements INodeLabelProvider {
 

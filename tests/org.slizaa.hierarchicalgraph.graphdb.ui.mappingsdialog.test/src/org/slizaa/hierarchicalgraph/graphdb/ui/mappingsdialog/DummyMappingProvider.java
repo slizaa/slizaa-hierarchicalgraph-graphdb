@@ -2,11 +2,12 @@ package org.slizaa.hierarchicalgraph.graphdb.ui.mappingsdialog;
 
 import java.util.Map;
 
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IHierarchyProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.ILabelDefinitionProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IMappingProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IMappingProvider.IMappingProviderMetadata;
 import org.slizaa.hierarchicalgraph.spi.INodeComparator;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IHierarchyProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 
 public class DummyMappingProvider implements IMappingProvider {
 

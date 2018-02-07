@@ -1,7 +1,7 @@
 /**
  *
  */
-package org.slizaa.neo4j.hierarchicalgraph.mapping.spi.opencypher;
+package org.slizaa.hierarchicalgraph.graphdb.mapping.spi.opencypher;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;

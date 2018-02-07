@@ -1,7 +1,9 @@
 package org.slizaa.graphdb.testfwk;
 
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.labelprovider.AbstractLabelDefinitionProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.ILabelDefinitionProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.ILabelDefinitionProvider.OverlayPosition;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.labelprovider.AbstractLabelDefinitionProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.labelprovider.LabelMappingDsl.LabelDefinitionProcessor;
 
 /**
  * <p>

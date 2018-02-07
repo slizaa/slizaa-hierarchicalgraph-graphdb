@@ -24,6 +24,11 @@ import org.osgi.service.component.annotations.Reference;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.INodeSource;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IHierarchyProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.ILabelDefinitionProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IMappingProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.opencypher.IBoltClientAware;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
 import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
@@ -32,11 +37,6 @@ import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IMappingParticipator;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.MappingException;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IHierarchyProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.opencypher.IBoltClientAware;
 
 /**
  * <p>

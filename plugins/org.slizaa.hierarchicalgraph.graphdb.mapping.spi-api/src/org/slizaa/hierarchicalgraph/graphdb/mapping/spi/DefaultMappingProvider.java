@@ -1,12 +1,8 @@
-package org.slizaa.neo4j.hierarchicalgraph.mapping.internal.spi;
+package org.slizaa.hierarchicalgraph.graphdb.mapping.spi;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.slizaa.hierarchicalgraph.spi.INodeComparator;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IDependencyProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IHierarchyProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.ILabelDefinitionProvider;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 
 /**
  * <p>

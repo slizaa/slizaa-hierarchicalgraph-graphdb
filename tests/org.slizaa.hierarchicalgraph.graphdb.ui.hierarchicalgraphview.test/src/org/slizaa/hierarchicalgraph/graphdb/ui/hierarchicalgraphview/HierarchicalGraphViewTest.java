@@ -7,13 +7,13 @@ import org.junit.Test;
 import org.slizaa.graphdb.testfwk.SimpleJTypeMappingProvider;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.core.testfwk.ui.AbstractSlizaaUiTest;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IMappingProvider;
 import org.slizaa.hierarchicalgraph.spi.INodeLabelProvider;
 import org.slizaa.neo4j.graphdb.testfwk.BoltClientConnectionRule;
 import org.slizaa.neo4j.graphdb.testfwk.PredefinedGraphDatabaseRule;
 import org.slizaa.neo4j.graphdb.testfwk.TestDB;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IMappingService;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.MappingFactory;
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider;
 
 public class HierarchicalGraphViewTest extends AbstractSlizaaUiTest {
 

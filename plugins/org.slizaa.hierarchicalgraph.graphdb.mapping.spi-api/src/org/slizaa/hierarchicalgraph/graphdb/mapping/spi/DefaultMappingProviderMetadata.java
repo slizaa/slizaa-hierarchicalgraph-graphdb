@@ -1,14 +1,14 @@
 /**
  *
  */
-package org.slizaa.neo4j.hierarchicalgraph.mapping.internal.spi;
+package org.slizaa.hierarchicalgraph.graphdb.mapping.spi;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slizaa.neo4j.hierarchicalgraph.mapping.spi.IMappingProvider.IMappingProviderMetadata;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IMappingProvider.IMappingProviderMetadata;
 
 /**
  * <p>
