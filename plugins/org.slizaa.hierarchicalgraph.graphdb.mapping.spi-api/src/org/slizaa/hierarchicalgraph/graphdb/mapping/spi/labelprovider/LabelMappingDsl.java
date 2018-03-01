@@ -233,6 +233,20 @@ public class LabelMappingDsl {
     checkNotNull(propertyName);
     return (node) -> nodeSource(node).getProperties().containsKey(propertyName);
   }
+  
+  /**
+   * <p>
+   * </p>
+   *
+   * @param propertyName
+   * @param value
+   * @return
+   */
+  public Function<HGNode, Boolean> nodeHasPropertyWithValue(String propertyName, String value) {
+    checkNotNull(propertyName);
+    return (node) -> nodeSource(node).getProperties().containsKey(propertyName) && nodeSource(node).getProperties().get(propertyName).equals(value);
+  }
+
 
   /**
    * <p>
