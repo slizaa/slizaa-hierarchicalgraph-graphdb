@@ -16,3 +16,4 @@ Require-Bundle: org.eclipse.swt;bundle-version="3.105.2",
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.slizaa.neo4j.ui.currentselection.Activator
 Export-Package: org.slizaa.neo4j.ui.currentselection
+Eclipse-BundleShape: dir
