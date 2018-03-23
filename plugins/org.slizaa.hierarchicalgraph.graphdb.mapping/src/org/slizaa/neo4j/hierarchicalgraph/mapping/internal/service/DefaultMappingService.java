@@ -5,7 +5,6 @@ import static org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.GraphF
 import static org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.GraphFactoryFunctions.createFirstLevelElements;
 import static org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.GraphFactoryFunctions.createHierarchy;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Function;
@@ -130,50 +129,6 @@ public class DefaultMappingService implements IMappingService {
         }
       }
 
-      //
-      // if (hierarchyProvider.getDependencyQueries() != null
-      // && hierarchyProvider.getDependencyQueries().getSimpleDependencyQueries() != null) {
-      //
-      // //
-      // hierarchyProvider.getDependencyQueries().getSimpleDependencyQueries().forEach(cypherQuery -> {
-      // simpleDependencyQueries.add(remoteRepository.executeCypherQuery(CypherNormalizer.normalize(cypherQuery)));
-      // });
-      // }
-      //
-      // //
-      // if (hierarchyProvider.getDependencyQueries() != null
-      // && hierarchyProvider.getDependencyQueries().getAggregatedDependencyQueries() != null) {
-      //
-      // //
-      // hierarchyProvider.getDependencyQueries().getAggregatedDependencyQueries()
-      // .forEach(aggregatedDependencyQuery -> {
-      // AggregatedDependencyQueryHolder holder = new AggregatedDependencyQueryHolder(aggregatedDependencyQuery,
-      // remoteRepository
-      // .executeCypherQuery(CypherNormalizer.normalize(aggregatedDependencyQuery.getAggregatedQuery())));
-      // aggregatedDependencyQueries.add(holder);
-      // });
-      // }
-      // }
-      //
-      // //
-      // resolveRootQueries(rootNode, rootQueries,
-      // subMonitor != null ? subMonitor.split(25).setWorkRemaining(rootQueries.size()) : null);
-      //
-      // //
-      // resolveHierarchyQueries(rootNode, hierachyQueries,
-      // subMonitor != null ? subMonitor.split(25).setWorkRemaining(hierachyQueries.size()) : null);
-      //
-
-      //
-      // //
-      // resolveSimpleDependencyQueries(rootNode, simpleDependencyQueries,
-      // subMonitor != null ? subMonitor.split(25).setWorkRemaining(simpleDependencyQueries.size()) : null);
-      //
-      // //
-      // resolveAggregatedDependencyQueries(rootNode, aggregatedDependencyQueries,
-      // subMonitor != null ? subMonitor.split(25).setWorkRemaining(simpleDependencyQueries.size()) : null);
-      //
-
       // register default extensions
       rootNode.registerExtension(Neo4jClient.class, boltClient);
       // rootNode.registerExtension(IProxyDependencyResolver.class, new CustomProxyDependencyResolver());
@@ -183,8 +138,6 @@ public class DefaultMappingService implements IMappingService {
 
       //
       for (IMappingParticipator mappingParticipator : _mappingParticipators) {
-        
-        //
         mappingParticipator.postCreate(rootNode, mappingDescriptor, boltClient);
       }
 
@@ -239,74 +192,6 @@ public class DefaultMappingService implements IMappingService {
     nodeKeys2Remove.forEach(k -> ((ExtendedHGRootNodeImpl) rootNode).getIdToNodeMap().remove(k));
   }
 
-  // /**
-  // * <p>
-  // * </p>
-  // *
-  // * @param rootNode
-  // * @param dependencyQueries
-  // * @param dependencyLoopMonitor
-  // */
-  // private void resolveSimpleDependencyQueries(final HGRootNode rootNode,
-  // List<Future<StatementResult>> dependencyQueries, SubMonitor dependencyLoopMonitor) {
-  //
-  // //
-  // dependencyQueries.forEach((dependencyQuery) -> {
-  //
-  // try {
-  // SubMonitor iterationMonitor = dependencyLoopMonitor != null ? dependencyLoopMonitor.split(1) : null;
-  //
-  // // request dependencies
-  // report(iterationMonitor, "Requesting dependencies...");
-  //
-  // List<GraphFactoryFunctions.Neo4jRelationship> dependencyDefinitions = dependencyQuery.get()
-  // .list(record -> new Neo4jRelationship(record.get(0).asLong(), record.get(1).asLong(),
-  // record.get(2).asLong(), record.get(3).asString()));
-  //
-  // // create dependencies
-  // report(iterationMonitor, "Creating dependencies...");
-  //
-  // //
-  // createDependencies(dependencyDefinitions, rootNode,
-  // (id, type) -> GraphFactoryFunctions.createDependencySource(id, type, null), false, false, iterationMonitor);
-  //
-  // } catch (Exception e) {
-  // throw new HierarchicalGraphMappingException(e);
-  // }
-  // });
-  // }
-
-  // // TODO
-  // private void resolveAggregatedDependencyQueries(final HGRootNode rootNode,
-  // List<AggregatedDependencyQueryHolder> dependencyQueries, SubMonitor dependencyLoopMonitor) {
-  //
-  // //
-  // dependencyQueries.forEach((dependencyQuery) -> {
-  //
-  // try {
-  // SubMonitor iterationMonitor = dependencyLoopMonitor != null ? dependencyLoopMonitor.split(1) : null;
-  //
-  // // request dependencies
-  // report(iterationMonitor, "Requesting dependencies...");
-  //
-  // //
-  // List<GraphFactoryFunctions.Neo4jRelationship> neo4jRelationships = dependencyQuery.getFuture().get()
-  // .list(record -> new Neo4jRelationship(record.get(0).asLong(), record.get(1).asLong(),
-  // record.get(2).asLong(), record.get(3).asString()));
-  //
-  // // create dependencies
-  // report(iterationMonitor, "Creating dependencies...");
-  // createDependencies(neo4jRelationships, rootNode,
-  // (id, type) -> GraphFactoryFunctions.createDependencySource(id, type,
-  // dependencyQueries.size() > 1 ? dependencyQuery.getAggregatedDependencyQuery() : null),
-  // true, false, iterationMonitor);
-  //
-  // } catch (Exception e) {
-  // throw new HierarchicalGraphMappingException(e);
-  // }
-  // });
-  // }
-
   /**
    * <p>
    * </p>
@@ -336,66 +221,6 @@ public class DefaultMappingService implements IMappingService {
   // dependencyQueries.size() > 1 ? dependencyQuery.getDependencyMapping() : null),
   // dependencyQuery.getDependencyMapping().isProxyDependency(), false, iterationMonitor);
   //
-  // } catch (Exception e) {
-  // throw new HierarchicalGraphMappingException(e);
-  // }
-  // });
-  // }
-
-  // /**
-  // * <p>
-  // * </p>
-  // *
-  // * @param rootNode
-  // * @param hierachyQueries
-  // * @param hierarchyLoopMonitor
-  // */
-  // private void resolveHierarchyQueries(final HGRootNode rootNode, List<Future<StatementResult>> hierachyQueries,
-  // SubMonitor hierarchyLoopMonitor) {
-  //
-  // //
-  // hierachyQueries.forEach((f) -> {
-  //
-  // try {
-  // SubMonitor iterationMonitor = hierarchyLoopMonitor != null ? hierarchyLoopMonitor.split(1) : null;
-  // report(iterationMonitor, "Requesting nodes...");
-  //
-  // Long[][] hierarchyElementIds = f.get()
-  // .list(record -> new Long[] { record.get(0).asLong(), record.get(1).asLong() }).toArray(new Long[0][0]);
-  //
-  // report(iterationMonitor, "Creating nodes...");
-  //
-  // createHierarchy(hierarchyElementIds, rootNode, createNodeSourceFunction, iterationMonitor);
-  // } catch (Exception e) {
-  // throw new HierarchicalGraphMappingException(e);
-  // }
-  // });
-  // }
-
-  // /**
-  // * <p>
-  // * </p>
-  // *
-  // * @param rootNode
-  // * @param rootQueries
-  // * @param rootLoopMonitor
-  // */
-  // private void resolveRootQueries(final HGRootNode rootNode, List<Future<StatementResult>> rootQueries,
-  // SubMonitor rootLoopMonitor) {
-  //
-  // //
-  // rootQueries.forEach((f) -> {
-  //
-  // try {
-  // SubMonitor iterationMonitor = rootLoopMonitor != null ? rootLoopMonitor.split(1) : null;
-  // report(iterationMonitor, "Requesting root nodes...");
-  //
-  // //
-  // List<Long> rootNodes = f.get().list(record -> record.get(0).asLong());
-  //
-  // //
-  // report(iterationMonitor, "Creating root nodes...");
-  // createFirstLevelElements(rootNodes.toArray(new Long[0]), rootNode, createNodeSourceFunction, iterationMonitor);
   // } catch (Exception e) {
   // throw new HierarchicalGraphMappingException(e);
   // }

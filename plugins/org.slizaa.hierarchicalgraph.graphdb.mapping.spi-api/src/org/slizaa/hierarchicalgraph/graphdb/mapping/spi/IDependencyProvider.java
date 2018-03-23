@@ -1,6 +1,7 @@
 package org.slizaa.hierarchicalgraph.graphdb.mapping.spi;
 
 import java.util.List;
+import java.util.concurrent.Future;
 import java.util.function.Function;
 
 public interface IDependencyProvider {
@@ -52,13 +53,13 @@ public interface IDependencyProvider {
    *
    * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
    */
-  public interface IProxyDependency {
+  public interface IProxyDependency extends IDependency {
 
     /**
      * <p>
      * </p>
      */
-    public Function<List<IDependency>, IDependency> getResolveFunction();
+    public Function<IDependency, Future<List<IDependency>>> getResolveFunction();
   }
 
   /**

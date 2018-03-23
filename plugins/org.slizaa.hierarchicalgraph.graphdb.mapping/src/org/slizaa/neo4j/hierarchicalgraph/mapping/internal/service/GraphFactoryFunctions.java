@@ -4,6 +4,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.Future;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -16,7 +17,6 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions;
 import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
-import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.DefaultDependency;
 import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyProvider.IDependency;
 import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyProvider.IProxyDependency;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
@@ -156,20 +156,37 @@ public class GraphFactoryFunctions {
         subMonitor.split(1);
       }
 
+      //
       if (element instanceof IProxyDependency) {
 
-        // TODO: DefaultProxyDependency
-
-      }
-      //
-      else {
+        //
+        IProxyDependency proxyDependency = (IProxyDependency) element;
 
         //
-        DefaultDependency simpleDependency = (DefaultDependency) element;
+        Function<IDependency, Future<List<IDependency>>> resolveFunction = checkNotNull(proxyDependency.getResolveFunction());
+
+        //
+        HGCoreDependency slizaaProxyDependency = createDependency(proxyDependency.getIdStart(),
+            proxyDependency.getIdTarget(), proxyDependency.getIdTarget(), proxyDependency.getType(), rootElement,
+            dependencySourceCreator, resolveFunction, reinitializeCaches);
+
+        //
+        ((Neo4JBackedDependencySource) slizaaProxyDependency.getDependencySource())
+            .setUserObject(proxyDependency.getResolveFunction());
+
+        //
+        result.add(slizaaProxyDependency);
+      }
+
+      //
+      else if (element instanceof IDependency) {
+
+        //
+        IDependency simpleDependency = (IDependency) element;
 
         //
         result.add(createDependency(simpleDependency.getIdStart(), simpleDependency.getIdTarget(),
-            simpleDependency.getIdTarget(), simpleDependency.getType(), rootElement, dependencySourceCreator, false,
+            simpleDependency.getIdTarget(), simpleDependency.getType(), rootElement, dependencySourceCreator, null,
             reinitializeCaches));
       }
     });
@@ -188,8 +205,8 @@ public class GraphFactoryFunctions {
    * @return
    */
   public static HGCoreDependency createDependency(Long from, Long to, Long idRel, String type, HGRootNode rootElement,
-      BiFunction<Long, String, IDependencySource> dependencySourceCreator, boolean proxyDependency,
-      boolean reinitializeCaches) {
+      BiFunction<Long, String, IDependencySource> dependencySourceCreator,
+      Function<IDependency, Future<List<IDependency>>> resolveFunction, boolean reinitializeCaches) {
 
     // get the from...
     HGNode fromElement = ((ExtendedHGRootNodeImpl) rootElement).getIdToNodeMap().get(from);
@@ -204,7 +221,7 @@ public class GraphFactoryFunctions {
     }
 
     //
-    if (proxyDependency) {
+    if (resolveFunction != null) {
       return HierarchicalgraphFactoryFunctions.createNewProxyDependency(fromElement, toElement, type,
           () -> dependencySourceCreator.apply(idRel, type), reinitializeCaches);
     }
