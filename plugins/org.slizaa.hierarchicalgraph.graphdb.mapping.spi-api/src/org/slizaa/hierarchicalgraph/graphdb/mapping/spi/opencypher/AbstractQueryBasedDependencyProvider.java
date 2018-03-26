@@ -56,5 +56,11 @@ public abstract class AbstractQueryBasedDependencyProvider implements IDependenc
    *
    * @return
    */
-  protected abstract String[] simpleDependenciesQueries();
+  protected String[] simpleDependenciesQueries() {
+    return new String[0];
+  }
+  
+  protected String[] proxyDependenciesQueries() {
+    return new String[0];    
+  }
 }

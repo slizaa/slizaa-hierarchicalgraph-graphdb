@@ -157,7 +157,7 @@ public class GraphFactoryFunctions {
         subMonitor.split(1);
       }
 
-      //
+      // 
       if (element instanceof IProxyDependency) {
 
         //

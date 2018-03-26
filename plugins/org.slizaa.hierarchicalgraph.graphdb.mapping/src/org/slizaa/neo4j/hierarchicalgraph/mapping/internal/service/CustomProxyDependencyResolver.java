@@ -51,9 +51,6 @@ public class CustomProxyDependencyResolver implements IProxyDependencyResolver {
   private class ProxyDependencyResolverJob implements IProxyDependencyResolverJob {
 
     /** - */
-    private HGProxyDependency         _proxyDependency;
-
-    /** - */
     private Future<List<IDependency>> _future;
 
     /**
@@ -64,7 +61,9 @@ public class CustomProxyDependencyResolver implements IProxyDependencyResolver {
      * @param resolveFunction
      */
     public ProxyDependencyResolverJob(HGProxyDependency proxyDependency) {
-      this._proxyDependency = checkNotNull(proxyDependency);
+
+      //
+      checkNotNull(proxyDependency);
 
       //
       Neo4JBackedDependencySource dependencySource = (Neo4JBackedDependencySource) proxyDependency
@@ -84,10 +83,8 @@ public class CustomProxyDependencyResolver implements IProxyDependencyResolver {
       try {
         this._future.get();
       } catch (InterruptedException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       } catch (ExecutionException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       }
     }
