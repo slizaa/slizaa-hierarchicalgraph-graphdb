@@ -12,6 +12,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGNode;
+import org.slizaa.hierarchicalgraph.HGProxyDependency;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions;
@@ -163,7 +164,8 @@ public class GraphFactoryFunctions {
         IProxyDependency proxyDependency = (IProxyDependency) element;
 
         //
-        Function<IDependency, Future<List<IDependency>>> resolveFunction = checkNotNull(proxyDependency.getResolveFunction());
+        Function<HGProxyDependency, Future<List<IDependency>>> resolveFunction = checkNotNull(
+            proxyDependency.getResolveFunction());
 
         //
         HGCoreDependency slizaaProxyDependency = createDependency(proxyDependency.getIdStart(),
@@ -182,7 +184,7 @@ public class GraphFactoryFunctions {
       else if (element instanceof IDependency) {
 
         //
-        IDependency simpleDependency = (IDependency) element;
+        IDependency simpleDependency = element;
 
         //
         result.add(createDependency(simpleDependency.getIdStart(), simpleDependency.getIdTarget(),
@@ -206,7 +208,7 @@ public class GraphFactoryFunctions {
    */
   public static HGCoreDependency createDependency(Long from, Long to, Long idRel, String type, HGRootNode rootElement,
       BiFunction<Long, String, IDependencySource> dependencySourceCreator,
-      Function<IDependency, Future<List<IDependency>>> resolveFunction, boolean reinitializeCaches) {
+      Function<HGProxyDependency, Future<List<IDependency>>> resolveFunction, boolean reinitializeCaches) {
 
     // get the from...
     HGNode fromElement = ((ExtendedHGRootNodeImpl) rootElement).getIdToNodeMap().get(from);

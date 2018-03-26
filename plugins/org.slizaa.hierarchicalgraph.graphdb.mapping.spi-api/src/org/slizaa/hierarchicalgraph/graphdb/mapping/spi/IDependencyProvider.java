@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.concurrent.Future;
 import java.util.function.Function;
 
+import org.slizaa.hierarchicalgraph.HGProxyDependency;
+
 public interface IDependencyProvider {
 
   /**
@@ -59,7 +61,7 @@ public interface IDependencyProvider {
      * <p>
      * </p>
      */
-    public Function<IDependency, Future<List<IDependency>>> getResolveFunction();
+    public Function<HGProxyDependency, Future<List<IDependency>>> getResolveFunction();
   }
 
   /**

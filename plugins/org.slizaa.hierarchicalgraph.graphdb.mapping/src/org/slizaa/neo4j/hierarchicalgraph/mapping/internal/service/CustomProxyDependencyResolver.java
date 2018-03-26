@@ -3,6 +3,7 @@ package org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.function.Function;
 
@@ -26,7 +27,7 @@ public class CustomProxyDependencyResolver implements IProxyDependencyResolver {
    * {@inheritDoc}
    */
   @Override
-  public IProxyDependencyResolverResult resolveProxyDependency(final HGProxyDependency dependency) {
+  public IProxyDependencyResolverJob resolveProxyDependency(final HGProxyDependency dependency) {
 
     checkNotNull(dependency);
 
@@ -38,41 +39,57 @@ public class CustomProxyDependencyResolver implements IProxyDependencyResolver {
     }
 
     //
-    Neo4JBackedDependencySource dependencySource = (Neo4JBackedDependencySource) dependency.getDependencySource();
-
-    // TODO
-    @SuppressWarnings("unchecked")
-    Function<IDependency, Future<List<IDependency>>> resolveFunction = (Function<IDependency, Future<List<IDependency>>>) dependencySource
-        .getUserObject();
-
-    //
-    return null;
+    return new ProxyDependencyResolverJob(dependency);
   }
 
-  // /**
-  // * <p>
-  // * </p>
-  // *
-  // * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
-  // */
-  // private class ProxyDependencyResolverResult implements IProxyDependencyResolverResult {
-  //
-  // /** - */
-  // private Function<List<IDependency>, IDependency> _resolveFunction;
-  //
-  // /**
-  // * <p>
-  // * </p>
-  // *
-  // */
-  // public void bla() {
-  // _resolveFunction.apply(arg0)
-  // }
-  //
-  //
-  // @Override
-  // public void waitForCompletion() {
-  //
-  // }
-  // }
+  /**
+   * <p>
+   * </p>
+   *
+   * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+   */
+  private class ProxyDependencyResolverJob implements IProxyDependencyResolverJob {
+
+    /** - */
+    private HGProxyDependency         _proxyDependency;
+
+    /** - */
+    private Future<List<IDependency>> _future;
+
+    /**
+     * <p>
+     * Creates a new instance of type {@link ProxyDependencyResolverJob}.
+     * </p>
+     *
+     * @param resolveFunction
+     */
+    public ProxyDependencyResolverJob(HGProxyDependency proxyDependency) {
+      this._proxyDependency = checkNotNull(proxyDependency);
+
+      //
+      Neo4JBackedDependencySource dependencySource = (Neo4JBackedDependencySource) proxyDependency
+          .getDependencySource();
+
+      // TODO
+      @SuppressWarnings("unchecked")
+      Function<HGProxyDependency, Future<List<IDependency>>> resolveFunction = (Function<HGProxyDependency, Future<List<IDependency>>>) dependencySource
+          .getUserObject();
+
+      //
+      this._future = resolveFunction.apply(proxyDependency);
+    }
+
+    @Override
+    public void waitForCompletion() {
+      try {
+        this._future.get();
+      } catch (InterruptedException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      } catch (ExecutionException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    }
+  }
 }
