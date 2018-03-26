@@ -35,13 +35,26 @@ public abstract class AbstractQueryBasedDependencyProvider implements IDependenc
     for (String query : simpleDependenciesQueries()) {
 
       //
-      List<org.slizaa.hierarchicalgraph.graphdb.mapping.spi.DefaultDependency> simpleDependencies = boltClient
-          .executeCypherQuery(query).get().list(r -> {
-            return new DefaultDependency(r.get(0).asLong(), r.get(1).asLong(), r.get(2).asLong(), r.get(3).asString());
-          });
+      List<DefaultDependency> simpleDependencies = boltClient.executeCypherQuery(query).get().list(r -> {
+        return new DefaultDependency(r.get(0).asLong(), r.get(1).asLong(), r.get(2).asLong(), r.get(3).asString());
+      });
 
       //
       this._dependencies.addAll(simpleDependencies);
+    }
+
+    //
+    for (ProxyDependenciesDefinition dependenciesDefinition : proxyDependenciesQueries()) {
+
+      // TODO
+      // //
+      // List<org.slizaa.hierarchicalgraph.graphdb.mapping.spi.DefaultDependency> simpleDependencies = boltClient
+      // .executeCypherQuery(query).get().list(r -> {
+      // return new DefaultDependency(r.get(0).asLong(), r.get(1).asLong(), r.get(2).asLong(), r.get(3).asString());
+      // });
+      //
+      // //
+      // this._dependencies.addAll(simpleDependencies);
     }
   }
 
@@ -59,8 +72,37 @@ public abstract class AbstractQueryBasedDependencyProvider implements IDependenc
   protected String[] simpleDependenciesQueries() {
     return new String[0];
   }
-  
-  protected String[] proxyDependenciesQueries() {
-    return new String[0];    
+
+  protected ProxyDependenciesDefinition[] proxyDependenciesQueries() {
+    return new ProxyDependenciesDefinition[0];
+  }
+
+  /**
+   * <p>
+   * </p>
+   *
+   * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+   */
+  public static class ProxyDependenciesDefinition {
+
+    /**
+     * <p>
+     * </p>
+     *
+     * @return
+     */
+    public String[] mainQueries() {
+      return new String[0];
+    }
+
+    /**
+     * <p>
+     * </p>
+     *
+     * @return
+     */
+    public String[] subQueries() {
+      return new String[0];
+    }
   }
 }

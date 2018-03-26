@@ -8,7 +8,7 @@ import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyProvider.IDep
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public final class DefaultDependency implements IDependency {
+public class DefaultDependency implements IDependency {
 
   /** - */
   public long   _idStart;

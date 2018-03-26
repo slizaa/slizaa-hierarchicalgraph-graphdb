@@ -8,4 +8,15 @@ public class SimpleJTypeDependencyProvider extends AbstractQueryBasedDependencyP
   protected String[] simpleDependenciesQueries() {
     return new String[] { "Match (t1:Type)-[r:DEPENDS_ON]->(t2:Type) RETURN id(t1), id(t2), id(r), 'DEPENDS_ON'" };
   }
+
+  // @Override
+  // protected String[][] proxyDependenciesQueries() {
+  //
+  // //
+  // String[][] result = { { "Match (t1:Type)-[r:DEPENDS_ON]->(t2:Type) RETURN id(t1), id(t2), id(r), 'DEPENDS_ON'" },
+  // {} };
+  //
+  // //
+  // return result;
+  // }
 }
