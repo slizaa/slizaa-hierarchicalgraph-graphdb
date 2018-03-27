@@ -2,21 +2,22 @@ package org.slizaa.graphdb.testfwk;
 
 import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.opencypher.AbstractQueryBasedDependencyProvider;
 
+/**
+ * <p>
+ * </p>
+ *
+ * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
+ */
 public class SimpleJTypeDependencyProvider extends AbstractQueryBasedDependencyProvider {
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  protected String[] simpleDependenciesQueries() {
-    return new String[] { "Match (t1:Type)-[r:DEPENDS_ON]->(t2:Type) RETURN id(t1), id(t2), id(r), 'DEPENDS_ON'" };
-  }
+  protected void initialize() {
 
-  // @Override
-  // protected String[][] proxyDependenciesQueries() {
-  //
-  // //
-  // String[][] result = { { "Match (t1:Type)-[r:DEPENDS_ON]->(t2:Type) RETURN id(t1), id(t2), id(r), 'DEPENDS_ON'" },
-  // {} };
-  //
-  // //
-  // return result;
-  // }
+    //
+    addSimpleDependencyDefinitions(
+        "Match (t1:Type)-[r:DEPENDS_ON]->(t2:Type) RETURN id(t1), id(t2), id(r), 'DEPENDS_ON'");
+  }
 }
