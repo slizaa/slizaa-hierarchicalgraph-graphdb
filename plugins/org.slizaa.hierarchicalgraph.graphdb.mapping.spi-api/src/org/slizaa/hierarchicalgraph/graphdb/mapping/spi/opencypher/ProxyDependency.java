@@ -3,9 +3,9 @@
  */
 package org.slizaa.hierarchicalgraph.graphdb.mapping.spi.opencypher;
 
-import java.util.Collections;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 import java.util.function.Function;
 
@@ -23,7 +23,7 @@ import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyProvider.IPro
 public class ProxyDependency extends DefaultDependency implements IProxyDependency {
 
   /** - */
-  private IBoltClientAware _boltClientAware;
+  private Function<HGProxyDependency, Future<List<IDependency>>> _function;
 
   /**
    * <p>
@@ -35,11 +35,12 @@ public class ProxyDependency extends DefaultDependency implements IProxyDependen
    * @param idRel
    * @param type
    */
-  public ProxyDependency(long idStart, long idTarget, long idRel, String type, IBoltClientAware boltClientAware) {
+  public ProxyDependency(long idStart, long idTarget, long idRel, String type,
+      Function<HGProxyDependency, Future<List<IDependency>>> function) {
     super(idStart, idTarget, idRel, type);
 
     //
-    this._boltClientAware = boltClientAware;
+    this._function = checkNotNull(function);
   }
 
   /**
@@ -47,6 +48,6 @@ public class ProxyDependency extends DefaultDependency implements IProxyDependen
    */
   @Override
   public Function<HGProxyDependency, Future<List<IDependency>>> getResolveFunction() {
-    return (proxyDependency) -> CompletableFuture.completedFuture(Collections.emptyList());
+    return _function;
   }
 }
