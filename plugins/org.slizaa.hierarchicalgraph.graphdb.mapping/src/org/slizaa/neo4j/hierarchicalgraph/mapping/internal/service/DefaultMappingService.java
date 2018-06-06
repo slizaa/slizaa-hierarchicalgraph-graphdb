@@ -6,6 +6,7 @@ import static org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.GraphF
 import static org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.GraphFactoryFunctions.createHierarchy;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -20,6 +21,7 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.INodeSource;
@@ -29,8 +31,10 @@ import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.ILabelDefinitionProvider
 import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IMappingProvider;
 import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.opencypher.IBoltClientAware;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
+import org.slizaa.hierarchicalgraph.spi.IAutoExpandInterceptor;
 import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
+import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
 import org.slizaa.neo4j.hierarchicalgraph.mapping.service.IMappingParticipator;
@@ -135,6 +139,21 @@ public class DefaultMappingService implements IMappingService {
       rootNode.registerExtension(IMappingProvider.class, mappingDescriptor);
       rootNode.registerExtension(INodeComparator.class, mappingDescriptor.getNodeComparator());
       rootNode.registerExtension(ILabelDefinitionProvider.class, mappingDescriptor.getLabelDefinitionProvider());
+
+      //
+      rootNode.registerExtension(IAutoExpandInterceptor.class, new IAutoExpandInterceptor() {
+
+        @Override
+        public boolean preventAutoExpansion(HGNode node) {
+
+          Optional<Neo4JBackedNodeSource> nodeSource = node.getNodeSource(Neo4JBackedNodeSource.class);
+          if (nodeSource.isPresent()) {
+            // TODO
+            return nodeSource.get().getLabels().contains("Resource");
+          }
+          return false;
+        }
+      });
 
       //
       for (IMappingParticipator mappingParticipator : _mappingParticipators) {
