@@ -5,8 +5,6 @@ package org.slizaa.neo4j.hierarchicalgraph;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
-import org.slizaa.hierarchicalgraph.INodeSource;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Neo4 JBacked Node Source</b></em>'.
@@ -24,7 +22,7 @@ import org.slizaa.hierarchicalgraph.INodeSource;
  * @model
  * @generated
  */
-public interface Neo4JBackedNodeSource extends INodeSource {
+public interface Neo4JBackedNodeSource extends org.slizaa.hierarchicalgraph.INodeSource {
   /**
    * Returns the value of the '<em><b>Properties</b></em>' map.
    * The key is of type {@link java.lang.String},
@@ -37,7 +35,7 @@ public interface Neo4JBackedNodeSource extends INodeSource {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Properties</em>' map.
    * @see org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage#getNeo4JBackedNodeSource_Properties()
-   * @model mapType="org.slizaa.hierarchicalgraph.StringToStringMap<org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString>" changeable="false"
+   * @model mapType="org.slizaa.hierarchicalgraph.StringToStringMap&lt;org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString&gt;" changeable="false"
    * @generated
    */
   EMap<String, String> getProperties();

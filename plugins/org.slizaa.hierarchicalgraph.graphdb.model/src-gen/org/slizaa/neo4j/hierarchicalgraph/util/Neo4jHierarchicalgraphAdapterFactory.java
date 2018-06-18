@@ -8,10 +8,6 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.slizaa.hierarchicalgraph.IDependencySource;
-import org.slizaa.hierarchicalgraph.INodeSource;
-
 import org.slizaa.neo4j.hierarchicalgraph.*;
 
 /**
@@ -83,11 +79,11 @@ public class Neo4jHierarchicalgraphAdapterFactory extends AdapterFactoryImpl {
         return createNeo4JBackedDependencySourceAdapter();
       }
       @Override
-      public Adapter caseINodeSource(INodeSource object) {
+      public Adapter caseINodeSource(org.slizaa.hierarchicalgraph.INodeSource object) {
         return createINodeSourceAdapter();
       }
       @Override
-      public Adapter caseIDependencySource(IDependencySource object) {
+      public Adapter caseIDependencySource(org.slizaa.hierarchicalgraph.IDependencySource object) {
         return createIDependencySourceAdapter();
       }
       @Override

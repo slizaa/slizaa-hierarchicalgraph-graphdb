@@ -6,10 +6,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.slizaa.hierarchicalgraph.IDependencySource;
-import org.slizaa.hierarchicalgraph.INodeSource;
-
 import org.slizaa.neo4j.hierarchicalgraph.*;
 
 /**
@@ -151,7 +147,7 @@ public class Neo4jHierarchicalgraphSwitch<T> extends Switch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseINodeSource(INodeSource object) {
+  public T caseINodeSource(org.slizaa.hierarchicalgraph.INodeSource object) {
     return null;
   }
 
@@ -166,7 +162,7 @@ public class Neo4jHierarchicalgraphSwitch<T> extends Switch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseIDependencySource(IDependencySource object) {
+  public T caseIDependencySource(org.slizaa.hierarchicalgraph.IDependencySource object) {
     return null;
   }
 

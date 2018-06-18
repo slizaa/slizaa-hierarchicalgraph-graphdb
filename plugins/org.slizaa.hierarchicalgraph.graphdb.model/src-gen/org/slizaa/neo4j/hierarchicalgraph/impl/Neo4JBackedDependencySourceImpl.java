@@ -19,12 +19,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.slizaa.hierarchicalgraph.HGCoreDependency;
-import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
-
 import org.slizaa.hierarchicalgraph.impl.StringToStringMapImpl;
-
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
 
@@ -189,7 +185,7 @@ public class Neo4JBackedDependencySourceImpl extends MinimalEObjectImpl.Containe
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       if (newDependency != null)
-        msgs = ((InternalEObject)newDependency).eInverseAdd(this, HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE, HGCoreDependency.class, msgs);
+        msgs = ((InternalEObject)newDependency).eInverseAdd(this, org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE, HGCoreDependency.class, msgs);
       msgs = basicSetDependency(newDependency, msgs);
       if (msgs != null) msgs.dispatch();
     }
@@ -204,7 +200,7 @@ public class Neo4JBackedDependencySourceImpl extends MinimalEObjectImpl.Containe
    */
   public EMap<String, String> getProperties() {
     if (properties == null) {
-      properties = new EcoreEMap<String,String>(HierarchicalgraphPackage.Literals.STRING_TO_STRING_MAP, StringToStringMapImpl.class, this, Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__PROPERTIES);
+      properties = new EcoreEMap<String,String>(org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.Literals.STRING_TO_STRING_MAP, StringToStringMapImpl.class, this, Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__PROPERTIES);
     }
     return properties;
   }
@@ -303,7 +299,7 @@ public class Neo4JBackedDependencySourceImpl extends MinimalEObjectImpl.Containe
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
     switch (eContainerFeatureID()) {
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_DEPENDENCY_SOURCE__DEPENDENCY:
-        return eInternalContainer().eInverseRemove(this, HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE, HGCoreDependency.class, msgs);
+        return eInternalContainer().eInverseRemove(this, org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.HG_CORE_DEPENDENCY__DEPENDENCY_SOURCE, HGCoreDependency.class, msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
   }

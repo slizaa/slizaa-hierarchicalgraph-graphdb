@@ -103,6 +103,7 @@ public class Neo4jHierarchicalgraphPackageImpl extends EPackageImpl implements N
     isInited = true;
 
     // Initialize simple dependencies
+    HierarchicalgraphPackage.eINSTANCE.eClass();
     DbAdapterPackage.eINSTANCE.eClass();
 
     // Create package meta-data objects

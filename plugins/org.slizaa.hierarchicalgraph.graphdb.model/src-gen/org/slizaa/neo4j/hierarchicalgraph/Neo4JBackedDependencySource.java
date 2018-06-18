@@ -37,7 +37,7 @@ public interface Neo4JBackedDependencySource extends IDependencySource {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Properties</em>' map.
    * @see org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage#getNeo4JBackedDependencySource_Properties()
-   * @model mapType="org.slizaa.hierarchicalgraph.StringToStringMap<org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString>" changeable="false"
+   * @model mapType="org.slizaa.hierarchicalgraph.StringToStringMap&lt;org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString&gt;" changeable="false"
    * @generated
    */
   EMap<String, String> getProperties();
@@ -97,7 +97,7 @@ public interface Neo4JBackedDependencySource extends IDependencySource {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model dataType="org.slizaa.neo4j.hierarchicalgraph.Optional<T>" required="true" typeRequired="true"
+   * @model dataType="org.slizaa.neo4j.hierarchicalgraph.Optional&lt;T&gt;" required="true" typeRequired="true"
    * @generated
    */
   <T> Optional<T> getUserObject(Class<T> type);

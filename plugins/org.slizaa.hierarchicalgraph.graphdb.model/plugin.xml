@@ -14,4 +14,12 @@
             genModel="model/hierarchicalgraph-neo4j.genmodel"/>
    </extension>
 
+   <extension
+         point="org.eclipse.emf.ecore.factory_override">
+      <factory
+            class="org.slizaa.neo4j.hierarchicalgraph.impl.CustomNeo4jHierarchicalgraphFactoryImpl"
+            uri="http://org/slizaa/neo4j/hierarchicalgraph">
+      </factory>
+   </extension>
+
 </plugin>

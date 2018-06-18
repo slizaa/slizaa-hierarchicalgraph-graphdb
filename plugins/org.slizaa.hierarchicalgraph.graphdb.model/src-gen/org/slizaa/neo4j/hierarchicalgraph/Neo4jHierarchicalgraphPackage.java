@@ -9,8 +9,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
-import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
-
 /**
  * <!-- begin-user-doc -->
  * The <b>Package</b> for the model.
@@ -77,7 +75,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_NODE_SOURCE__IDENTIFIER = HierarchicalgraphPackage.INODE_SOURCE__IDENTIFIER;
+  int NEO4_JBACKED_NODE_SOURCE__IDENTIFIER = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.INODE_SOURCE__IDENTIFIER;
 
   /**
    * The feature id for the '<em><b>Node</b></em>' container reference.
@@ -86,7 +84,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_NODE_SOURCE__NODE = HierarchicalgraphPackage.INODE_SOURCE__NODE;
+  int NEO4_JBACKED_NODE_SOURCE__NODE = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.INODE_SOURCE__NODE;
 
   /**
    * The feature id for the '<em><b>Auto Expand</b></em>' attribute.
@@ -95,7 +93,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_NODE_SOURCE__AUTO_EXPAND = HierarchicalgraphPackage.INODE_SOURCE__AUTO_EXPAND;
+  int NEO4_JBACKED_NODE_SOURCE__AUTO_EXPAND = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.INODE_SOURCE__AUTO_EXPAND;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' map.
@@ -104,7 +102,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_NODE_SOURCE__PROPERTIES = HierarchicalgraphPackage.INODE_SOURCE_FEATURE_COUNT + 0;
+  int NEO4_JBACKED_NODE_SOURCE__PROPERTIES = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.INODE_SOURCE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Labels</b></em>' attribute list.
@@ -113,7 +111,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_NODE_SOURCE__LABELS = HierarchicalgraphPackage.INODE_SOURCE_FEATURE_COUNT + 1;
+  int NEO4_JBACKED_NODE_SOURCE__LABELS = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.INODE_SOURCE_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Neo4 JBacked Node Source</em>' class.
@@ -122,7 +120,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_NODE_SOURCE_FEATURE_COUNT = HierarchicalgraphPackage.INODE_SOURCE_FEATURE_COUNT + 2;
+  int NEO4_JBACKED_NODE_SOURCE_FEATURE_COUNT = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.INODE_SOURCE_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>On Expand</em>' operation.
@@ -131,7 +129,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_NODE_SOURCE___ON_EXPAND = HierarchicalgraphPackage.INODE_SOURCE___ON_EXPAND;
+  int NEO4_JBACKED_NODE_SOURCE___ON_EXPAND = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.INODE_SOURCE___ON_EXPAND;
 
   /**
    * The operation id for the '<em>On Collapse</em>' operation.
@@ -140,7 +138,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_NODE_SOURCE___ON_COLLAPSE = HierarchicalgraphPackage.INODE_SOURCE___ON_COLLAPSE;
+  int NEO4_JBACKED_NODE_SOURCE___ON_COLLAPSE = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.INODE_SOURCE___ON_COLLAPSE;
 
   /**
    * The operation id for the '<em>On Select</em>' operation.
@@ -149,7 +147,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_NODE_SOURCE___ON_SELECT = HierarchicalgraphPackage.INODE_SOURCE___ON_SELECT;
+  int NEO4_JBACKED_NODE_SOURCE___ON_SELECT = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.INODE_SOURCE___ON_SELECT;
 
   /**
    * The number of operations of the '<em>Neo4 JBacked Node Source</em>' class.
@@ -158,7 +156,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_NODE_SOURCE_OPERATION_COUNT = HierarchicalgraphPackage.INODE_SOURCE_OPERATION_COUNT + 0;
+  int NEO4_JBACKED_NODE_SOURCE_OPERATION_COUNT = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.INODE_SOURCE_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.slizaa.neo4j.hierarchicalgraph.impl.Neo4JBackedRootNodeSourceImpl <em>Neo4 JBacked Root Node Source</em>}' class.
@@ -286,7 +284,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE__IDENTIFIER = HierarchicalgraphPackage.IDEPENDENCY_SOURCE__IDENTIFIER;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE__IDENTIFIER = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.IDEPENDENCY_SOURCE__IDENTIFIER;
 
   /**
    * The feature id for the '<em><b>Dependency</b></em>' container reference.
@@ -295,7 +293,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE__DEPENDENCY = HierarchicalgraphPackage.IDEPENDENCY_SOURCE__DEPENDENCY;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE__DEPENDENCY = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.IDEPENDENCY_SOURCE__DEPENDENCY;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' map.
@@ -304,7 +302,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE__PROPERTIES = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_FEATURE_COUNT + 0;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE__PROPERTIES = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.IDEPENDENCY_SOURCE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -313,7 +311,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_FEATURE_COUNT + 1;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE__TYPE = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.IDEPENDENCY_SOURCE_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>User Object</b></em>' attribute.
@@ -322,7 +320,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE__USER_OBJECT = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_FEATURE_COUNT + 2;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE__USER_OBJECT = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.IDEPENDENCY_SOURCE_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Neo4 JBacked Dependency Source</em>' class.
@@ -331,7 +329,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE_FEATURE_COUNT = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_FEATURE_COUNT + 3;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE_FEATURE_COUNT = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.IDEPENDENCY_SOURCE_FEATURE_COUNT + 3;
 
   /**
    * The operation id for the '<em>Get User Object</em>' operation.
@@ -340,7 +338,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE___GET_USER_OBJECT__CLASS = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_OPERATION_COUNT + 0;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE___GET_USER_OBJECT__CLASS = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.IDEPENDENCY_SOURCE_OPERATION_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Neo4 JBacked Dependency Source</em>' class.
@@ -349,7 +347,7 @@ public interface Neo4jHierarchicalgraphPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int NEO4_JBACKED_DEPENDENCY_SOURCE_OPERATION_COUNT = HierarchicalgraphPackage.IDEPENDENCY_SOURCE_OPERATION_COUNT + 1;
+  int NEO4_JBACKED_DEPENDENCY_SOURCE_OPERATION_COUNT = org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.IDEPENDENCY_SOURCE_OPERATION_COUNT + 1;
 
   /**
    * The meta object id for the '<em>Optional</em>' data type.

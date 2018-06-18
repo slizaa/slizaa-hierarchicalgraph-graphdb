@@ -20,12 +20,6 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.HierarchicalgraphPackage;
-
-import org.slizaa.hierarchicalgraph.impl.StringToStringMapImpl;
-
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphPackage;
 
@@ -142,9 +136,9 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public HGNode getNode() {
+  public org.slizaa.hierarchicalgraph.HGNode getNode() {
     if (eContainerFeatureID() != Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE__NODE) return null;
-    return (HGNode)eInternalContainer();
+    return (org.slizaa.hierarchicalgraph.HGNode)eInternalContainer();
   }
 
   /**
@@ -152,7 +146,7 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetNode(HGNode newNode, NotificationChain msgs) {
+  public NotificationChain basicSetNode(org.slizaa.hierarchicalgraph.HGNode newNode, NotificationChain msgs) {
     msgs = eBasicSetContainer((InternalEObject)newNode, Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE__NODE, msgs);
     return msgs;
   }
@@ -162,7 +156,7 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setNode(HGNode newNode) {
+  public void setNode(org.slizaa.hierarchicalgraph.HGNode newNode) {
     if (newNode != eInternalContainer() || (eContainerFeatureID() != Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE__NODE && newNode != null)) {
       if (EcoreUtil.isAncestor(this, newNode))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -170,7 +164,7 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       if (newNode != null)
-        msgs = ((InternalEObject)newNode).eInverseAdd(this, HierarchicalgraphPackage.HG_NODE__NODE_SOURCE, HGNode.class, msgs);
+        msgs = ((InternalEObject)newNode).eInverseAdd(this, org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.HG_NODE__NODE_SOURCE, org.slizaa.hierarchicalgraph.HGNode.class, msgs);
       msgs = basicSetNode(newNode, msgs);
       if (msgs != null) msgs.dispatch();
     }
@@ -196,7 +190,7 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
    */
   public EMap<String, String> getProperties() {
     if (properties == null) {
-      properties = new EcoreEMap<String,String>(HierarchicalgraphPackage.Literals.STRING_TO_STRING_MAP, StringToStringMapImpl.class, this, Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE__PROPERTIES);
+      properties = new EcoreEMap<String,String>(org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.Literals.STRING_TO_STRING_MAP, org.slizaa.hierarchicalgraph.impl.StringToStringMapImpl.class, this, Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE__PROPERTIES);
     }
     return properties;
   }
@@ -257,7 +251,7 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE__NODE:
         if (eInternalContainer() != null)
           msgs = eBasicRemoveFromContainer(msgs);
-        return basicSetNode((HGNode)otherEnd, msgs);
+        return basicSetNode((org.slizaa.hierarchicalgraph.HGNode)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -287,7 +281,7 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
     switch (eContainerFeatureID()) {
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE__NODE:
-        return eInternalContainer().eInverseRemove(this, HierarchicalgraphPackage.HG_NODE__NODE_SOURCE, HGNode.class, msgs);
+        return eInternalContainer().eInverseRemove(this, org.slizaa.hierarchicalgraph.HierarchicalgraphPackage.HG_NODE__NODE_SOURCE, org.slizaa.hierarchicalgraph.HGNode.class, msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
   }
@@ -327,7 +321,7 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
         setIdentifier(newValue);
         return;
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE__NODE:
-        setNode((HGNode)newValue);
+        setNode((org.slizaa.hierarchicalgraph.HGNode)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -345,7 +339,7 @@ public class Neo4JBackedNodeSourceImpl extends MinimalEObjectImpl.Container impl
         setIdentifier(IDENTIFIER_EDEFAULT);
         return;
       case Neo4jHierarchicalgraphPackage.NEO4_JBACKED_NODE_SOURCE__NODE:
-        setNode((HGNode)null);
+        setNode((org.slizaa.hierarchicalgraph.HGNode)null);
         return;
     }
     super.eUnset(featureID);
