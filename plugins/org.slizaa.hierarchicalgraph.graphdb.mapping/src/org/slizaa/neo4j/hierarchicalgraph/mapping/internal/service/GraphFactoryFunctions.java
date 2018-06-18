@@ -18,8 +18,8 @@ import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactoryFunctions;
 import org.slizaa.hierarchicalgraph.IDependencySource;
 import org.slizaa.hierarchicalgraph.INodeSource;
-import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyProvider.IDependency;
-import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyProvider.IProxyDependency;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyDefinition;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IProxyDependencyDefinition;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4jHierarchicalgraphFactory;
@@ -138,9 +138,9 @@ public class GraphFactoryFunctions {
    * @param rootElement
    * @param dependencySourceCreator
    */
-  public static List<HGCoreDependency> createDependencies(List<IDependency> dependencies, HGRootNode rootElement,
-      BiFunction<Long, String, IDependencySource> dependencySourceCreator, boolean reinitializeCaches,
-      IProgressMonitor progressMonitor) {
+  public static List<HGCoreDependency> createDependencies(List<IDependencyDefinition> dependencies,
+      HGRootNode rootElement, BiFunction<Long, String, IDependencySource> dependencySourceCreator,
+      boolean reinitializeCaches, IProgressMonitor progressMonitor) {
 
     // create sub monitor
     final SubMonitor subMonitor = progressMonitor != null ? SubMonitor.convert(progressMonitor, dependencies.size())
@@ -157,14 +157,14 @@ public class GraphFactoryFunctions {
         subMonitor.split(1);
       }
 
-      // 
-      if (element instanceof IProxyDependency) {
+      //
+      if (element instanceof IProxyDependencyDefinition) {
 
         //
-        IProxyDependency proxyDependency = (IProxyDependency) element;
+        IProxyDependencyDefinition proxyDependency = (IProxyDependencyDefinition) element;
 
         //
-        Function<HGProxyDependency, Future<List<IDependency>>> resolveFunction = checkNotNull(
+        Function<HGProxyDependency, List<Future<List<IDependencyDefinition>>>> resolveFunction = checkNotNull(
             proxyDependency.getResolveFunction());
 
         //
@@ -172,7 +172,7 @@ public class GraphFactoryFunctions {
             proxyDependency.getIdTarget(), proxyDependency.getIdTarget(), proxyDependency.getType(), rootElement,
             dependencySourceCreator, resolveFunction, reinitializeCaches);
 
-        //
+        // TODO: Should we really use the user object here?
         ((Neo4JBackedDependencySource) slizaaProxyDependency.getDependencySource())
             .setUserObject(proxyDependency.getResolveFunction());
 
@@ -181,10 +181,10 @@ public class GraphFactoryFunctions {
       }
 
       //
-      else if (element instanceof IDependency) {
+      else if (element instanceof IDependencyDefinition) {
 
         //
-        IDependency simpleDependency = element;
+        IDependencyDefinition simpleDependency = element;
 
         //
         result.add(createDependency(simpleDependency.getIdStart(), simpleDependency.getIdTarget(),
@@ -208,7 +208,8 @@ public class GraphFactoryFunctions {
    */
   public static HGCoreDependency createDependency(Long from, Long to, Long idRel, String type, HGRootNode rootElement,
       BiFunction<Long, String, IDependencySource> dependencySourceCreator,
-      Function<HGProxyDependency, Future<List<IDependency>>> resolveFunction, boolean reinitializeCaches) {
+      Function<HGProxyDependency, List<Future<List<IDependencyDefinition>>>> resolveFunction,
+      boolean reinitializeCaches) {
 
     // get the from...
     HGNode fromElement = ((ExtendedHGRootNodeImpl) rootElement).getIdToNodeMap().get(from);

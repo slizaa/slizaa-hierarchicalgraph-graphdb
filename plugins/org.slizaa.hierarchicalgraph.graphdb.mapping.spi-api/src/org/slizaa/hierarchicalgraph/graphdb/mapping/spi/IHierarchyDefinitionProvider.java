@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public interface IHierarchyProvider {
+public interface IHierarchyDefinitionProvider {
 
   /**
    * <p>

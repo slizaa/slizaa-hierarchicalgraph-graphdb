@@ -44,7 +44,7 @@ class MappingProviderLabelProvider implements ILabelProvider {
 
     if (element instanceof IMappingProvider) {
       IMappingProvider mappingProvider = (IMappingProvider) element;
-      return mappingProvider.getMetaInformation().getName();
+      return mappingProvider.getMappingProviderMetadata().getName();
     }
 
     return element.toString();

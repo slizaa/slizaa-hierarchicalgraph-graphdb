@@ -21,18 +21,18 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.slizaa.hierarchicalgraph.HGNode;
 import org.slizaa.hierarchicalgraph.HGRootNode;
 import org.slizaa.hierarchicalgraph.HierarchicalgraphFactory;
 import org.slizaa.hierarchicalgraph.INodeSource;
-import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyProvider;
-import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IHierarchyProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyDefinitionProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IHierarchyDefinitionProvider;
 import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.ILabelDefinitionProvider;
 import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IMappingProvider;
 import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.opencypher.IBoltClientAware;
 import org.slizaa.hierarchicalgraph.impl.ExtendedHGRootNodeImpl;
 import org.slizaa.hierarchicalgraph.spi.IAutoExpandInterceptor;
 import org.slizaa.hierarchicalgraph.spi.INodeComparator;
+import org.slizaa.hierarchicalgraph.spi.IProxyDependencyResolver;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedRootNodeSource;
@@ -67,11 +67,11 @@ public class DefaultMappingService implements IMappingService {
 
   @Reference()
   public void addMappingParticipator(IMappingParticipator mappingParticipator) {
-    _mappingParticipators.add(mappingParticipator);
+    this._mappingParticipators.add(mappingParticipator);
   }
 
   public void removeMappingParticipator(IMappingParticipator mappingParticipator) {
-    _mappingParticipators.remove(mappingParticipator);
+    this._mappingParticipators.remove(mappingParticipator);
   }
 
   /**
@@ -97,8 +97,8 @@ public class DefaultMappingService implements IMappingService {
       rootNode.setNodeSource(rootNodeSource);
 
       // process root, hierarchy and dependency queries
-      IHierarchyProvider hierarchyProvider = initializeBoltClientAwareMappingProviderComponent(
-          mappingDescriptor.getHierarchyProvider(), boltClient, progressMonitor);
+      IHierarchyDefinitionProvider hierarchyProvider = initializeBoltClientAwareMappingProviderComponent(
+          mappingDescriptor.getHierarchyDefinitionProvider(), boltClient, progressMonitor);
 
       if (hierarchyProvider != null) {
 
@@ -120,8 +120,8 @@ public class DefaultMappingService implements IMappingService {
         removeDanglingNodes(rootNode);
 
         //
-        IDependencyProvider dependencyProvider = initializeBoltClientAwareMappingProviderComponent(
-            mappingDescriptor.getDependencyProvider(), boltClient, progressMonitor);
+        IDependencyDefinitionProvider dependencyProvider = initializeBoltClientAwareMappingProviderComponent(
+            mappingDescriptor.getDependencyDefinitionProvider(), boltClient, progressMonitor);
 
         if (dependencyProvider != null) {
 
@@ -135,28 +135,24 @@ public class DefaultMappingService implements IMappingService {
 
       // register default extensions
       rootNode.registerExtension(Neo4jClient.class, boltClient);
-      // rootNode.registerExtension(IProxyDependencyResolver.class, new CustomProxyDependencyResolver());
+      rootNode.registerExtension(IProxyDependencyResolver.class, new CustomProxyDependencyResolver());
       rootNode.registerExtension(IMappingProvider.class, mappingDescriptor);
       rootNode.registerExtension(INodeComparator.class, mappingDescriptor.getNodeComparator());
       rootNode.registerExtension(ILabelDefinitionProvider.class, mappingDescriptor.getLabelDefinitionProvider());
 
       //
-      rootNode.registerExtension(IAutoExpandInterceptor.class, new IAutoExpandInterceptor() {
+      rootNode.registerExtension(IAutoExpandInterceptor.class, node -> {
 
-        @Override
-        public boolean preventAutoExpansion(HGNode node) {
-
-          Optional<Neo4JBackedNodeSource> nodeSource = node.getNodeSource(Neo4JBackedNodeSource.class);
-          if (nodeSource.isPresent()) {
-            // TODO
-            return nodeSource.get().getLabels().contains("Resource");
-          }
-          return false;
+        Optional<Neo4JBackedNodeSource> nodeSource = node.getNodeSource(Neo4JBackedNodeSource.class);
+        if (nodeSource.isPresent()) {
+          // TODO
+          return nodeSource.get().getLabels().contains("Resource");
         }
+        return false;
       });
 
       //
-      for (IMappingParticipator mappingParticipator : _mappingParticipators) {
+      for (IMappingParticipator mappingParticipator : this._mappingParticipators) {
         mappingParticipator.postCreate(rootNode, mappingDescriptor, boltClient);
       }
 

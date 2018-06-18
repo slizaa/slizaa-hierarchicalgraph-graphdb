@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IHierarchyProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IHierarchyDefinitionProvider;
 import org.slizaa.neo4j.dbadapter.Neo4jClient;
 
-public abstract class AbstractQueryBasedHierarchyProvider implements IHierarchyProvider, IBoltClientAware {
+public abstract class AbstractQueryBasedHierarchyProvider implements IHierarchyDefinitionProvider, IBoltClientAware {
 
   /** - */
   private List<Long>   _toplevelNodeIds;

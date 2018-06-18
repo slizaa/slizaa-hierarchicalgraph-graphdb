@@ -16,10 +16,10 @@ public class DefaultMappingProvider implements IMappingProvider {
   private IMappingProviderMetadata _metaData;
 
   /** - */
-  private IHierarchyProvider       _hierarchyProvider;
+  private IHierarchyDefinitionProvider       _hierarchyProvider;
 
   /** - */
-  private IDependencyProvider      _dependencyProvider;
+  private IDependencyDefinitionProvider      _dependencyProvider;
 
   /** - */
   private ILabelDefinitionProvider _labelProvider;
@@ -38,8 +38,8 @@ public class DefaultMappingProvider implements IMappingProvider {
    * @param labelProvider
    * @param nodeComparator
    */
-  public DefaultMappingProvider(IMappingProviderMetadata metaInformation, IHierarchyProvider hierarchyProvider,
-      IDependencyProvider dependencyProvider, ILabelDefinitionProvider labelProvider, INodeComparator nodeComparator) {
+  public DefaultMappingProvider(IMappingProviderMetadata metaInformation, IHierarchyDefinitionProvider hierarchyProvider,
+      IDependencyDefinitionProvider dependencyProvider, ILabelDefinitionProvider labelProvider, INodeComparator nodeComparator) {
 
     this._metaData = checkNotNull(metaInformation);
     this._hierarchyProvider = checkNotNull(hierarchyProvider);
@@ -52,7 +52,7 @@ public class DefaultMappingProvider implements IMappingProvider {
    * {@inheritDoc}
    */
   @Override
-  public IMappingProviderMetadata getMetaInformation() {
+  public IMappingProviderMetadata getMappingProviderMetadata() {
     return this._metaData;
   }
 
@@ -60,7 +60,7 @@ public class DefaultMappingProvider implements IMappingProvider {
    * {@inheritDoc}
    */
   @Override
-  public IHierarchyProvider getHierarchyProvider() {
+  public IHierarchyDefinitionProvider getHierarchyDefinitionProvider() {
     return this._hierarchyProvider;
   }
 
@@ -68,7 +68,7 @@ public class DefaultMappingProvider implements IMappingProvider {
    * {@inheritDoc}
    */
   @Override
-  public IDependencyProvider getDependencyProvider() {
+  public IDependencyDefinitionProvider getDependencyDefinitionProvider() {
     return this._dependencyProvider;
   }
 

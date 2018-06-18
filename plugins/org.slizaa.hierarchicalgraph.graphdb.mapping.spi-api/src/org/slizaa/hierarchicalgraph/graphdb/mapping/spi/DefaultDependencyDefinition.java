@@ -1,14 +1,12 @@
 package org.slizaa.hierarchicalgraph.graphdb.mapping.spi;
 
-import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyProvider.IDependency;
-
 /**
  * <p>
  * </p>
  *
  * @author Gerd W&uuml;therich (gerd@gerd-wuetherich.de)
  */
-public class DefaultDependency implements IDependency {
+public class DefaultDependencyDefinition implements IDependencyDefinition {
 
   /** - */
   public long   _idStart;
@@ -32,7 +30,7 @@ public class DefaultDependency implements IDependency {
    * @param idRel
    * @param type
    */
-  public DefaultDependency(long idStart, long idTarget, long idRel, String type) {
+  public DefaultDependencyDefinition(long idStart, long idTarget, long idRel, String type) {
     this._idStart = idStart;
     this._idTarget = idTarget;
     this._idRel = idRel;
@@ -57,5 +55,11 @@ public class DefaultDependency implements IDependency {
   @Override
   public String getType() {
     return this._type;
+  }
+
+  @Override
+  public String toString() {
+    return "DefaultDependencyDefinition [_idStart=" + this._idStart + ", _idTarget=" + this._idTarget + ", _idRel="
+        + this._idRel + ", _type=" + this._type + "]";
   }
 }

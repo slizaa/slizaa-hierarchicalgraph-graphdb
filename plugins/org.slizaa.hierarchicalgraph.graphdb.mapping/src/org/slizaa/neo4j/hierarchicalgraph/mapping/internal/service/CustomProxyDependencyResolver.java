@@ -1,14 +1,17 @@
 package org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.slizaa.neo4j.hierarchicalgraph.mapping.internal.service.GraphFactoryFunctions.createDependencies;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.function.Function;
 
+import org.slizaa.hierarchicalgraph.HGCoreDependency;
 import org.slizaa.hierarchicalgraph.HGProxyDependency;
-import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyProvider.IDependency;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyDefinition;
 import org.slizaa.hierarchicalgraph.spi.IProxyDependencyResolver;
 import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedDependencySource;
 
@@ -34,7 +37,7 @@ public class CustomProxyDependencyResolver implements IProxyDependencyResolver {
     //
     if (DEBUG) {
       System.out.println("--- CustomProxyDependencyResolver ---");
-      System.out.println(String.format("Resolving ProxyDependency from '%s' to '%s'.",
+      System.out.println(String.format("Resolving ProxyDependencyDefinitionImpl from '%s' to '%s'.",
           dependency.getFrom().getIdentifier(), dependency.getTo().getIdentifier()));
     }
 
@@ -51,7 +54,10 @@ public class CustomProxyDependencyResolver implements IProxyDependencyResolver {
   private class ProxyDependencyResolverJob implements IProxyDependencyResolverJob {
 
     /** - */
-    private Future<List<IDependency>> _future;
+    private List<Future<List<IDependencyDefinition>>> _futures;
+
+    /** - */
+    private HGProxyDependency                         _proxyDependency;
 
     /**
      * <p>
@@ -63,30 +69,46 @@ public class CustomProxyDependencyResolver implements IProxyDependencyResolver {
     public ProxyDependencyResolverJob(HGProxyDependency proxyDependency) {
 
       //
-      checkNotNull(proxyDependency);
+      this._proxyDependency = checkNotNull(proxyDependency);
 
       //
       Neo4JBackedDependencySource dependencySource = (Neo4JBackedDependencySource) proxyDependency
           .getDependencySource();
 
-      // TODO
+      // TODO List<Future<List<IDependencyDefinition>>>>
       @SuppressWarnings("unchecked")
-      Function<HGProxyDependency, Future<List<IDependency>>> resolveFunction = (Function<HGProxyDependency, Future<List<IDependency>>>) dependencySource
+      Function<HGProxyDependency, List<Future<List<IDependencyDefinition>>>> resolveFunction = (Function<HGProxyDependency, List<Future<List<IDependencyDefinition>>>>) dependencySource
           .getUserObject();
 
       //
-      this._future = resolveFunction.apply(proxyDependency);
+      this._futures = resolveFunction.apply(proxyDependency);
     }
 
     @Override
     public void waitForCompletion() {
-      try {
-        this._future.get();
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      } catch (ExecutionException e) {
-        e.printStackTrace();
+
+      //
+      List<IDependencyDefinition> resolvedDependencyDefinitions = new ArrayList<>();
+
+      //
+      for (Future<List<IDependencyDefinition>> future : this._futures) {
+        try {
+          resolvedDependencyDefinitions.addAll(future.get());
+        } catch (InterruptedException | ExecutionException e) {
+          e.printStackTrace();
+        }
       }
+
+      //
+      List<HGCoreDependency> coreDependencies = createDependencies(resolvedDependencyDefinitions,
+          this._proxyDependency.getRootNode(),
+          (id, type) -> GraphFactoryFunctions.createDependencySource(id, type, null), false, null);
+
+      //
+      this._proxyDependency.getResolvedCoreDependencies().addAll(coreDependencies);
+
+      //
+      System.out.println("SPONKIE: " + coreDependencies);
     }
   }
 }

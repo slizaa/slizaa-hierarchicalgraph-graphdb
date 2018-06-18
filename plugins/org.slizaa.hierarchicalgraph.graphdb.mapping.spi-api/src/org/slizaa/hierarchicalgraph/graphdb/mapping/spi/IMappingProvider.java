@@ -26,10 +26,10 @@ public interface IMappingProvider {
     private IMappingProviderMetadata _metaData;
 
     /** - */
-    private IHierarchyProvider       _hierarchyProvider;
+    private IHierarchyDefinitionProvider       _hierarchyProvider;
 
     /** - */
-    private IDependencyProvider      _dependencyProvider;
+    private IDependencyDefinitionProvider      _dependencyProvider;
 
     /** - */
     private ILabelDefinitionProvider _labelProvider;
@@ -48,8 +48,8 @@ public interface IMappingProvider {
      * @param labelProvider
      * @param nodeComparator
      */
-    public DefaultMappingProvider(IMappingProviderMetadata metaInformation, IHierarchyProvider hierarchyProvider,
-        IDependencyProvider dependencyProvider, ILabelDefinitionProvider labelProvider,
+    public DefaultMappingProvider(IMappingProviderMetadata metaInformation, IHierarchyDefinitionProvider hierarchyProvider,
+        IDependencyDefinitionProvider dependencyProvider, ILabelDefinitionProvider labelProvider,
         INodeComparator nodeComparator) {
 
       this._metaData = checkNotNull(metaInformation);
@@ -63,7 +63,7 @@ public interface IMappingProvider {
      * {@inheritDoc}
      */
     @Override
-    public IMappingProviderMetadata getMetaInformation() {
+    public IMappingProviderMetadata getMappingProviderMetadata() {
       return this._metaData;
     }
 
@@ -71,7 +71,7 @@ public interface IMappingProvider {
      * {@inheritDoc}
      */
     @Override
-    public IHierarchyProvider getHierarchyProvider() {
+    public IHierarchyDefinitionProvider getHierarchyDefinitionProvider() {
       return this._hierarchyProvider;
     }
 
@@ -79,7 +79,7 @@ public interface IMappingProvider {
      * {@inheritDoc}
      */
     @Override
-    public IDependencyProvider getDependencyProvider() {
+    public IDependencyDefinitionProvider getDependencyDefinitionProvider() {
       return this._dependencyProvider;
     }
 
@@ -176,19 +176,19 @@ public interface IMappingProvider {
    *
    * @return
    */
-  IMappingProviderMetadata getMetaInformation();
+  IMappingProviderMetadata getMappingProviderMetadata();
 
   /**
    * <p>
    * </p>
    */
-  IHierarchyProvider getHierarchyProvider();
+  IHierarchyDefinitionProvider getHierarchyDefinitionProvider();
 
   /**
    * <p>
    * </p>
    */
-  IDependencyProvider getDependencyProvider();
+  IDependencyDefinitionProvider getDependencyDefinitionProvider();
 
   /**
    * <p>
