@@ -2,11 +2,10 @@ package org.slizaa.hierarchicalgraph.graphdb.ui.mappingsdialog;
 
 import java.util.Map;
 
-import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyProvider;
-import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IHierarchyProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IDependencyDefinitionProvider;
+import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IHierarchyDefinitionProvider;
 import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.ILabelDefinitionProvider;
 import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IMappingProvider;
-import org.slizaa.hierarchicalgraph.graphdb.mapping.spi.IMappingProvider.IMappingProviderMetadata;
 import org.slizaa.hierarchicalgraph.spi.INodeComparator;
 
 public class DummyMappingProvider implements IMappingProvider {
@@ -32,7 +31,7 @@ public class DummyMappingProvider implements IMappingProvider {
    * {@inheritDoc}
    */
   @Override
-  public IMappingProviderMetadata getMetaInformation() {
+  public IMappingProviderMetadata getMappingProviderMetadata() {
     return this._metadata;
   }
 
@@ -40,7 +39,7 @@ public class DummyMappingProvider implements IMappingProvider {
    * {@inheritDoc}
    */
   @Override
-  public IHierarchyProvider getHierarchyProvider() {
+  public IHierarchyDefinitionProvider getHierarchyDefinitionProvider() {
     throw new UnsupportedOperationException();
   }
 
@@ -48,7 +47,7 @@ public class DummyMappingProvider implements IMappingProvider {
    * {@inheritDoc}
    */
   @Override
-  public IDependencyProvider getDependencyProvider() {
+  public IDependencyDefinitionProvider getDependencyDefinitionProvider() {
     throw new UnsupportedOperationException();
   }
 

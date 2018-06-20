@@ -144,8 +144,8 @@ public class BoltClientQueries {
       for (String cypherQuery : detailDependencyQueries) {
 
         //
-        Future<List<IDependencyDefinition>> dependencyDefinitions = boltClient.executeCypherQuery(cypherQuery, params,
-            statementResult -> {
+        Future<List<IDependencyDefinition>> dependencyDefinitions = boltClient
+            .executeCypherQueryAndTransformResult(cypherQuery, params, statementResult -> {
               return statementResult.list(r -> new DefaultDependencyDefinition(r.get(0).asLong(), r.get(1).asLong(),
                   r.get(2).asLong(), r.get(3).asString()));
             });
