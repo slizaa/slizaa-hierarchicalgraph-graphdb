@@ -16,8 +16,8 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.slizaa.hierarchicalgraph.selection.NodeSelection;
-import org.slizaa.neo4j.hierarchicalgraph.Neo4JBackedNodeSource;
+import org.slizaa.hierarchicalgraph.core.selections.NodeSelection;
+import org.slizaa.hierarchicalgraph.graphdb.model.GraphDbNodeSource;
 import org.slizaa.ui.shared.AbstractSlizaaWorkbenchModelComponent;
 
 import com.google.gson.GsonBuilder;
@@ -101,7 +101,7 @@ public class CurrentSelectionViewPart extends AbstractSlizaaWorkbenchModelCompon
         CurrentSelectionViewPart.this._currenNodeSelection.getNodes().forEach(node -> {
 
           // get the node source
-          Neo4JBackedNodeSource nodeSource = node.getNodeSource(Neo4JBackedNodeSource.class).get();
+          GraphDbNodeSource nodeSource = node.getNodeSource(GraphDbNodeSource.class).get();
 
           // create the result
           JsonObject nodeAsJsonObject = new JsonObject();
