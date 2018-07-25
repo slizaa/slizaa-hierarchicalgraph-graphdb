@@ -15,16 +15,10 @@
 		<module>releng/org.slizaa.hierarchicalgraph.graphdb.feature</module>
 		<module>releng/org.slizaa.hierarchicalgraph.graphdb.p2</module>
 
-		<module>plugins/org.slizaa.hierarchicalgraph.graphdb.model</module>
-		<module>plugins/org.slizaa.hierarchicalgraph.graphdb.mapping</module>
-		<module>plugins/org.slizaa.hierarchicalgraph.graphdb.mapping.spi-api</module>
 		<module>plugins/org.slizaa.hierarchicalgraph.graphdb.ui.currentselectionview</module>
 		<module>plugins/org.slizaa.hierarchicalgraph.graphdb.ui.hierarchicalgraphview</module>
 		<module>plugins/org.slizaa.hierarchicalgraph.graphdb.ui.mappingsdialog</module>
 
-		<module>tests/org.slizaa.hierarchicalgraph.graphdb.testfwk</module>
-		<module>tests/org.slizaa.hierarchicalgraph.graphdb.model.test</module>
-		<module>tests/org.slizaa.hierarchicalgraph.graphdb.mapping.test</module>
 		<module>tests/org.slizaa.hierarchicalgraph.graphdb.ui.hierarchicalgraphview.test</module>
 		<module>tests/org.slizaa.hierarchicalgraph.graphdb.ui.mappingsdialog.test</module>
 	</modules>

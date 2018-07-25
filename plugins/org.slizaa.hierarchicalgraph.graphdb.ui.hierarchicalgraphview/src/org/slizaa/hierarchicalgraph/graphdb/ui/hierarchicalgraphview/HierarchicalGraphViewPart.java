@@ -19,10 +19,10 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.slizaa.hierarchicalgraph.HGNode;
-import org.slizaa.hierarchicalgraph.HGRootNode;
-import org.slizaa.hierarchicalgraph.selection.NodeSelection;
-import org.slizaa.hierarchicalgraph.selection.SelectionFactory;
+import org.slizaa.hierarchicalgraph.core.model.HGNode;
+import org.slizaa.hierarchicalgraph.core.model.HGRootNode;
+import org.slizaa.hierarchicalgraph.core.selections.NodeSelection;
+import org.slizaa.hierarchicalgraph.core.selections.SelectionsFactory;
 import org.slizaa.ui.shared.AbstractSlizaaWorkbenchModelComponent;
 import org.slizaa.ui.shared.context.RootObject;
 import org.slizaa.ui.tree.SlizaaTreeViewerFactory;
@@ -116,7 +116,7 @@ public class HierarchicalGraphViewPart extends AbstractSlizaaWorkbenchModelCompo
       }
 
       //
-      NodeSelection nodeSelection = SelectionFactory.eINSTANCE.createNodeSelection();
+      NodeSelection nodeSelection = SelectionsFactory.eINSTANCE.createNodeSelection();
       nodeSelection.getNodes().addAll(rep);
       getWorkbenchModel().setNodeSelection(nodeSelection);
     });

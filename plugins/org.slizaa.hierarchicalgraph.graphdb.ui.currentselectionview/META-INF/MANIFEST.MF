@@ -8,11 +8,12 @@ Require-Bundle: org.eclipse.swt;bundle-version="3.105.2",
  org.slizaa.hierarchicalgraph.core.ui.shared;bundle-version="0.0.4",
  org.eclipse.equinox.common;bundle-version="3.8.0",
  org.eclipse.osgi;bundle-version="3.11.2",
+ org.slizaa.hierarchicalgraph.core.selections;bundle-version="1.0.0",
  com.google.guava;bundle-version="15.0.0",
- org.slizaa.hierarchicalgraph.core.model;bundle-version="0.0.4",
- org.slizaa.hierarchicalgraph.graphdb.model;bundle-version="0.0.4",
- org.slizaa.hierarchicalgraph.core.selection;bundle-version="0.0.4",
- com.google.gson;bundle-version="2.5.0"
+ org.slizaa.hierarchicalgraph.core.model;bundle-version="1.0.0",
+ org.slizaa.hierarchicalgraph.graphdb.model;bundle-version="1.0.0",
+ com.google.gson;bundle-version="2.5.0",
+ org.eclipse.emf.ecore;bundle-version="2.13.0"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.slizaa.neo4j.ui.currentselection.Activator
 Export-Package: org.slizaa.neo4j.ui.currentselection
