@@ -16,27 +16,6 @@
       [Enter License Description here.]
    </license>
 
-   <plugin
-         id="org.slizaa.hierarchicalgraph.graphdb.model"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-         
-	<plugin
-         id="org.slizaa.hierarchicalgraph.graphdb.mapping"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>         
-         
-	<plugin
-         id="org.slizaa.hierarchicalgraph.graphdb.mapping.spi-api"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>            
-
 	<plugin
          id="org.slizaa.hierarchicalgraph.graphdb.ui.currentselectionview"
          download-size="0"
