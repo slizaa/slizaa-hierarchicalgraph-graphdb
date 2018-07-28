@@ -6,12 +6,6 @@
    <feature id="org.slizaa.hierarchicalgraph.graphdb.feature.source" version="0.0.0">
       <category name="org.slizaa.hierarchicalgraph.graphdb.source.category"/>
    </feature>
-   <feature id="org.slizaa.hierarchicalgraph.graphdb.test.feature" version="0.0.0">
-      <category name="org.slizaa.hierarchicalgraph.graphdb.category"/>
-   </feature>
-   <feature id="org.slizaa.hierarchicalgraph.graphdb.test.feature.source" version="0.0.0">
-      <category name="org.slizaa.hierarchicalgraph.graphdb.source.category"/>
-   </feature>
    <category-def name="org.slizaa.hierarchicalgraph.graphdb.category" label="org.slizaa.hierarchicalgraph.graphdb"/>
    <category-def name="org.slizaa.hierarchicalgraph.graphdb.source.category" label="org.slizaa.hierarchicalgraph.graphdb.source"/>
 </site>
