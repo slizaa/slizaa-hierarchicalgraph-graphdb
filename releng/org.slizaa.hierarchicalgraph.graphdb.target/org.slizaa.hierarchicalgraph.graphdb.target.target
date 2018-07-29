@@ -60,25 +60,25 @@
 <repository location="http://www.slizaa.org/p2/slizaa-hierarchicalgraph"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.slizaa.scanner.core.contentdefinition" version="1.0.0.20180726093809"/>
-<unit id="org.slizaa.scanner.core.cypherregistry" version="1.0.0.20180726093809"/>
-<unit id="org.slizaa.scanner.core.spi-api" version="1.0.0.20180726093809"/>
-<unit id="org.slizaa.scanner.core.testfwk" version="1.0.0.20180726093809"/>
+<unit id="org.slizaa.scanner.core.contentdefinition" version="0.0.0"/>
+<unit id="org.slizaa.scanner.core.cypherregistry" version="0.0.0"/>
+<unit id="org.slizaa.scanner.core.spi-api" version="0.0.0"/>
+<unit id="org.slizaa.scanner.core.testfwk" version="0.0.0"/>
 <repository location="http://www.slizaa.org/p2/slizaa-scanner-core"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.slizaa.hierarchicalgraph.core.feature.feature.group" version="1.0.0.201807242002"/>
-<unit id="org.slizaa.hierarchicalgraph.core.feature.source.feature.group" version="1.0.0.201807242002"/>
-<unit id="org.slizaa.hierarchicalgraph.core.testfwk.feature.feature.group" version="1.0.0.201807242002"/>
-<unit id="org.slizaa.hierarchicalgraph.core.testfwk.feature.source.feature.group" version="1.0.0.201807242002"/>
+<unit id="org.slizaa.hierarchicalgraph.core.feature.feature.group" version="0.0.0"/>
+<unit id="org.slizaa.hierarchicalgraph.core.feature.source.feature.group" version="0.0.0"/>
+<unit id="org.slizaa.hierarchicalgraph.core.testfwk.feature.feature.group" version="0.0.0"/>
+<unit id="org.slizaa.hierarchicalgraph.core.testfwk.feature.source.feature.group" version="0.0.0"/>
 <repository location="http://www.slizaa.org/p2/slizaa-hierarchicalgraph-core"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.slizaa.core.boltclient" version="1.0.0.20180726115335"/>
-<unit id="org.slizaa.core.boltclient.testfwk" version="1.0.0.20180726115335"/>
-<unit id="org.slizaa.core.classpathscanner" version="1.0.0.20180726115335"/>
-<unit id="org.slizaa.core.jersey.osgi" version="1.0.0.20180726115335"/>
-<unit id="org.slizaa.core.mvnresolver.uber" version="1.0.0.20180726115335"/>
+<unit id="org.slizaa.core.boltclient" version="0.0.0"/>
+<unit id="org.slizaa.core.boltclient.testfwk" version="0.0.0"/>
+<unit id="org.slizaa.core.classpathscanner" version="0.0.0"/>
+<unit id="org.slizaa.core.jersey.osgi" version="0.0.0"/>
+<unit id="org.slizaa.core.mvnresolver.uber" version="0.0.0"/>
 <repository location="http://www.slizaa.org/p2/slizaa-core"/>
 </location>
 </locations>
